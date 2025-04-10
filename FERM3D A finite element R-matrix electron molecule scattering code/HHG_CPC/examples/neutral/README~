@@ -1,0 +1,15 @@
+In order to run the examples is needed to run CM.x for each of them and to get
+potentials from gaussian
+
+INPUT:
+co2.potential.inp : Gaussian98 script to obtain density, gradient,
+laplacian and electrostatic potential
+input_grid.dat: grid used to generate output (slightly corrected around the
+nuclei from CM.x output)
+
+PC-Gamess input: potentials.inp.6-31gS.gamess for density and potential
+		
+
+OUTPUT:
+fort.950 contains elastic scattering cross section, output.txt contains the
+full program output

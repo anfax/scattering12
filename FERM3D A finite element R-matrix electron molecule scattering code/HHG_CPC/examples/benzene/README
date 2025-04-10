@@ -1,0 +1,12 @@
+in order to run the examples is needed to run CM.x for each of them and to get
+potentials from gaussian
+
+INPUT:
+benzene.cube.inp : Gaussian98 script to obtain density, gradient,
+laplacian and electrostatic potential
+input_grid.dat: grid used to generate output (slightly corrected around the
+nuclei from CM.x output)
+
+OUTPUT:
+fort.800 contains elastic scattering cross section
+output.txt contains the full output of the program.

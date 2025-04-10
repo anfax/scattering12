@@ -1,0 +1,16 @@
+C
+         SUBROUTINE PORCPU (T1)
+C
+         IMPLICIT DOUBLE PRECISION (A-H, O-Z)
+         INTEGER NTIME
+C
+C    This is a subroutine for the IBM which gets the CPU time
+C
+         NTIME = MCLOCK()
+C
+C    Convert to a real number and adjust to seconds
+C
+         T1 = DBLE(NTIME)/100.D0
+C
+         RETURN
+         END

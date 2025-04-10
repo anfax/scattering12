@@ -1,0 +1,1314 @@
+!!!*************************************************************
+! 文件/File: photoionization.f90
+! 由李皓(lihao,LIH_ao@outlook.com)创建/修改/分享
+! Created/Modified/Shared by Li Hao (lihao,LIH_ao@outlook.com)
+! 日期时间/Date Time: 2025-04-11 00:14:07
+!*************************************************************
+
+!!!*************************************************************
+! 文件/File: photoionization.f90
+! 由李皓(lihao,LIH_ao@outlook.com)创建/修改/分享
+! Created/Modified/Shared by Li Hao (lihao,LIH_ao@outlook.com)
+! 日期时间/Date Time: 2025-04-10 23:45:42
+!*************************************************************
+
+
+module photoionization
+  use nrtype, only : i4b,dbl,dpc,Pi
+  real(kind=dbl),allocatable,save :: angle(:),angle_position_phi(:),position(:),xi(:,:),harm_all(:,:)
+  integer(kind=i4b) :: k,ll,mm,qq
+  real(kind=i4b),parameter :: short1=1.d0/10.d0,short2=9.d0/10.d0
+contains
+
+
+  subroutine assemble_routine(Smat_vector,grid_func,nClosed,channel,J_soln,N_soln,Smat,max_open,coeff_projection,energy)
+    use nrtype, only : i4b,dbl,dpc,Pi,order
+    use gauss2dint
+    use Brep,only : R0,p_Patch,x_coord=>coord_x,y_coord=>coord_y,z_coord=>coord_z,plotpoints&
+         & ,n,p,nodes_closed_index,epsilon_custom,PatchVertex,r_glo,theta_glo,phi_glo &
+         & ,nodes
+    use V_setup, only : xx,yy,zz,n1,n2,n3,nAtom
+    use Calc_func, only : an_r,an_theta,an_phi,bas_r,c_func,choice_partition,element
+    use Open_information, only : bionda2_boundary,rad_elem_v,alpha_v,vect_max,open_vect,long_max,long_open,rad_elem
+    use over, only : overlap_c
+    use Solve, only : invert_complex
+    implicit none
+    integer(kind=i4b) :: globnode,n1n2n3,i1,i2,i3,i,k_r,k_theta,k_phi,nClosed,j,&
+         &  channel,max_open,vect_ind,alpha,lmax,mp,pp,jt,kk,jtp,mmp,ios
+    integer(kind=i4b),parameter :: first=1,last=8,ngp=30,nx=12,ny=13,nz=14
+    integer(kind=i4b),save :: counter1=0,counter2,num_initial_states
+    integer(kind=i4b),allocatable,save :: element_n1n2n3(:,:),element_Patch(:,:)
+    real(kind=dbl) :: J_soln(max_open),N_soln(max_open),harmonic(max_open)
+    real(kind=dbl),dimension(:),allocatable :: J_soln2,N_soln2,Jp_soln,Np_soln
+    real(kind=dbl) :: beta,mult,ss,const,omega,CG,pleg,energy,clebsh,kappa,x
+    real(kind=dbl),parameter :: alpha_fine_struct=7.297352568d-3,hbar=1.05457266d-34,au_to_Joules=6.241506d18 / 27.2d0
+    !    real(kind=dbl),parameter :: Ioniz_potential=0.71d0  ! 4sigma_g
+    !   real(kind=dbl),parameter :: Ioniz_potential=0.54d0  ! Pi_g
+    real(kind=dbl),allocatable,save :: Ioniz_potential(:)  ! if not defined
+    real(kind=dbl),allocatable :: eigen(:),H(:,:),weigh(:),xabsc(:),sigma(:)
+    real(kind=dbl),allocatable,save ::psi_0(:,:,:,:),psi_0_temp(:,:,:),value(:,:,:)
+    complex(kind=dpc) :: Smat_vector(nClosed),grid_func(max_open,n1*n2*n3),Smat(max_open,max_open),f_plus_minus(max_open,2),grid_fake&
+         &,coeff_projection(max_open,max_open),func
+    complex(kind=dpc),allocatable :: T_mat(:,:),assemble(:,:,:),matr_elem(:,:,:),grid_func2(:,:),integr(:),func_interp(:,:),temp_func_interp(:,:)
+    complex(kind=dpc),parameter :: zI=(0.d0,1.d0)
+    character(len=16) :: orbital_name1,orbital_name2,option_gauge='length'
+    character, allocatable :: orbital_name3(:)
+    logical :: logic
+    external :: pleg,clebsh
+    !------------------------------
+    ! Test variables
+    complex(kind=dpc) :: lambda
+    real(kind=dbl) :: rj,ry,rjp,ryp,Aa,Bi,integral
+    integer(kind=i4b) :: ii,iderx,idery,iderz
+    !------------------------------
+    ! COMMENT
+    ! This module calculates photoionization cross sections and dipole matrix
+    ! elements
+    !------------------------------
+
+    write(6,*)'enter photoionization routine'
+    n1n2n3=n1*n2*n3
+    call setup
+
+    lmax=int(sqrt(1.d0*max_open))-1
+    ! Transform to spherical harmonics basis
+    ! Psi^(-)=matmul(coeff_projection,numerical_harmonic)
+    write(42,*)'bbb',coeff_projection
+    !write(6,*)'1'
+    allocate(grid_func2(max_open,n1n2n3))
+    grid_func2(:,:)=cmplx(0.d0,0.d0)
+
+    grid_func2(:,:)=matmul(coeff_projection(:,:),grid_func(:,:)) ! May need blas routine
+
+    !call zgemm ( 'N', 'N', max_open, max_open, n1n2n3, (1.d0,0.d0), coeff_projection, max_open, grid_func, max_open, &
+    !     &                   (0.d0,0.d0), grid_func2, max_open )
+    grid_func(:,:)=grid_func2(:,:)
+
+    !write(6,*)'2'
+    deallocate(grid_func2)
+
+    ! Build matrix elements
+    ! find range of Psi_{0}
+
+    ! interpolate
+
+    ! call qgauss3D (modified)
+
+    !---------------------------------------------------
+    ! COMMENT
+    ! Simple integration with rectangles on the grid
+    ! Calculating the grid points in spherical coordinates
+    !---------------------------------------------------
+
+    allocate(angle(n1n2n3),angle_position_phi(n1n2n3),position(n1n2n3))
+    ! do i1=1,n1
+    !    do i2=1,n2
+    !       do i3=1,n3
+    do i1=n1*short1,n1*short2 ! Use for just the central region of interest around (0,0,0)
+       do i2=n2*short1,n2*short2
+          do i3=n3*short1,n3*short2
+
+             n1n2n3=i3+(i2-1)*n3+(i1-1)*n2*n3
+             ! Verify -----------------------
+!!$ do channel=1,max_open
+!!$    write(11000+channel,902)xx(i1),yy(i2),zz(i3),real(grid_func(channel,n1n2n3)),aimag(grid_func(channel,n1n2n3))
+!!$ end do
+             !-------------------------------
+             position(n1n2n3)=Sqrt(xx(i1)*xx(i1)+yy(i2)*yy(i2)+zz(i3)*zz(i3))
+             if (position(n1n2n3).gt. 0.0d0+epsilon_custom) then
+                angle(n1n2n3)=acos(zz(i3)/position(n1n2n3))
+                if ((angle(n1n2n3).gt.0.d0+epsilon_custom).and.(angle(n1n2n3).le.Pi-epsilon_custom)) then
+                   beta=xx(i1)/(position(n1n2n3)*sin(angle(n1n2n3)))
+                   if (beta.le.-1.d0) then
+                      angle_position_phi(n1n2n3)=Pi
+                   else if (beta.gt.1.d0) then
+                      angle_position_phi(n1n2n3)=0.d0
+                   else
+                      angle_position_phi(n1n2n3) = dacos(beta)
+                   end if
+                   if (yy(i2).lt.0.d0) then
+                      angle_position_phi(n1n2n3)=2.d0*Pi-angle_position_phi(n1n2n3)
+                   end if
+                else
+                   angle_position_phi(n1n2n3) = 0.d0 * Pi
+                end if
+             else
+                angle_position_phi(n1n2n3) = 0.d0 * Pi
+                angle(n1n2n3) = 0.0d0*Pi
+             end if
+          end do
+       end do
+    end do
+    !write(6,*)'3'
+    !------------------------------------------
+    ! COMMENT
+    ! Read all psi_0 (initial states) from file 
+    if (counter1.eq.0) then
+
+       !------------------------------------------
+       ! Variable orbital name
+       open(unit=nx,file='input_control.dat',status='old',action='read')
+       do i=1,20
+          read(nx,*)
+       end do
+       read(nx,*,IOSTAT=ios)num_initial_states,option_gauge
+       if (ios.ne.0) option_gauge='length'
+       write(6,*)'num_initial_states',num_initial_states,'gauge',option_gauge
+       allocate(Ioniz_potential(num_initial_states))
+       allocate(psi_0(n1,n2,n3,num_initial_states))
+       allocate(psi_0_temp(n1,n2,n3))
+       psi_0(:,:,:,:)=0.d0 ! Need to read this from file
+       do kk=1,num_initial_states
+          read(nx,*)orbital_name1
+          write(6,*)'orbital name= ',orbital_name1
+          read(nx,*)Ioniz_potential(kk)
+          write(6,*)'Ionization potential=',Ioniz_potential(kk)
+          call str_strip(orbital_name1,orbital_name2,i)
+          !allocate(orbital_name3(i))
+!!$ open(unit=nx,file='sigma_g_4.dat',status='old',action='read')
+!!$ open(unit=nx,file='homo.dat',status='old',action='read')
+          open(unit=ny,file=orbital_name2(1:i),status='old',action='read')
+          !deallocate(orbital_name3)
+          !--------------------------------------------
+          do i=1,7+nAtom
+             read(ny,*)
+          end do
+          do i1=1,n1
+             do i2=1,n2
+                read(ny,900)( psi_0_temp(i1,i2,i3),i3=1,n3)
+             end do
+          end do
+900       format(6E13.5)
+          ! Integral verification ---- IT WORKS
+          psi_0(:,:,:,kk)=psi_0_temp(:,:,:)
+          close(ny)
+       end do
+       close(nx)
+       open(unit=nz,file='momenta.out',status='unknown',action='write')
+       deallocate(psi_0_temp)
+    end if
+    counter1=counter1+1
+    !------------------------------------------
+
+    allocate(assemble(max_open,0:2,num_initial_states))
+    allocate(matr_elem(max_open,-1:1,num_initial_states))
+    allocate(sigma(num_initial_states))
+    allocate(func_interp(-1:1,n1*n2*n3))
+    allocate(temp_func_interp(-1:1,n1*n2*n3))
+    assemble(:,:,:)=0.d0; matr_elem(:,:,:)=0.d0;temp_func_interp(:,:)=cmplx(0.d0,0.d0)
+    !write(6,*)'3a',n1,n2,n3
+    allocate(integr(num_initial_states))
+    allocate(value(n1,n2,n3))
+    allocate(psi_0_temp(n1,n2,n3))
+
+    write(6,*)'dipole matrix elements: polarization, channel, initial state, real, imag'
+    kappa=sqrt(2.d0*energy)
+!!$       do j=1,max_open
+    j=0; do ll=0,lmax; do pp=-ll,ll; j=j+1  ! Test integration with harmo
+    do mmp=-1,1
+       if (mmp.eq.-1) then
+          mm=-1
+       else if (mmp.eq.0) then
+          mm=1
+       else if (mmp.eq.1) then
+          mm=0
+       end if
+       !----------------------------------------
+       !Calculate derivatives
+       if (option_gauge.eq.'length') then
+          iderx=0; idery=0; iderz=0;mp=0
+          func_interp(mm,:)=grid_func(j,:)
+       else  
+          if (mm.eq.-1) then
+             iderx=1; idery=0; iderz=0;mp=2
+          else if (mm.eq.0) then
+             iderx=0; idery=0; iderz=1;mp=1
+          else if (mm.eq.1) then
+             iderx=0; idery=1; iderz=0;mp=0
+          end if
+
+          write(6,*)'before interpolation'
+          !write(6,*)n1,n2,n3,n1+order,n2+order,n3+order,option_gauge
+          do jt=1,mp
+             if (jt.eq.2) then
+                iderx=0; idery=1; iderz=0; jtp=1
+             else 
+                jtp=mm
+             end if
+             write(6,*)'mmmm',mm,jt,jtp
+             do kk=1,2
+                value(:,:,:)=0.d0
+                psi_0_temp(:,:,:)=0.d0
+                !do i1=1,n1
+                ! do i2=1,n2
+                !  do i3=1,n3
+                do i1=n1*short1,n1*short2
+                   do i2=n2*short1,n2*short2
+                      do i3=n3*short1,n3*short2
+                         n1n2n3=i3+(i2-1)*n3+(i1-1)*n2*n3
+                         if (kk==1) then
+                            psi_0_temp(i1,i2,i3)=real(grid_func(j,n1n2n3))
+                         else
+                            psi_0_temp(i1,i2,i3)=aimag(grid_func(j,n1n2n3))
+                         end if
+                      end do
+                   end do
+                end do
+                write(6,*)'after inputs'
+                call interpolation(xx,yy,zz,psi_0_temp,n1,n2,n3,n1+order,n2+order,n3+order,value,option_gauge,iderx,idery,iderz)
+                !------------------------------------------
+                ! Shortened interpolation of initial state wavefunction --> Does not work on HP compilers
+                !short1=(3*n1)/4-n1/4+1
+                !short2=(3*n2)/4-n2/4+1
+                !short3=(3*n3)/4-n3/4+1
+                !write(6,*)xx(n1/4:3*n1/4),yy(n2/4:3*n2/4),zz(n3/4:3*n3/4)
+                !call interpolation(xx(n1/4:3*n1/4),yy(n2/4:3*n2/4),zz(n3/4:3*n3/4),psi_0_temp(n1/4:3*n1/4,n2/4:3*n2/4,n3/4:3*n3/4),&
+                !     & short1,short2,short3,short1+order,short2+order,short3+order,value(n1/4:3*n1/4,n2/4:3*n2/4,n3/4:3*n3/4),&
+                !     & option_gauge,iderx,idery,iderz)
+                !------------------------------------------
+                write(6,*)'after interpolation'
+                !do i1=1,n1
+                ! do i2=1,n2
+                !  do i3=1,n3
+                do i1=n1*short1,n1*short2
+                   do i2=n2*short1,n2*short2
+                      do i3=n3*short1,n3*short2
+                         n1n2n3=i3+(i2-1)*n3+(i1-1)*n2*n3
+                         if (kk==1) then
+                            !grid_func(j,n1n2n3)=cmplx(value(i1,i2,i3),aimag(grid_func(j,n1n2n3)))
+                            temp_func_interp(jtp,n1n2n3)=cmplx(value(i1,i2,i3),0.d0)
+                         else
+                            !grid_func(j,n1n2n3)=cmplx(real(grid_func(j,n1n2n3)),value(i1,i2,i3))
+                            temp_func_interp(jtp,n1n2n3)=cmplx(real(temp_func_interp(jtp,n1n2n3)),value(i1,i2,i3))
+                         end if
+                      end do
+                   end do
+                end do
+             end do
+          end do
+          !-------------------------------
+          ! Write out test
+          !if (j.lt.5) then
+          !   do i1=n1/4+20,3*n1/4-20
+          !      do i2=n2/4+20,3*n2/4-20
+          !         do i3=n3/4+20,3*n3/4-20
+          !            n1n2n3=i3+(i2-1)*n3+(i1-1)*n2*n3
+          !            write(36,*)mm,j,jtp,temp_func_interp(-1,n1n2n3),temp_func_interp(1,n1n2n3),temp_func_interp(0,n1n2n3),n1n2n3
+          !         end do
+          !      end do
+          !   end do
+          !end if
+          !------------------------------
+          if (mm.eq.-1) then
+             func_interp(mm,:)=(temp_func_interp(1,:)-zI*temp_func_interp(-1,:))/sqrt(2.d0)
+          else if (mm.eq.1) then
+             func_interp(mm,:)=(temp_func_interp(1,:)+zI*temp_func_interp(-1,:))/sqrt(2.d0)
+          else
+             func_interp(mm,:)=temp_func_interp(0,:)
+          end if
+       end if
+       !----------------------------------------
+
+
+       integr(:)=cmplx(0.d0,0.d0)
+       !                           do i1=1,n1-1
+       !                              do i2=1,n2-1
+       !                                 do i3=1,n3-1
+       do i1=n1*short1,n1*short2
+          do i2=n2*short1,n2*short2
+             do i3=n3*short1,n3*short2
+                n1n2n3=i3+(i2-1)*n3+(i1-1)*n2*n3
+                func=cmplx(0.d0,0.d0)
+!!$                   func=pleg(1,mm,angle(n1n2n3))*exp(zI*mm*angle_position_phi(n1n2n3))*psi_0(i1,i2,i3)*grid_func(j,n1n2n3)*position(n1n2n3)
+
+
+                !------------------------------------------------------------------------------------------------------------------------------
+                !TESTING Purposes
+                !------------------------------------------------------
+                ! Analytic 1s hydrogenic orbital --> TEST purposes
+                !if ((j.lt.4).and.(mm.eq.-1)) write(10000+j,902)xx(i1),yy(i2),zz(i3),real(grid_func(j,n1n2n3)),aimag(grid_func(j,n1n2n3))
+!!$ psi_0(i1,i2,i3)=exp(-1.d0*position(n1n2n3))/sqrt(Pi) !! HYDROGEN
+                ! Analytic scattering wavefunctions --> TEST purposes
+!!$                call coulomb(.TRUE.,ll,2.d0*energy,position(n1n2n3),1.d-14,rj,ry,rjp,ryp)
+
+!!$Aa=1.d0
+!!$do ii=0,ll
+!!$Aa=Aa*(1.0d0+2.d0*energy*1.d0*(ii**2))
+!!$end do
+
+!!$Bi=Aa/(1- exp((-2*Pi/sqrt(2.d0*energy))))
+!!$rj=1.d0/ sqrt(2.d0)*sqrt(Bi)*rj
+!!$rj=rj*sqrt(2.d0) ! Correct Wronskian for test version
+!!$grid_func(j,n1n2n3)=rj/position(n1n2n3)*pleg(ll,pp,angle(n1n2n3))*exp(zI*pp*angle_position_phi(n1n2n3)) !HYDROGEN analytical
+
+                ! Plane wave solution
+!!$grid_func(j,n1n2n3)=1.d0/((kappa)**0.5d0*(2.d0*Pi)**1.5d0)*&
+!!$& exp(zI*kappa*position(n1n2n3)*pleg(ll,pp,angle(n1n2n3))*exp(zI*pp*angle_position_phi(n1n2n3)))
+
+                ! Plane wave solution expansion in partial waves
+!!$          x=position(n1n2n3)*kappa
+!!$          call sphbes(ll, x,rj,ry,rjp,ryp)
+!!$          grid_func(j,n1n2n3)=(zI)**ll*sqrt(2.d0*kappa/Pi)*rj*pleg(ll,pp,angle(n1n2n3))*exp(zI*pp*angle_position_phi(n1n2n3)) !HYDROGEN analytical
+
+
+                !------------------------------------------------------
+                ! COMMENT
+                ! Calculation of dipole matrix elements
+                do kk=1,num_initial_states
+                   if (option_gauge.eq.'length') then
+
+                      func=psi_0(i1,i2,i3,kk)*pleg(1,mm,angle(n1n2n3))*exp(zI*mm*angle_position_phi(n1n2n3))*sqrt(4*Pi/3.d0)*&
+                           & position(n1n2n3)*func_interp(mm,n1n2n3)*sqrt(2.d0)
+                   else
+                      func=psi_0(i1,i2,i3,kk)*&
+                           & func_interp(mm,n1n2n3)*sqrt(2.d0)
+
+                   end if
+                   !grid_func(j,n1n2n3)*sqrt(2.d0) ! GOOD
+                   integr(kk)=integr(kk)+func*(xx(i1+1)-xx(i1))*(yy(i2+1)-yy(i2))*(zz(i3+1)-zz(i3))
+                end do
+             end do
+          end do
+       end do
+       do kk=1,num_initial_states
+          matr_elem(j,mm,kk)=integr(kk)
+          write(6,905)mm,j,kk,matr_elem(j,mm,kk)
+          write(nz,905)mm,j,kk,matr_elem(j,mm,kk)
+       end do
+!!$       end do
+    end do; end do ! Test integration with harmonics
+ end do
+ !--------------------------------------------------------
+ ! Construct D^(-)
+ ! write(6,*)'4'
+ ! Define the Clebsch-Gordans
+ !CG=1.d0
+ const=sqrt(4.d0/3.d0*Pi)
+ !write(6,*)'clebsch',clebsh(2,2,4,0,0,0)
+ counter=0
+ write(42,*)'-------------------------'
+ assemble(:,:,:)=0.d0
+ ! do ll=0,lmax
+ !    do mm=-ll,ll
+ !       counter=counter+1
+ !       do pp=0,2
+ !jt=l-1,l+1
+ !          jt=ll-1+pp
+ !          if (jt.lt.0) cycle
+ !          do mp=-1,1
+ !             !write(6,*)ll,mm,pp,mp
+ !             write(42,*)ll,jt,-mp,mm,mm-mp
+ !             assemble(counter,pp,kk)=assemble(counter,pp,kk)+(-1)**mp*Clebsh(2,2*ll,2*jt,-2*mp,2*mm,2*(mm-mp))& !! Write the Clebsch-Gordan
+ !                  & * matr_elem(counter,mp,kk)
+ !             write(42,*)'ccc',assemble(counter,pp,kk),matr_elem(counter,mp,kk),Clebsh(2,2*ll,2*jt,-2*mp,2*mm,2*(mm-mp))
+ !          end do
+ !          write(43,*)assemble(counter,pp,kk),counter,pp,'aa'
+ !          assemble(counter,pp,kk)=assemble(counter,pp,kk)*const
+ !          write(41,*)'pp',assemble(counter,pp,kk),counter,pp
+ !       end do
+ !    end do
+ ! end do
+ ! Assemble sigma
+ !write(6,*)'5'
+ counter=0
+ sigma(:)=0.d0
+
+! COMMENT
+! Cross sections calculation
+ do ll=0,lmax
+    do mm=-ll,ll
+       counter=counter+1
+       do pp=0,2
+          !do pp=1,1 !TEST
+          jt=ll-1+pp
+          if (jt.lt.0) cycle
+          do kk=1,num_initial_states
+!!$             sigma=sigma+assemble(counter,pp,kk)*conjg(assemble(counter,pp,kk)) 
+             sigma(kk)=sigma(kk)+matr_elem(counter,pp-1,kk)*conjg(matr_elem(counter,pp-1,kk)) ! /3=TEST
+          end do
+       end do
+    end do
+ end do
+ !write(6,*)'6'
+ write(6,*)'sigma photoionization,  Energy'
+ do kk=1,num_initial_states
+    if (option_gauge.eq.'length') then
+       const=alpha_fine_struct*4.d0*Pi**2*(energy+Ioniz_potential(kk))/3.d0 ! Rotationally averaged
+    else
+       const=alpha_fine_struct*4.d0*Pi**2/(energy+Ioniz_potential(kk))/3.d0 ! Rotationally averaged
+    end if
+    sigma(kk)=sigma(kk)*const
+    write(950+kk,*)energy,sigma(kk)
+    write(6,*)'state',kk,'=',sigma(kk),energy
+ end do
+
+ deallocate(value,psi_0_temp,temp_func_interp)
+ deallocate(assemble)
+ deallocate(matr_elem)
+ !deallocate(psi_0)
+ deallocate(angle,angle_position_phi,position)
+ deallocate(sigma,integr)
+ write(6,*)'end photoionization routine'
+902 format(5e13.5)
+904 format(7e13.5)
+905 format(3i,2e18.10)
+
+end subroutine assemble_routine
+
+subroutine harmonic_projection(Smat_vector,grid_func,nClosed,channel,J_soln,N_soln,Smat,max_open,coeff_projection)
+ use nrtype, only : i4b,dbl,dpc,Pi
+ use gauss2dint
+ use Brep,only : R0,p_Patch,x_coord=>coord_x,y_coord=>coord_y,z_coord=>coord_z,plotpoints&
+      & ,n,p,nodes_closed_index,epsilon_custom,PatchVertex,r_glo,theta_glo,phi_glo &
+      & ,nodes,Delel_theta,Delel_r,Delel_phi
+ use V_setup, only : xx,yy,zz,n1,n2,n3
+ use Calc_func, only : an_r,an_theta,an_phi,bas_r,c_func,choice_partition,element
+ use Open_information, only : bionda2_boundary,rad_elem_v,alpha_v,vect_max,open_vect,long_max,long_open,rad_elem
+ use over, only : overlap_c
+ use Solve, only : invert_complex,invert_real
+ implicit none
+ integer(kind=i4b) :: globnode,n1n2n3,i1,i2,i3,i,k_r,k_theta,k_phi,nClosed,j,&
+      &  channel,max_open,vect_ind,alpha,lmax
+ integer(kind=i4b),parameter :: first=1,last=8,ngp=50
+ integer(kind=i4b),save :: counter1=0,counter2
+ integer(kind=i4b),allocatable,save :: element_n1n2n3(:,:),element_Patch(:,:)
+ real(kind=dbl) :: J_soln(max_open),N_soln(max_open),harmonic(max_open)
+ real(kind=dbl),dimension(:),allocatable :: J_soln2,N_soln2,Jp_soln,Np_soln
+ real(kind=dbl) :: beta,func,mult,ss
+ real(kind=dbl),allocatable :: eigen(:),H(:,:),weigh(:),xabsc(:)
+ complex(kind=dpc) :: Smat_vector(nClosed),grid_func(max_open,n1*n2*n3),Smat(max_open,max_open),f_plus_minus(max_open,2),grid_fake&
+      &,coeff_projection(max_open,max_open)
+ complex(kind=dpc),allocatable :: T_mat(:,:),G_mat(:,:)
+ complex(kind=dpc),parameter :: zI=(0.d0,1.d0)
+ logical :: logic
+ ! COMMENT
+ ! This subroutine makes a projection of the numerical harmonics calculated by
+ ! diagonalization on complex spherical harmonics
+
+ allocate(weigh(ngp))
+ allocate(xabsc(ngp))
+ counter=0
+ call gauleg(ngp,xabsc,weigh)
+ counter=0
+ n1n2n3=ngp**2
+ write(6,*)'make grid for harmonics',n1n2n3
+ ! Change grid to spherical coordinates
+ allocate(angle(n1n2n3),angle_position_phi(n1n2n3))
+ allocate(harm_all(max_open,n1n2n3))
+ angle(:)=0.d0;angle_position_phi(:)=0.d0;harm_all(:,:)=0.d0
+ ! Preliminary run to get the coordinates
+ !write(6,*)'before integr'
+ !write(42,*)angle(:)
+ !write(6,*)'before integr'
+ !write(42,*)angle_position_phi(:)
+
+ ss = qgss2d(func1,0.d0,Pi,0.d0,2.d0*Pi,ngp)
+ !write(6,*)'inside plot a',long_max,vect_max
+ !write(42,*)theta_glo(nodes(rad_elem_v(:),first))
+ !write(43,*)phi_glo(nodes(rad_elem_v(:),first))
+ !write(6,*)'inside plot 1'
+
+
+
+
+
+ ! Find which element the point belongs to
+ allocate(element_n1n2n3(n1n2n3,2))
+ allocate(xi(n1n2n3,3))
+ element_n1n2n3(:,:)=0
+ xi(:,:)=0.d0
+ choice_partition='open-open'
+ ! COMMENT
+ ! Calculation of the nodes at the R0 boundary 
+ do i=1,n1n2n3
+    logic=.FALSE.
+    do vect_ind=1,long_max
+       rad_elem=long_open(vect_ind,1)
+       !call c_func
+       !write(6,*)'vect_ind',vect_ind
+       !write(42,*)angle(i),theta_glo(nodes(rad_elem_v(vect_ind),first)),theta_glo(nodes(rad_elem_v(vect_ind),last))
+       !write(42,*)angle_position_phi(i),phi_glo(nodes(rad_elem_v(vect_ind),first)),phi_glo(nodes(rad_elem_v(vect_ind),last))
+       if ( ((angle(i).ge.theta_glo(nodes(rad_elem,first))).and.(angle(i).le.theta_glo(nodes(rad_elem,last)))) .and. & 
+            & ((angle_position_phi(i).ge.phi_glo(nodes(rad_elem,first))).and.(&
+            & (angle_position_phi(i).le.phi_glo(nodes(rad_elem,last)))&
+            & .or.((phi_glo(nodes(rad_elem,last)).lt.epsilon_custom).and.(angle_position_phi(i).le.2.d0*Pi)) )) &
+            & ) then
+          xi(i,2)=(angle(i)-theta_glo(nodes(rad_elem,first)))/Delel_theta(rad_elem)
+          !an_theta
+          xi(i,3)=(angle_position_phi(i)-phi_glo(nodes(rad_elem,first)))/Delel_phi(rad_elem)
+          !an_phi
+          element_n1n2n3(i,2)=rad_elem
+          !write(44,*)element_n1n2n3(i,1),element_n1n2n3(i,2),i
+          exit
+       else
+          cycle
+       end if
+    end do
+ end do
+
+! COMMENT
+! Construction of numerical harmonics on the boundary nodes' grid
+ do i=1,n1n2n3
+    harmonic(:)=0.d0
+    !write(6,*)J_soln2(:)
+    do vect_ind=1,long_max
+       rad_elem=long_open(vect_ind,1)
+       alpha=long_open(vect_ind,2)
+       if (element_n1n2n3(i,2).eq.rad_elem) then
+          call c_func
+          call param_integr(alpha,k_r,k_phi,k_theta,mult)
+          do k=1,max_open
+             harmonic(k)=harmonic(k)+bas_r(xi(i,2),k_theta)*bas_r(xi(i,3),k_phi)*open_vect(overlap_c(PatchVertex(rad_elem,alpha),1),k)*mult
+
+             !,xx(i1),yy(i2),zz(i3)
+          end do
+          !write(42,*)harmonic(:),xx(i1),yy(i2),zz(i3)
+          !write(43,*)open_vect(overlap_c(PatchVertex(rad_elem,alpha),1),k),xx(i1),yy(i2),zz(i3)
+       end if
+    end do
+    !    do k=1,max_open
+    !       write(41+k,902)harmonic(k),angle(i),angle_position_phi(i),open_vect(overlap_c(PatchVertex(element_n1n2n3(i,2),1),1),k)
+    !    end do
+    harm_all(:,i)=harmonic(:)
+ end do
+
+! COMMENT
+! Construct of projection coefficients (C matrix) onto real spherical harmonics
+
+ write(6,*)'harmonic construction'
+ counter=0
+ lmax=int(sqrt(1.d0*max_open))-1
+ coeff_projection(:,:)=cmplx(0.d0,0.d0)
+ do k=1,max_open
+    counter1=0
+    do ll=0,lmax
+       do mm=-ll,ll
+          counter1=counter1+1
+          !write(6,*)'counter1',counter1
+          counter=0
+          coeff_projection(k,counter1)=cmplx(qgss2d(projection_integral,0.d0,Pi,0.d0,2.d0*Pi,ngp),0.d0)
+          write(30,*)real(coeff_projection(k,counter1)),k,ll,mm
+       end do
+    end do
+ end do
+
+
+!!$ Verify the transformation ! Seems okay for the real harmonics
+ !call invert_complex(coeff_projection,max_open,max_open)
+ !harm_all=matmul(real(coeff_projection),harm_all)
+ !write(35,*)coeff_projection
+ !    counter=0
+!!$ Chack orthonornality of numerical harmonics (They are not!!!!)
+ !    do k=1,max_open
+ !       counter1=0
+ !       do ll=0,lmax
+ !          do mm=-ll,ll
+ !             counter1=counter1+1
+ !qq=counter1
+ !             counter=0
+ !             coeff_projection(k,counter1)=cmplx(qgss2d(projection_integral2,0.d0,Pi,0.d0,2.d0*Pi,ngp),0.d0)
+ !             coeff_projection(k,counter1)=cmplx(qgss2d(projection_integral,0.d0,Pi,0.d0,2.d0*Pi,ngp),0.d0)
+
+ !             write(31,*)'aaa',real(coeff_projection(k,counter1)),k,ll,mm
+ !          end do
+ !       end do
+ !    end do
+
+
+! COMMENT
+!!$ Transform to complex spherical harmonics
+ ! Numerical_H=T^-1 * C^-1 * Ylm
+ ! Construct T matrix
+ allocate(T_mat(max_open,max_open))
+ T_mat(:,:)=(0.d0,0.d0)
+ do ll=0,lmax
+    do mm=-ll,ll
+       counter1=ll**2+1+(ll+abs(mm))
+       counter2=ll**2+1+(ll-abs(mm))
+       if (mm.gt.0) then
+          T_mat(counter1,counter2)=1.d0/sqrt(2.d0) ! +mm
+          T_mat(counter1,counter1)=1.d0/sqrt(2.d0) ! -mm
+
+       else if (mm.lt.0) then
+          T_mat(counter2,counter1)=1.d0/sqrt(2.d0)/zI ! +mm
+          T_mat(counter2,counter2)=-1.d0/sqrt(2.d0)/zI ! -mm
+
+       else if (mm.eq.0) then
+          T_mat(counter1,counter2)=1.d0
+       end if
+       !write(6,*)counter1,counter2,T_mat(counter1,counter2)
+
+    end do
+ end do
+ !T_mat(:,:)=(0.d0,0.d0) ! Use as a test, to see only coeff_projection
+ do ll=1,max_open
+    do mm=1,max_open
+       !if (ll.eq.mm) T_mat(ll,mm)=(1.d0,0.d0)
+       write(32,*)T_mat(ll,mm),real(coeff_projection(ll,mm))
+    end do
+ end do
+
+ T_mat(:,:)=matmul(coeff_projection(:,:),T_mat(:,:))
+
+ call invert_complex(T_mat,max_open,max_open)
+ write(32,*)T_mat(:,:)
+ coeff_projection(:,:)=T_mat(:,:) ! Pass the final transformation to the main routine
+ deallocate(angle,angle_position_phi)
+ deallocate(harm_all)
+ deallocate(T_mat)
+ deallocate(weigh)
+ deallocate(xabsc)
+ deallocate(element_n1n2n3)
+ deallocate(xi)
+902 format(5e13.5)
+
+ write(6,*)'end projection'
+end subroutine harmonic_projection
+
+
+function projection_integral(x,y)
+ use nrtype, only : dbl
+ use gauss2dint
+ implicit none
+ real(kind=dbl) :: projection_integral,theta,phi,pleg
+ real(kind=dbl),intent(in) :: x,y
+ external pleg
+ counter=counter+1
+ theta=angle(counter)
+ phi=angle_position_phi(counter)
+ ! Pleg is fine even for complex harmonics
+ if (mm.gt.0) then
+    projection_integral=pleg(ll,mm,theta)*cos(abs(mm)*phi)*2.d0/sqrt(2.d0)*sin(theta)*harm_all(k,counter)
+ else if (mm.lt.0) then
+    projection_integral=pleg(ll,mm,theta)*sin(abs(mm)*phi)*2.d0/sqrt(2.d0)*sin(theta)*harm_all(k,counter)
+    !projection_integral=sin(theta)*cos(theta)*sin(abs(mm)*phi)*harm_all(k,counter)
+ else
+    projection_integral=pleg(ll,mm,theta)*sin(theta)*harm_all(k,counter)
+ end if
+end function projection_integral
+
+function projection_integral2(x,y)
+ use nrtype, only : dbl
+ use gauss2dint
+ implicit none
+ real(kind=dbl) :: projection_integral2,theta,phi,pleg
+ real(kind=dbl),intent(in) :: x,y
+ external pleg
+ counter=counter+1
+ theta=angle(counter)
+ phi=angle_position_phi(counter)
+ ! Pleg is fine even for complex harmonics
+ projection_integral2=sin(theta)*harm_all(k,counter)*harm_all(qq,counter)
+end function projection_integral2
+
+
+function func1(x,y)
+ use nrtype, only : dbl
+ use gauss2dint
+ implicit none
+ real(kind=dbl) :: projection_integral,func1
+ real(kind=dbl),intent(in) :: x,y
+ !    integer(kind=i4b),save :: counter=0,countx=0
+ counter=counter+1
+ !write(6,*)counter
+ angle(counter)=x
+ angle_position_phi(counter)=y
+ ! Pleg is fine even for complex harmonics
+ func1=0.d0
+end function func1
+
+
+
+subroutine plot_grid(Smat_vector,grid_func,nClosed,channel,J_soln,N_soln,Smat,max_open)
+ use nrtype, only : i4b,dbl,dpc,Pi
+ use Brep,only : R0,p_Patch,x_coord=>coord_x,y_coord=>coord_y,z_coord=>coord_z,plotpoints&
+      & ,n,p,nodes_closed_index,epsilon_custom,PatchVertex,r_glo,theta_glo,phi_glo &
+      & ,nodes,Delel_theta,Delel_r,Delel_phi
+ use V_setup, only : xx,yy,zz,n1,n2,n3
+ use Calc_func, only : an_r,an_theta,an_phi,bas_r,c_func,choice_partition,element
+ use Open_information, only : bionda2_boundary,rad_elem_v,alpha_v,vect_max,open_vect,long_max,long_open,rad_elem
+ use over, only : overlap_c
+ implicit none
+ integer(kind=i4b) :: globnode,n1n2n3,i1,i2,i3,i,k_r,k_theta,k_phi,nClosed,j,k,&
+      &  channel,max_open,vect_ind,alpha
+ integer(kind=i4b),dimension(:),allocatable :: patch_element 
+ integer(kind=i4b),parameter :: first=1,last=8
+ integer(kind=i4b),save :: counter=0,counter1=0,counter2
+ integer(kind=i4b),allocatable,save :: element_n1n2n3(:,:),element_Patch(:,:)
+ real(kind=dbl) :: J_soln(max_open),N_soln(max_open),harmonic(max_open)
+ real(kind=dbl),dimension(:),allocatable :: J_soln2,N_soln2,Jp_soln,Np_soln
+ real(kind=dbl),allocatable,save :: angle(:),angle_position_phi(:),position(:),xi(:,:)
+ real(kind=dbl) :: beta,func,mult
+ complex(kind=dpc) :: Smat_vector(nClosed,max_open),grid_func(max_open,n1*n2*n3),Smat(max_open,max_open),f_plus_minus(max_open,2),grid_fake
+ complex(kind=dpc),parameter :: zI=(0.d0,1.d0)
+ logical :: logic
+
+! COMMENT
+! This subroutine transforms the continuum wavefunctions from the finite
+! element grid to the cubic grid, format of the Gaussian cube files
+
+ n1n2n3=n1*n2*n3
+ write(6,*)'inside plot routine'
+ if (counter==0) then
+    ! Change grid to spherical coordinates
+    allocate(position(n1n2n3),angle(n1n2n3),angle_position_phi(n1n2n3))
+    !write(6,*)'inside plot a',long_max,vect_max
+    !write(42,*)theta_glo(nodes(rad_elem_v(:),first))
+    !write(43,*)phi_glo(nodes(rad_elem_v(:),first))
+    !do i=1,long_max
+    !   write(44,*)long_open(i,1),long_open(i,2)
+    !end do
+    do i1=1,n1
+       do i2=1,n2
+          do i3=1,n3
+             !write(6,*)i1,i2,i3
+             n1n2n3=i3+(i2-1)*n3+(i1-1)*n2*n3
+             position(n1n2n3)=Sqrt(xx(i1)*xx(i1)+yy(i2)*yy(i2)+zz(i3)*zz(i3))
+             if (position(n1n2n3).gt. 0.0d0+epsilon_custom) then
+                angle(n1n2n3)=acos(zz(i3)/position(n1n2n3))
+                if ((angle(n1n2n3).gt.0.d0+epsilon_custom).and.(angle(n1n2n3).le.Pi-epsilon_custom)) then
+                   beta=xx(i1)/(position(n1n2n3)*sin(angle(n1n2n3)))
+                   if (beta.le.-1.d0) then
+                      angle_position_phi(n1n2n3)=Pi
+                   else if (beta.gt.1.d0) then
+                      angle_position_phi(n1n2n3)=0.d0
+                   else
+                      angle_position_phi(n1n2n3) = dacos(beta)
+                   end if
+                   if (yy(i2).lt.0.d0) then
+                      angle_position_phi(n1n2n3)=2.d0*Pi-angle_position_phi(n1n2n3)
+                   end if
+                else
+                   angle_position_phi(n1n2n3) = 0.d0 * Pi
+                end if
+             else
+                !*COMM* For atoms in the center of the grid
+                angle_position_phi(n1n2n3) = 0.d0 * Pi
+                angle(n1n2n3) = 0.0d0*Pi
+             end if
+             !write(300,*)position(n1n2n3),angle(n1n2n3),angle_position_phi(n1n2n3)
+             !write(301,*)position(n1n2n3)*cos(angle(n1n2n3)),position(n1n2n3)*sin(angle(n1n2n3))*cos(angle_position_phi(n1n2n3)),position(n1n2n3)*sin(angle(n1n2n3))*sin(angle_position_phi(n1n2n3))
+          end do
+       end do
+    end do
+    write(6,*)'inside plot 1'
+
+    ! Find which element the point belongs to
+    n1n2n3=n1*n2*n3
+    allocate(element_n1n2n3(n1n2n3,2))
+    allocate(xi(n1n2n3,3))
+    element_n1n2n3(:,:)=0
+    xi(:,:)=0.d0
+!    do i=1,n1n2n3
+do i1=n1*short1,n1*short2 ! Use for just the central region of interest around (0,0,0)
+    do i2=n2*short1,n2*short2
+       do i3=n3*short1,n3*short2
+           i=i3+(i2-1)*n3+(i1-1)*n2*n3
+       logic=.FALSE.
+       do element=1,n
+          !call c_func
+          if (((position(i).ge.r_glo(nodes(element,first))).and.(position(i).le.r_glo(nodes(element,last)))) .and. &
+               & ((angle(i).ge.theta_glo(nodes(element,first))).and.(angle(i).le.theta_glo(nodes(element,last)))) .and. & 
+               & ((angle_position_phi(i).ge.phi_glo(nodes(element,first))).and.(&
+               & (angle_position_phi(i).le.phi_glo(nodes(element,last)))&
+               & .or.((phi_glo(nodes(element,last)).lt.epsilon_custom).and.(angle_position_phi(i).le.2.d0*Pi)) )) &
+               & ) then
+             choice_partition='closed-closed'
+
+             xi(i,1)=(position(i)-r_glo(nodes(element,first)))/Delel_r(element)
+             !an_r
+             xi(i,2)=(angle(i)-theta_glo(nodes(element,first)))/Delel_theta(element)
+             !an_theta
+             xi(i,3)=(angle_position_phi(i)-phi_glo(nodes(element,first)))/Delel_phi(element)
+             !an_phi
+             element_n1n2n3(i,1)=element
+             logic=.TRUE.
+             exit
+          else if ((element==n).and.(.not.logic)) then
+             do vect_ind=1,long_max
+                rad_elem=long_open(vect_ind,1)
+                !call c_func
+                if ( ((angle(i).ge.theta_glo(nodes(rad_elem,first))).and.(angle(i).le.theta_glo(nodes(rad_elem,last)))) .and. & 
+                     & ((angle_position_phi(i).ge.phi_glo(nodes(rad_elem,first))).and.(&
+                     & (angle_position_phi(i).le.phi_glo(nodes(rad_elem,last)))&
+                     & .or.((phi_glo(nodes(rad_elem,last)).lt.epsilon_custom).and.(angle_position_phi(i).le.2.d0*Pi)) )) &
+                     & ) then
+                   choice_partition='open-open'
+
+                   xi(i,2)=(angle(i)-theta_glo(nodes(rad_elem,first)))/Delel_theta(rad_elem)
+                   !an_theta
+                   xi(i,3)=(angle_position_phi(i)-phi_glo(nodes(rad_elem,first)))/Delel_phi(rad_elem)
+                   !an_phi
+                   element_n1n2n3(i,2)=rad_elem
+                   exit
+                else
+                   cycle
+                end if
+             end do
+          end if
+       end do
+! end do
+    end do
+end do
+end do
+    allocate(element_Patch(n,64))
+    allocate(patch_element(p_Patch))
+    counter2=0
+    element_Patch(:,:)=0.d0
+    patch_element(:)=0
+    do i=1,p_Patch
+       if (bionda2_boundary(i).ne.'up_fun') then
+          counter2=counter2+1
+          patch_element(i)=counter2
+       end if
+    end do
+    do element=1,n
+       do j=1,64
+!          if (patch_element((PatchVertex(element,j).ne.0))) 
+           element_Patch(element,j)=patch_element(PatchVertex(element,j))
+       end do
+    end do
+    deallocate(patch_element)
+
+ end if
+ counter=counter+1
+ write(6,*)'finished setup'
+ ! Setup f+, f- -------- Eliminated factor of sqrt(2.d0) when using to form
+ ! Eq.2.42 of orange review  
+ !f_plus_minus(:,1)=(zI*J_soln(:)-N_soln(:))/2.d0
+ !f_plus_minus(:,2)=(-zI*J_soln(:)-N_soln(:))/2.d0
+ allocate(J_soln2(max_open),N_soln2(max_open),Jp_soln(max_open),Np_soln(max_open))
+ J_soln2(:)=0.d0;N_soln2(:)=0.d0;Jp_soln(:)=0.d0;Np_soln(:)=0.d0
+ ! Calculate function
+ !write(6,*)'inside plot 3',counter
+ grid_func(:,:)=0.d0
+ do i1=n1*short1,n1*short2 ! Use for just the central region of interest around (0,0,0)
+    do i2=n2*short1,n2*short2
+       do i3=n3*short1,n3*short2
+          !         do i1=1,n1 ! Use to calculate functions on all the grid
+          !            do i2=1,n2
+          !               do i3=1,n3
+          !write(42,*)'if',i1,i2,i3
+
+          i=i3+(i2-1)*n3+(i1-1)*n2*n3
+          if (element_n1n2n3(i,1).ne.0) then
+             func=0.d0
+             do k=1,64
+                if (element_Patch(element_n1n2n3(i,1),k).ne.0) then
+                   !write(42,*)i,k
+                   call c_func
+                   call param_integr(k,k_r,k_phi,k_theta,mult)
+                   !write(42,*)'1',xi(i,1),xi(i,2),xi(i,3)
+                   !xi(i,:)=1.d0
+beta=bas_r(xi(i,1),k_r)*bas_r(xi(i,2),k_theta)*bas_r(xi(i,3),k_phi)*mult
+                   do channel=1,max_open
+                      grid_func(channel,i)=grid_func(channel,i)+beta*Smat_vector(element_Patch(element_n1n2n3(i,1),k),channel)
+                   end do
+                end if
+             end do
+          else if (element_n1n2n3(i,2).ne.0) then
+             grid_func(:,i)=0.d0
+             harmonic(:)=0.d0
+             call modified_asymptotics(J_soln2,N_soln2,Jp_soln,Np_soln,max_open,position(i))
+             f_plus_minus(:,1)=(zI*J_soln2(:)-N_soln2(:))/2.d0 ! f plus
+             f_plus_minus(:,2)=(-zI*J_soln2(:)-N_soln2(:))/2.d0 ! f minus
+             do vect_ind=1,long_max
+                rad_elem=long_open(vect_ind,1)
+                alpha=long_open(vect_ind,2)
+                if (element_n1n2n3(i,2).eq.rad_elem) then
+                   call c_func
+                   call param_integr(alpha,k_r,k_phi,k_theta,mult)
+beta=bas_r(xi(i,2),k_theta)*bas_r(xi(i,3),k_phi)*mult
+                   do k=1,max_open
+                      harmonic(k)=harmonic(k)+beta*open_vect(overlap_c(PatchVertex(rad_elem,alpha),1),k)
+                   end do
+                end if
+             end do
+             do channel=1,max_open
+                do k=1,max_open
+                   !--------------------------------------------------------------------
+!!$ Outgoing BC -----  photoionization
+!!$                    grid_func(channel,i)=grid_func(channel,i)-f_plus_minus(k,2)*conjg(Smat(channel,k))/zI*harmonic(k)
+!!$                    if (k.eq.channel) grid_func(channel,i)=grid_func(channel,i)+f_plus_minus(k,1)/zI*harmonic(k)
+!!$ Incoming BC -----  HHG experiment
+                   grid_func(channel,i)=grid_func(channel,i)+f_plus_minus(k,1)*(Smat(k,channel))/zI*harmonic(k)
+                   if (k.eq.channel) grid_func(channel,i)=grid_func(channel,i)-f_plus_minus(k,2)/zI*harmonic(k)
+                   !--------------------------------------------------------------------
+                end do
+             end do
+          end if
+       end do
+    end do
+ end do
+
+ !write(6,*)'inside plot 4'
+ deallocate(J_soln2,N_soln2,Jp_soln,Np_soln)
+
+902 format(5e13.5)
+904 format(7e13.5)
+
+end subroutine plot_grid
+
+subroutine natural_harmonics(long_open,max_open,long_max,max_index,vect_max,alpha_v,rad_elem,open_vect)
+ use nrtype, only : i4b,dbl,dpc,Pi
+ use Brep, only : theta_glo,phi_glo,PatchVertex
+ use over, only : overlap_c
+ implicit none
+ integer(kind=i4b) :: max_open,long_max,max_index,channel
+ integer(kind=i4b) :: long_open(max_open,long_max),lmax,abs_m,vect_max,l,m,vect_ind,rad_elem(vect_max),alpha_v(vect_max)
+ real(kind=dbl) :: harmonic(max_index,max_open),pleg,der_plg,k_r,k_theta,k_phi,mult,phi,theta&
+      & ,open_vect(max_index,max_index-1)
+ integer(kind=i4b),save :: counter=0
+ real(kind=dbl),allocatable,save :: theta_open(:),phi_open(:),open_nat(:)
+ external :: pleg,der_plg
+ write(6,*)'inside'
+ write(42,*)'rad',rad_elem(:),'alpha',alpha_v(:)
+ if (counter==0) then
+    ! Construct theta, phi
+    allocate(theta_open(vect_max),phi_open(vect_max),open_nat(vect_max))
+    theta_open(:)=0.d0;phi_open(:)=0.d0;open_nat(:)=0.d0
+    lmax=int(sqrt(max_open*1.d0))
+    channel=0
+    do l=0,lmax
+       do m=-l,l
+          abs_m=abs(m)
+          channel=channel+1
+          write(6,*)'channel',channel,vect_max
+          do vect_ind=1,vect_max
+             !write(6,*)'1',channel
+             theta=theta_glo((PatchVertex(rad_elem(vect_ind),alpha_v(vect_ind))-1)/8+1)
+             !write(6,*)'2',channel
+             phi=phi_glo((PatchVertex(rad_elem(vect_ind),alpha_v(vect_ind))-1)/8+1)
+             !write(6,*)'3',channel
+             !if (channel.eq.1) write(42,*)phi,theta,channel
+             call param_integr(alpha_v(vect_ind),k_r,k_phi,k_theta,mult)
+             ! Construct derivative, function indices (which node is which)
+             ! If stack
+             if (mod(vect_ind+3,4).eq.0) then
+                ! func
+                if (m.gt.0) open_nat(vect_ind)=pleg(l,abs_m,theta)*2.d0/sqrt(2.d0)*cos(abs_m*phi)
+                if (m.eq.0) open_nat(vect_ind)=pleg(l,abs_m,theta)
+                if (m.lt.0) open_nat(vect_ind)=pleg(l,abs_m,theta)*2.d0/sqrt(2.d0)*sin(abs_m*phi)
+             else if (mod(vect_ind+3,4).eq.1) then
+                ! deriv theta
+                if (m.gt.0) open_nat(vect_ind)=der_plg(l,abs_m,theta)*2.d0/sqrt(2.d0)*cos(abs_m*phi)
+                if (m.eq.0) open_nat(vect_ind)=der_plg(l,abs_m,theta)
+                if (m.lt.0) open_nat(vect_ind)=der_plg(l,abs_m,theta)*2.d0/sqrt(2.d0)*sin(abs_m*phi)
+             else if (mod(vect_ind+3,4).eq.2) then
+                ! deriv phi
+                if (m.gt.0) open_nat(vect_ind)=-pleg(l,abs_m,theta)*2.d0/sqrt(2.d0)*sin(abs_m*phi)*abs_m
+                if (m.eq.0) open_nat(vect_ind)=0.d0
+                if (m.lt.0) open_nat(vect_ind)=pleg(l,abs_m,theta)*2.d0/sqrt(2.d0)*cos(abs_m*phi)*abs_m
+             else if (mod(vect_ind+3,4).eq.3) then
+                ! mixed deriv
+                if (m.gt.0) open_nat(vect_ind)=der_plg(l,abs_m,theta)*2.d0/sqrt(2.d0)*sin(abs_m*phi)*abs_m
+                if (m.eq.0) open_nat(vect_ind)=der_plg(l,abs_m,theta)
+                if (m.lt.0) open_nat(vect_ind)=-der_plg(l,abs_m,theta)*2.d0/sqrt(2.d0)*cos(abs_m*phi)*abs_m
+             end if
+             if (mod(vect_ind+3,4).eq.0) write(700+channel,902)open_nat(vect_ind),theta,phi
+             !,open_vect(overlap_c(PatchVertex(rad_elem(vect_ind),alpha_v(vect_ind)),1),channel)
+             if (mod(vect_ind+3,4).eq.1) write(710+channel,902)open_nat(vect_ind),theta,phi
+             !,open_vect(overlap_c(PatchVertex(rad_elem(vect_ind),alpha_v(vect_ind)),1),channel)
+             if (mod(vect_ind+3,4).eq.2) write(720+channel,902)open_nat(vect_ind),theta,phi
+             !,open_vect(overlap_c(PatchVertex(rad_elem(vect_ind),alpha_v(vect_ind)),1),channel)
+             if (mod(vect_ind+3,4).eq.3) write(730+channel,902)open_nat(vect_ind),theta,phi
+             !,open_vect(overlap_c(PatchVertex(rad_elem(vect_ind),alpha_v(vect_ind)),1),channel)
+          end do
+       end do
+    end do
+
+    ! Construct harmonics, Normalize
+
+
+ end if
+ counter=counter+1
+902 format(5e16.8)
+end subroutine natural_harmonics
+
+
+subroutine modified_asymptotics(J,N,Jp,Np,max_open,R0)
+ use nrtype, only : dbl,i4b,nep_e,Pi,dpc
+ !use Brep,only : R0
+ use Solve, only : Z
+ use Open_information,only : kappa,E,lmax
+ use control , only : cont,molecule,option_Coulomb
+ implicit none
+ integer(kind=i4b) :: m,p,k,ll,multiplicity,princ_quant_num,channel,xnu,i,max_open
+ real(kind=dbl) :: x,rj,ry,rjp,ryp,maxo,Bi,Aa,E_ryd,W,R0
+ real(kind=dbl),dimension(lmax):: pre_J,pre_Jp,pre_N,pre_Np
+ real(kind=dbl),dimension(max_open) :: J,N,Jp,Np
+ real(kind=dbl),parameter :: ac=1.0d-14
+ complex(kind=dpc) :: lambda
+ !--------------------------------
+ ! Subroutine that calls the ines that calculate the coulomb anr bessel
+ ! functions for the matching at the sphere's boundary  
+ !--------------------------------
+ !allocate(pre_J(lmax))
+ !allocate(pre_Jp(lmax))
+ !allocate(pre_N(lmax))
+ !allocate(pre_Np(lmax))
+ !write(6,*)'molecule=',molecule
+ do m=1,lmax
+    xnu = m-1
+    if (molecule.eq.'neutral') then
+       kappa=sqrt(2.0d0*E)
+       x=R0*kappa
+       call sphbes(xnu, x,rj,ry,rjp,ryp)
+       pre_J(m)=rj
+       pre_Jp(m)=kappa*rjp
+       pre_N(m)=ry
+       pre_Np(m)=kappa*ryp 
+    else
+       !          write(6,*)'Z=',Z
+       !write(6,*)'inside coulomb',Z,R0,E,xnu
+       x=R0*Z
+       E_ryd=2.0d0*E/Z**2
+       kappa=sqrt(E_ryd)
+       !--------------------------------------------------------------------------------------------
+!!$ Coulomb functions calculation
+       ! 1) Option1: Seaton's code 
+       !       if (option_Coulomb.eq.'Seaton') then
+       !          call coulomb(cont,xnu,E_ryd,x,ac,rj,ry,rjp,ryp)
+       ! 2) Option2: Barnett's code
+       !       else
+       lambda=cmplx(dble(xnu),0.d0)
+       rj=0.d0;ry=0.d0;rjp=0.d0;ryp=0.d0
+       call call_coulomb_complex(E,lambda,Z,R0,rj,ry,rjp,ryp)
+       !       end if
+       !---------------------------------------------------------------------------------------------
+       !write(306,*)E,lambda,Z,R0,(rj),(ry),(rjp),(ryp),lambda
+       !*********
+       Aa=1.d0
+       do i=0,m-1
+          Aa=Aa*(1.0d0+E_ryd*1.d0*(i**2))
+       end do
+
+       Bi=Aa/(1- exp((-2*Pi/kappa)))
+       !          write(6,*)Bi,E
+       rj=1.d0/ sqrt(2.d0)*sqrt(Bi)*rj
+       rjp=1.d0/ sqrt(2.d0)*sqrt(Bi)*rjp
+
+
+       ry=1.d0/ sqrt(2.d0*Bi)*ry
+       ryp=1.d0/ sqrt(2.d0*Bi)*ryp
+
+       !          write(6,*)m-1,'fl=',rj,'gl=',ry,'fjp=',rjp,'fyp=',ryp
+
+       !*COMM*** 
+       ! Transformations to obtain Coulomb functions to match the actual wavefunction,
+       ! not u=psi*r 
+
+       pre_J(m) = rj/R0
+       pre_Jp(m) = Z*rjp/R0-rj/(R0*R0)
+       pre_N(m) = -(ry/R0)
+       pre_Np(m) = -(Z*ryp/R0-ry/(R0*R0))
+
+       ! *COMM*** 
+       ! Sign is changed to the irregular coulomb function because of a different
+       !   convention respect to the one used by Seaton (MJ Seaton Rep. prog. phys.
+       !   46,167 (1983)) 
+
+
+       ! Calculate wronskians
+
+       W=rj*ryp-ry*rjp
+       !*********
+    endif
+ end do
+
+ channel=0
+ !    princ_quant_num=lmax
+ !    channel=0
+ !    do k=1,princ_quant_num
+ do ll=0,lmax-1
+    !write(901+ll,*)R0,pre_J(ll+1),pre_N(ll+1) ! plot the radial wavefunctions 
+    multiplicity=2*ll+1
+    do m=1,multiplicity
+       channel=channel+1
+       J(channel)=pre_J(ll+1)
+       Jp(channel)=pre_Jp(ll+1)
+       N(channel)=pre_N(ll+1)
+       Np(channel)=pre_Np(ll+1)
+    end do
+ end do
+
+
+
+
+ !deallocate(pre_J)
+ !deallocate(pre_Jp)
+ !deallocate(pre_N)
+ !deallocate(pre_Np)
+
+
+end subroutine modified_asymptotics
+
+
+!!$ Example program to get variable length strings
+
+!program  charac
+!character*10 :: alpha
+!character*20 :: beta
+!character, allocatable :: gamma1(:)
+
+!integer :: j
+!beta='aaaaaaaaa     '
+!call str_strip(beta,alpha,j)
+!write(6,*)alpha,beta
+!allocate(gamma1(j))
+!gamma1(:)=alpha(1:j)
+!write(6,*)gamma1,beta
+!deallocate(gamma1)
+!end program charac
+
+SUBROUTINE STR_STRIP( FIN, FOUT,j )
+  ! Remove multiple spaces from a string
+ IMPLICIT NONE
+ INTEGER I, J
+ CHARACTER*(*) FIN
+ CHARACTER*(*) FOUT
+
+ FOUT = FIN(1:1)
+ I = 2
+ J = 1
+
+ do while ( I .LE. LEN(FIN) )
+    IF ( FIN(I:I) .NE. ' ' ) THEN
+       J = J + 1 
+       FOUT(J:J) = FIN(I:I)
+    ELSE IF ( FOUT(J:J) .NE. ' ' ) then
+       J = J + 1
+       FOUT(J:J) = FIN(I:I)
+    END IF
+    I = I + 1
+
+ END DO
+END subroutine STR_STRIP
+
+
+subroutine interpolation(xdata,ydata,zdata,fdata,nxdata,nydata,nzdata,nxknot,nyknot,nzknot,value,option_gauge,iderx,idery,iderz)
+ use numeric
+ use bspline
+ use potential_interp
+ implicit none
+ integer(kind=i4)    kxord, kyord, kzord, ldf, mdf, nxdata, nxknot, nxvec,  &
+      &           nydata, nyknot, nyvec, nzdata, nzknot, nzvec,order,nvec
+ integer(kind=i4)    i, j, k, nxcoef, nycoef, nzcoef,iderx,idery,iderz,i1,i2,i3,kx,ky,kz
+ real(kind=dabl) :: val,f,x,y,z
+ real(kind=dabl), dimension(nxdata),intent(in) :: xdata
+ real(kind=dabl), dimension(nydata),intent(in) :: ydata 
+ real(kind=dabl), dimension(nzdata),intent(in) :: zdata
+ real(kind=dabl), dimension(nxdata,nydata,nzdata), intent(in) :: fdata
+ real(kind=dabl), dimension(nxdata,nydata,nzdata), intent(out) :: value
+ real(kind=dabl), allocatable :: xknot(:),yknot(:),zknot(:),bscoef(:,:,:)
+ character(len=16) :: option_gauge
+ ldf =nxdata
+ mdf=nydata
+ order=nxknot-nxdata
+ kx=order;ky=order;kz=order
+ allocate(xknot(nxknot),yknot(nyknot),zknot(nzknot))
+ allocate(bscoef(nxdata,nydata,nzdata))
+ !write(6,*)'before ines'
+ call dbs3ines(xdata,ydata,zdata,fdata,nxdata,nydata,nzdata,nxknot,nyknot,nzknot,bscoef,xknot,yknot,zknot)
+
+ value(:,:,:)=0.d0
+
+ call  dbs3gd(iderx,idery,iderz,nxdata,xdata,nydata,ydata,nzdata,zdata,       &
+      & kx,ky,kz,xknot,yknot,zknot,nxdata,nydata,nzdata,bscoef,value,ldf,mdf)
+ !write(6,*)'after gd'
+ deallocate(xknot,yknot,zknot)
+ deallocate(bscoef)
+
+end subroutine interpolation
+
+
+end module photoionization
+
+subroutine harmonic_projection1(Smat_vector,grid_func,nClosed,channel,J_soln,N_soln,Smat,max_open,coeff_projection)
+use nrtype, only : i4b,dbl,dpc,Pi
+use gauss2dint
+use Brep,only : R0,p_Patch,x_coord=>coord_x,y_coord=>coord_y,z_coord=>coord_z,plotpoints&
+    & ,n,p,nodes_closed_index,epsilon_custom,PatchVertex,r_glo,theta_glo,phi_glo &
+    & ,nodes
+use V_setup, only : xx,yy,zz,n1,n2,n3
+use Calc_func, only : an_r,an_theta,an_phi,bas_r,c_func,choice_partition,element
+use Open_information, only : bionda2_boundary,rad_elem_v,alpha_v,vect_max,open_vect,long_max,long_open,rad_elem
+use over, only : overlap_c
+use photoionization
+implicit none
+integer(kind=i4b) :: globnode,n1n2n3,i1,i2,i3,i,k_r,k_theta,k_phi,nClosed,j,&
+    &  channel,max_open,vect_ind,alpha,lmax
+integer(kind=i4b),parameter :: first=1,last=8,ngp=30
+integer(kind=i4b),save :: counter1=0,counter2
+integer(kind=i4b),allocatable,save :: element_n1n2n3(:,:),element_Patch(:,:)
+real(kind=dbl) :: J_soln(max_open),N_soln(max_open),harmonic(max_open)
+complex(kind=dpc) :: coeff_projection(max_open,max_open)
+real(kind=dbl),dimension(:),allocatable :: J_soln2,N_soln2,Jp_soln,Np_soln
+!real(kind=dbl),allocatable,save :: angle(:),angle_position_phi(:),position(:),xi(:,:)
+real(kind=dbl) :: beta,func,mult,ss
+real(kind=dbl),allocatable :: eigen(:),H(:,:),weigh(:),xabsc(:)
+complex(kind=dpc) :: Smat_vector(nClosed),grid_func(max_open,n1*n2*n3),Smat(max_open,max_open),f_plus_minus(max_open,2),grid_fake
+complex(kind=dpc),parameter :: zI=(0.d0,1.d0)
+logical :: logic
+call harmonic_projection(Smat_vector,grid_func,nClosed,channel,J_soln,N_soln,Smat,max_open,coeff_projection)
+end subroutine harmonic_projection1
+
+
+subroutine assemble_routine1(Smat_vector,grid_func,nClosed,channel,J_soln,N_soln,Smat,max_open,coeff_projection,energy)
+use nrtype, only : i4b,dbl,dpc,Pi
+use gauss2dint
+use Brep,only : R0,p_Patch,x_coord=>coord_x,y_coord=>coord_y,z_coord=>coord_z,plotpoints&
+    & ,n,p,nodes_closed_index,epsilon_custom,PatchVertex,r_glo,theta_glo,phi_glo &
+    & ,nodes
+use V_setup, only : xx,yy,zz,n1,n2,n3
+use Calc_func, only : an_r,an_theta,an_phi,bas_r,c_func,choice_partition,element
+use Open_information, only : bionda2_boundary,rad_elem_v,alpha_v,vect_max,open_vect,long_max,long_open,rad_elem
+use over, only : overlap_c
+use Solve, only : invert_complex
+use photoionization
+implicit none
+integer(kind=i4b) :: globnode,n1n2n3,i1,i2,i3,i,k_r,k_theta,k_phi,nClosed,j,&
+    &  channel,max_open,vect_ind,alpha,lmax,mp,pp,jt
+integer(kind=i4b),parameter :: first=1,last=8,ngp=30
+integer(kind=i4b),save :: counter1=0,counter2
+integer(kind=i4b),allocatable,save :: element_n1n2n3(:,:),element_Patch(:,:)
+real(kind=dbl) :: J_soln(max_open),N_soln(max_open),harmonic(max_open)
+real(kind=dbl),dimension(:),allocatable :: J_soln2,N_soln2,Jp_soln,Np_soln
+real(kind=dbl) :: beta,mult,ss,const,alpha_fine_struct,hbar,omega,CG,sigma,pleg,energy
+real(kind=dbl),allocatable :: eigen(:),H(:,:),weigh(:),xabsc(:),psi_0(:)
+complex(kind=dpc) :: Smat_vector(nClosed),grid_func(max_open,n1*n2*n3),Smat(max_open,max_open),f_plus_minus(max_open,2),grid_fake&
+    &,coeff_projection(max_open,max_open),integr,func
+complex(kind=dpc),allocatable :: T_mat(:,:),assemble(:,:),matr_elem(:,:)
+complex(kind=dpc),parameter :: zI=(0.d0,1.d0)
+logical :: logic
+external :: pleg
+call assemble_routine(Smat_vector,grid_func,nClosed,channel,J_soln,N_soln,Smat,max_open,coeff_projection,energy)
+end subroutine assemble_routine1
+
+
+subroutine plot_grid1(Smat_vector,grid_func,nClosed,channel,J_soln,N_soln,Smat,max_open)
+use nrtype, only : i4b,dbl,dpc,Pi
+use Brep,only : R0,p_Patch,x_coord=>coord_x,y_coord=>coord_y,z_coord=>coord_z,plotpoints&
+    & ,n,p,nodes_closed_index,epsilon_custom,PatchVertex,r_glo,theta_glo,phi_glo &
+    & ,nodes
+use V_setup, only : xx,yy,zz,n1,n2,n3
+use Calc_func, only : an_r,an_theta,an_phi,bas_r,c_func,choice_partition,element
+use Open_information, only : bionda2_boundary,rad_elem_v,alpha_v,vect_max,open_vect,long_max,long_open,rad_elem
+use over, only : overlap_c
+use photoionization
+implicit none
+integer(kind=i4b) :: globnode,n1n2n3,i1,i2,i3,i,k_r,k_theta,k_phi,nClosed,j,&
+    &  channel,max_open,vect_ind,alpha
+integer(kind=i4b),parameter :: first=1,last=8
+integer(kind=i4b),save :: counter=0,counter1=0,counter2
+integer(kind=i4b),allocatable,save :: element_n1n2n3(:,:),element_Patch(:,:)
+real(kind=dbl) :: J_soln(max_open),N_soln(max_open),harmonic(max_open)
+real(kind=dbl),dimension(:),allocatable :: J_soln2,N_soln2,Jp_soln,Np_soln
+!real(kind=dbl),allocatable,save :: angle(:),angle_position_phi(:),position(:),xi(:,:)
+real(kind=dbl) :: beta,func,mult
+complex(kind=dpc) :: Smat_vector(nClosed,max_open),grid_func(max_open,n1*n2*n3),Smat(max_open,max_open),f_plus_minus(max_open,2),grid_fake
+complex(kind=dpc),parameter :: zI=(0.d0,1.d0)
+logical :: logic
+call plot_grid(Smat_vector,grid_func,nClosed,channel,J_soln,N_soln,Smat,max_open)
+end subroutine plot_grid1
+

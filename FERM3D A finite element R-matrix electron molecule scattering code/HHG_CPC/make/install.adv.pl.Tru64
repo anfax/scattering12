@@ -1,0 +1,192 @@
+#!/usr/bin/perl
+# This script compiles all the subroutines and libraries
+# Put compiler as variable or make multiple scripts
+
+# Define Compilers and libraries
+$FC='f90';
+$CC='gcc';
+#$COMPFLG='-check all -g -O0 -C -debug extended -inline-debug-info -fpe0';
+$COMPFLG='';
+
+$ARPACK='';
+$LAPACK='-L/fermion2/greene/tonzani/Pardiso -lpardiso_TRU64 -lcxml';
+$CERNLIB='';
+$PARDISOLIB='/fermion2/greene/tonzani/Pardiso/';
+$THR=1;
+$SUPERLU_SOURCE='/fermion2/greene/tonzani/SuperLU/SRC';
+
+######## End user defined variables ###################################
+$PWD=`pwd`;
+chomp($PWD);
+$ROOT_DIR=$PWD . "/../src";
+$LIB_DIR=$ROOT_DIR . "/../lib";
+
+$ARCR='ar -cr';
+# Define optional subroutines
+$SPARSE_SUB='sparse_zerobased.f90';
+if ($PARDISOLIB eq ''){
+	if ($ARPACK ne ''){
+		$EIGEN='eigensparse.f90';
+	}
+	else{
+		$EIGEN='eigenfull.f90';
+	}
+}
+elsif ($ARPACK eq ''){
+$EIGEN='eigenfull.f90';
+}
+else
+{
+$EIGEN='eigen_pardiso.f90';
+}
+if ($CERNLIB eq ''){
+$COULOMB='adda.f90'
+}
+else
+{
+$COULOMB='call_coul.sub.f90';
+}
+if ($PARDISOLIB ne ''){
+	if ($THR>1){
+		$PARDISOSUB='pardiso.sub_par.f90';
+	}
+	else
+	{
+		$PARDISOSUB='pardiso.sub.f90';
+	}
+}
+else
+{
+	$PARDISOSUB='SuperLU.bridge.f90';
+        $SPARSE_SUB='sparse_zerobased.SuperLU.f90';
+	$LAPACK="$LIB_DIR/libslu.a "."$LAPACK";
+}
+
+######################## Install main code ############################
+
+$ENV{'OMP_NUM_THREADS'}=$THR;
+$pardisovar=$ENV{'LD_LIBRARY_PATH'};
+$ENV{'LD_LIBRARY_PATH'}="$pardisovar".":$PARDISOLIB";
+
+# Clean old libraries
+
+system "rm $LIB_DIR/*.a";
+
+open OUT, ">make.inc";
+print OUT (<<"EOS");
+FC = $FC 
+CMPLFLGS = $COMPFLG
+
+LAPACK = $LAPACK
+ROOT_DIR=$ROOT_DIR
+LIB_DIR= $LIB_DIR
+ARPACK=$ARPACK
+SUPERLU_LIB = $SUPERLU_LIB
+ARCR = $ARCR
+EIGEN=$EIGEN
+COULOMB=$COULOMB
+CERNLIB=$CERNLIB
+PARDISOSUB=$PARDISOSUB
+SPARSE_SUB=$SPARSE_SUB
+.SUFFIXES:
+.SUFFIXES: .f .f90 .o
+EOS
+close OUT;
+system 'cp make.inc ../utils_dipole/make.inc';
+system 'cp make.inc ../src/make.inc';
+system 'cp Makefile.current ../src/Makefile';
+
+open OUT, ">INSTALL.sh";
+print OUT (<<"EOS");
+#/usr/bin/csh
+cd $ROOT_DIR
+make clean
+cd splines/
+make clean
+chmod +x comp.splines.sh
+./comp.splines.sh
+cp *.mod ../
+cd ../
+#cd SuperLUCustom
+#chmod +x comp.SLU.sh
+#./comp.SLU.sh
+#cd ../
+cd eigen_sparse
+make clean
+chmod +x comp.eigen.sh
+./comp.eigen.sh
+cd ../
+$FC $COMPFLG -c modules_3d.f90
+gmake
+make clean
+EOS
+close OUT;
+
+
+print("LIBRARIES,$ARPACK,$PARDISOLIB\n");
+print("ROUTINES,$EIGEN\n");
+
+
+if ($PARDISOLIB eq ''){
+open OUT, ">comp.SLU.sh";
+print OUT (<<"EOS");
+$CC -c sp_ienv.c
+$CC -c -I$SUPERLU_SOURCE dSLUsolve.c
+$ARCR libslu.a sp_ienv.o dSLUsolve.o
+mv libslu.a $LIB_DIR
+EOS
+close OUT;
+system "mv comp.SLU.sh $ROOT_DIR/SuperLUCustom;  cd $ROOT_DIR/SuperLUCustom; chmod +x comp.SLU.sh; $ROOT_DIR/SuperLUCustom/comp.SLU.sh; cd ../";
+}
+
+
+open OUT, ">comp.splines.sh";
+print OUT (<<"EOS");
+#/usr/bin/csh
+$FC $COMPFLG -c bspline90_22.f90
+$FC $COMPFLG -c dbs3in_pot_interp.f90
+$ARCR $LIB_DIR/libsplines_pot_interp.a dbs3in_pot_interp.o bspline90_22.o
+rm *.o
+cp *.mod ../
+EOS
+close OUT;
+system "mv comp.splines.sh $ROOT_DIR/splines";
+
+open OUT, ">comp.eigen.sh";
+print OUT (<<"EOS");
+#/usr/bin/csh
+$FC $COMPFLG -c eigensparse.f90
+$FC $COMPFLG -c sparsemultiply.f90
+$FC $COMPFLG -c eigenstuff.f90
+$ARCR $LIB_DIR/libprop1d.a eigensparse.o sparsemultiply.o eigenstuff.o
+rm *.o
+EOS
+close OUT;
+system "mv comp.eigen.sh $ROOT_DIR/eigen_sparse";
+
+system 'chmod +x INSTALL.sh';
+system "mv INSTALL.sh $ROOT_DIR";
+system "$ROOT_DIR/INSTALL.sh";
+
+
+
+################# Utility installation ################################
+
+open OUT, ">INSTALL_DIPOLE.sh";
+print OUT (<<"EOS");
+#/usr/bin/csh
+cd $ROOT_DIR/../utils_dipole
+make clean
+$FC $COMPFLG -c modules_3d.f90
+$FC $COMPFLG -c gau3d.f90
+$FC $COMPFLG -c gau_2d_tab.f90
+$FC $COMPFLG -c Hydrogen_perturbed.f90
+make 
+make CM.x
+make clean
+EOS
+close OUT;
+
+system 'chmod +x INSTALL_DIPOLE.sh';
+system "mv INSTALL_DIPOLE.sh $ROOT_DIR/../utils_dipole";
+#system "$ROOT_DIR/../utils_dipole/INSTALL_DIPOLE.sh";

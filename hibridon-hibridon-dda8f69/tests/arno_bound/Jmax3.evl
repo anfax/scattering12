@@ -1,0 +1,86 @@
+  -----------------------------------------------------------------------------
+   HIBRIDON SCATTERING CODE V 4.4 (UNOFFICIAL)
+   BUILD TIME: Jun 28 2013 13:33:54
+   git commit a39749bb8274ca8765092d3c753d6a3d271b610c
+ 
+   AUTHORS: M. ALEXANDER, D. MANOLOPOULOS, H.-J. WERNER,
+            B. FOLLMEG, P. DAGDIGIAN
+   CONTRIBUTORS: D. LEMOINE, P. VOHRALIK, G. COREY, R. JOHNSON, T. ORLIKOWSKI
+                 A. BERNING, A. DEGLI-ESPOSTI, C. RIST, B. POUILLY
+                 G. VAN DER SANDEN, M. YANG, F. DE WEERD S. GREGURICK, J. KLOS
+                 F. LIQUE, Q. MA
+  -----------------------------------------------------------------------------
+ 
+   BUILD CONFIGURATION:
+   OPERATIONAL SYSTEM: Linux x86_64 3.9.7-1-ARCH
+   PROCESSOR: unknown
+   FORTRAN COMPILER: ifort (IFORT) 13.1.0 20130121
+   LIBRARIES: -lmkl_rt -openmp -lpthread
+   COMPILER OPTIONS: -O3 -xHOST -mcmodel=medium -align all -save -fpp -i8
+ 
+  -----------------------------------------------------------------------------
+ ** POTNAM: ALEXANDER Ar-NO CCSDT                           
+ ** LABEL: ArNO bound states with CCSDT potential          
+
+ ** BOUND STATE CALCULATION:  R1 = 5.00;  R2 =11.00
+      SPAC-TRY = 0.300, SPAC-EXACT = 0.300000, NO. GAUSSIANS = 21, SIZE OF TOTAL BASIS =  294
+      C = 0.50, ALPH =  2.7778    
+ ** MINIMUM EIGENVALUE OF S MATRIX = 2.6686E-07
+ ** SIMPSON'S 3/8 RULE INTEGRATION OF POTENTIAL
+      DEL-R = 1.10, H-START = 0.100, N-POINTS =  82, H-EXACT = 0.101235
+ REQUIRED ARRAY LENGTH         589           1
+ ** EIGENVALUES (CM-1)
+      -81.967
+      -81.362
+      -68.832
+      -67.317
+      -61.018
+      -60.885
+      -54.869
+      -53.026
+      -49.054
+      -46.701
+      -40.675
+      -38.644
+      -37.434
+      -35.534
+      -33.703
+      -30.515
+      -27.337
+      -23.549
+      -22.490
+      -20.195
+      -17.825
+      -17.209
+      -16.738
+      -12.309
+      -10.858
+      -10.312
+       -9.978
+       -6.576
+       -5.111
+       -4.364
+       -2.263
+       -1.985
+       -0.297
+        0.734
+        3.467
+        3.549
+        5.326
+        6.032
+        9.412
+       10.093
+       10.234
+       10.987
+       14.897
+       15.827
+       16.657
+       16.733
+       19.911
+       21.647
+       22.846
+       24.467
+       25.276
+       28.276
+       30.795
+       30.972

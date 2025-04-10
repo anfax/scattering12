@@ -1,0 +1,42 @@
+! x is the R grid, xd is some critical point 
+! nR is no of points in the R grid and psi is the wavefn
+
+subroutine damping(Rgrid,r1grid,psi)
+    use constants
+    integer*8 i,j,k
+    real*8 xd,dx
+    real*8,dimension(nR)::DR
+    real*8,dimension(nr1)::Dr1
+    real*8,dimension(1:nR,1:nr1,1:ntheta),intent(inout)::psi
+    real*8,dimension(1:nR),intent(in)::Rgrid
+    real*8,dimension(1:nr1),intent(in)::r1grid
+
+    dx = 0.01
+    xd = Rmax - Rmin - 3.0
+    do i = 1,nR
+        if ( Rgrid(i) .le. xd ) then
+            DR(i) = 1
+        elseif ( Rgrid(i) .gt. xd ) then
+            DR(i) = exp(-1.0*dx*(x(i)-xd)**2)
+        end if 
+    end do
+
+    dx = 0.01
+    xd = r1max - r1min - 3.0
+    do i = 1,nr1
+        if ( r1grid(i) .le. xd ) then
+            Dr1(i) = 1
+        elseif ( r1grid(i) .gt. xd ) then
+            Dr1(i) = exp(-1.0*dx*(x(i)-xd)**2)  ! Don't know what dx is 
+        end if
+    end do
+
+    do i = 1,nR
+        do j = 1,nr1
+            do k = 1,ntheta
+                psi(i,j,k) = psi(i,j,k) * DR(i) * Dr1(j) !Dtot is DR*Dr1
+            end do
+        end do
+    end do
+    
+end subroutine  damping

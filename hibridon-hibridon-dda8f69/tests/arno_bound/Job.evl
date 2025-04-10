@@ -1,0 +1,74 @@
+  -----------------------------------------------------------------------------
+   HIBRIDON SCATTERING CODE V 4.4 (UNOFFICIAL)
+   BUILD TIME: Jun 28 2013 13:33:54
+   git commit a39749bb8274ca8765092d3c753d6a3d271b610c
+ 
+   AUTHORS: M. ALEXANDER, D. MANOLOPOULOS, H.-J. WERNER,
+            B. FOLLMEG, P. DAGDIGIAN
+   CONTRIBUTORS: D. LEMOINE, P. VOHRALIK, G. COREY, R. JOHNSON, T. ORLIKOWSKI
+                 A. BERNING, A. DEGLI-ESPOSTI, C. RIST, B. POUILLY
+                 G. VAN DER SANDEN, M. YANG, F. DE WEERD S. GREGURICK, J. KLOS
+                 F. LIQUE, Q. MA
+  -----------------------------------------------------------------------------
+ 
+   BUILD CONFIGURATION:
+   OPERATIONAL SYSTEM: Linux x86_64 3.9.7-1-ARCH
+   PROCESSOR: unknown
+   FORTRAN COMPILER: ifort (IFORT) 13.1.0 20130121
+   LIBRARIES: -lmkl_rt -openmp -lpthread
+   COMPILER OPTIONS: -O3 -xHOST -mcmodel=medium -align all -save -fpp -i8
+ 
+  -----------------------------------------------------------------------------
+ ** POTNAM: ALEXANDER Ar-NO CCSDT                           
+ ** LABEL: ArNO bound states with CCSDT potential          
+
+ ** BOUND STATE CALCULATION:  R1 = 5.00;  R2 =11.00
+      SPAC-TRY = 0.300, SPAC-EXACT = 0.300000, NO. GAUSSIANS = 21, SIZE OF TOTAL BASIS =  126
+      C = 0.50, ALPH =  2.7778    
+ ** MINIMUM EIGENVALUE OF S MATRIX = 2.6686E-07
+ ** SIMPSON'S 3/8 RULE INTEGRATION OF POTENTIAL
+      DEL-R = 1.10, H-START = 0.100, N-POINTS =  82, H-EXACT = 0.101235
+ REQUIRED ARRAY LENGTH         253           1
+ ** EIGENVALUES (CM-1)
+      -77.417
+      -75.062
+      -65.869
+      -64.031
+      -50.433
+      -49.571
+      -41.339
+      -40.791
+      -29.879
+      -29.564
+      -23.280
+      -22.615
+      -15.961
+      -14.592
+      -11.409
+       -9.817
+       -6.432
+       -4.607
+       -1.303
+       -0.342
+        3.358
+        4.805
+       10.627
+       11.072
+       15.612
+       16.572
+       24.347
+       26.209
+       30.385
+       31.061
+       40.628
+       43.549
+       46.312
+       47.513
+       49.043
+       52.366
+       59.742
+       63.528
+       67.081
+       68.288
+       73.314
+  

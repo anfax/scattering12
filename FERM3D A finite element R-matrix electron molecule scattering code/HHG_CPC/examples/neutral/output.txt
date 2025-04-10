@@ -1,0 +1,3847 @@
+ start FERM3D code
+ -----------------------------------------
+ CALCULATION FLAGS
+ output file=          950
+ calculation type= scatter   wf= nowf      
+ exchange= slater    
+ maximum continuum angular momentum           8
+ molecule type= neutral   charge=   0.000000000000000E+000
+ polarizability alpha_0=    8.95000000000000     
+ polarizability alpha_2=    4.59500000000000     
+ r_cutoff=    3.70000000000000     
+ Energy last bound state=   0.540000000000000     
+ shift in z-direction=   0.000000000000000E+000
+ -----------------------------------------
+ R0=   11.0000000000000     
+ scatter   mostro
+ done grid, elements, Patches=        4080        4675
+ restore=no        
+ max_index         748        2720
+ done overlap
+
+ Ritz values and relative residuals
+ ----------------------------------
+               Col   1       Col   2
+  Row   1:   -2.55795D-13   3.92773D+00
+  Row   2:    2.00000D+00   9.76408D-13
+  Row   3:    2.00000D+00   3.99314D-13
+  Row   4:    2.00000D+00   3.30681D-13
+  Row   5:    6.00002D+00   2.17666D-13
+  Row   6:    6.00002D+00   2.27741D-13
+  Row   7:    6.00002D+00   2.78110D-13
+  Row   8:    6.00003D+00   2.49173D-13
+  Row   9:    6.00003D+00   3.19278D-13
+  Row  10:    1.20002D+01   8.29963D-14
+  Row  11:    1.20002D+01   1.13128D-13
+  Row  12:    1.20004D+01   1.04271D-13
+  Row  13:    1.20004D+01   7.99794D-14
+  Row  14:    1.20005D+01   1.86337D-13
+  Row  15:    1.20006D+01   8.38421D-14
+  Row  16:    1.20006D+01   1.24728D-13
+  Row  17:    2.00012D+01   9.08665D-14
+  Row  18:    2.00013D+01   8.00841D-14
+  Row  19:    2.00017D+01   7.50806D-14
+  Row  20:    2.00017D+01   2.67631D-13
+  Row  21:    2.00032D+01   7.69329D-14
+  Row  22:    2.00032D+01   9.45540D-14
+  Row  23:    2.00038D+01   9.17949D-14
+  Row  24:    2.00041D+01   6.14573D-14
+  Row  25:    2.00045D+01   6.24851D-14
+  Row  26:    3.00051D+01   5.89641D-14
+  Row  27:    3.00051D+01   7.48199D-14
+  Row  28:    3.00062D+01   5.43287D-14
+  Row  29:    3.00066D+01   1.03640D-13
+  Row  30:    3.00096D+01   1.12045D-13
+  Row  31:    3.00096D+01   1.61232D-13
+  Row  32:    3.00151D+01   7.77522D-14
+  Row  33:    3.00151D+01   1.11483D-13
+  Row  34:    3.00177D+01   6.99107D-14
+  Row  35:    3.00190D+01   5.59968D-14
+  Row  36:    3.00205D+01   1.03893D-13
+  Row  37:    4.20142D+01   6.41010D-14
+  Row  38:    4.20147D+01   1.67697D-13
+  Row  39:    4.20210D+01   7.48477D-14
+  Row  40:    4.20210D+01   1.33444D-13
+  Row  41:    4.20247D+01   5.49992D-14
+  Row  42:    4.20264D+01   6.53738D-14
+  Row  43:    4.20367D+01   5.05030D-14
+  Row  44:    4.20367D+01   6.89915D-14
+  Row  45:    4.20523D+01   9.56564D-14
+  Row  46:    4.20523D+01   4.11624D-14
+  Row  47:    4.20601D+01   4.40852D-14
+  Row  48:    4.20639D+01   7.19900D-14
+  Row  49:    4.20697D+01   5.35635D-14
+  Row  50:    5.60404D+01   6.24785D-14
+  Row  51:    5.60422D+01   8.38275D-14
+  Row  52:    5.60423D+01   7.47201D-14
+  Row  53:    5.60428D+01   6.02098D-14
+  Row  54:    5.60694D+01   1.44059D-13
+  Row  55:    5.60695D+01   3.19149D-14
+  Row  56:    5.60775D+01   7.69089D-14
+  Row  57:    5.60842D+01   1.57169D-13
+  Row  58:    5.61097D+01   4.49592D-14
+  Row  59:    5.61097D+01   4.31644D-14
+  Row  60:    5.61463D+01   2.79417D-14
+  Row  61:    5.61463D+01   5.28989D-14
+  Row  62:    5.61651D+01   5.71855D-14
+  Row  63:    5.61708D+01   3.59890D-14
+  Row  64:    5.61990D+01   2.18127D-14
+  Row  65:    7.20821D+01   2.99201D-14
+  Row  66:    7.20827D+01   4.77584D-14
+  Row  67:    7.20989D+01   4.05917D-14
+  Row  68:    7.21011D+01   4.06557D-14
+  Row  69:    7.21043D+01   4.92695D-14
+  Row  70:    7.21107D+01   7.29497D-14
+  Row  71:    7.21107D+01   4.18846D-14
+  Row  72:    7.21118D+01   5.39272D-14
+  Row  73:    7.21159D+01   7.63927D-14
+  Row  74:    7.21245D+01   5.80351D-14
+  Row  75:    7.21999D+01   3.04214D-14
+  Row  76:    7.22318D+01   4.18798D-14
+  Row  77:    7.22830D+01   4.31285D-14
+  Row  78:    7.22831D+01   4.41290D-14
+  Row  79:    7.26029D+01   4.38037D-14
+  Row  80:    7.26029D+01   9.95752D-14
+  Row  81:    7.27963D+01   2.00156D-14
+  
+           1 : check -->   4.718139018312124E-015 -2.557953848736361E-013
+           2 : check -->    2.00000006507034        2.00000006507038     
+           3 : check -->    2.00000021764639        2.00000021764642     
+           4 : check -->    2.00000023578839        2.00000023578826     
+           5 : check -->    6.00001738533383        6.00001738533384     
+           6 : check -->    6.00001741557117        6.00001741557120     
+           7 : check -->    6.00002142860412        6.00002142860422     
+           8 : check -->    6.00002998199855        6.00002998199859     
+           9 : check -->    6.00003292437978        6.00003292437970     
+          10 : check -->    12.0001855388142        12.0001855388140     
+          11 : check -->    12.0001896582752        12.0001896582752     
+          12 : check -->    12.0003823127290        12.0003823127290     
+          13 : check -->    12.0003823550681        12.0003823550681     
+          14 : check -->    12.0004754844977        12.0004754844976     
+          15 : check -->    12.0005513121742        12.0005513121740     
+          16 : check -->    12.0006000586552        12.0006000586550     
+          17 : check -->    20.0012140856765        20.0012140856766     
+          18 : check -->    20.0012767626807        20.0012767626805     
+          19 : check -->    20.0017056085820        20.0017056085819     
+          20 : check -->    20.0017109058924        20.0017109058922     
+          21 : check -->    20.0031531150167        20.0031531150165     
+          22 : check -->    20.0031531694821        20.0031531694821     
+          23 : check -->    20.0037995526364        20.0037995526363     
+          24 : check -->    20.0041397673729        20.0041397673727     
+          25 : check -->    20.0044633703564        20.0044633703562     
+          26 : check -->    30.0050685627480        30.0050685627478     
+          27 : check -->    30.0051451856299        30.0051451856297     
+          28 : check -->    30.0062001808993        30.0062001808993     
+          29 : check -->    30.0065957179403        30.0065957179401     
+          30 : check -->    30.0095548630468        30.0095548630467     
+          31 : check -->    30.0095613408949        30.0095613408950     
+          32 : check -->    30.0151322229542        30.0151322229541     
+          33 : check -->    30.0151322896066        30.0151322896065     
+          34 : check -->    30.0177397582140        30.0177397582137     
+          35 : check -->    30.0190254524784        30.0190254524780     
+          36 : check -->    30.0204592663344        30.0204592663341     
+          37 : check -->    42.0142334457943        42.0142334457940     
+          38 : check -->    42.0147010438856        42.0147010438858     
+          39 : check -->    42.0209522442503        42.0209522442502     
+          40 : check -->    42.0210428555326        42.0210428555330     
+          41 : check -->    42.0246745040132        42.0246745040133     
+          42 : check -->    42.0263690919366        42.0263690919366     
+          43 : check -->    42.0366750524925        42.0366750524926     
+          44 : check -->    42.0366827182335        42.0366827182336     
+          45 : check -->    42.0523269580510        42.0523269580511     
+          46 : check -->    42.0523270369943        42.0523270369942     
+          47 : check -->    42.0600528202612        42.0600528202610     
+          48 : check -->    42.0639163693084        42.0639163693083     
+          49 : check -->    42.0696880211208        42.0696880211207     
+          50 : check -->    56.0403923391922        56.0403923391923     
+          51 : check -->    56.0422245648856        56.0422245648858     
+          52 : check -->    56.0423482515232        56.0423482515232     
+          53 : check -->    56.0427646645176        56.0427646645179     
+          54 : check -->    56.0693925751769        56.0693925751769     
+          55 : check -->    56.0694972150454        56.0694972150455     
+          56 : check -->    56.0775122365398        56.0775122365397     
+          57 : check -->    56.0841719986469        56.0841719986469     
+          58 : check -->    56.1097225869658        56.1097225869659     
+          59 : check -->    56.1097314663549        56.1097314663550     
+          60 : check -->    56.1463431356947        56.1463431356947     
+          61 : check -->    56.1463432269266        56.1463432269267     
+          62 : check -->    56.1650569711082        56.1650569711081     
+          63 : check -->    56.1708133724439        56.1708133724440     
+          64 : check -->    56.1989823255848        56.1989823255849     
+          65 : check -->    72.0821046576433        72.0821046576437     
+          66 : check -->    72.0827153596900        72.0827153596903     
+          67 : check -->    72.0988914437693        72.0988914437694     
+          68 : check -->    72.1011133904186        72.1011133904188     
+          69 : check -->    72.1042911707732        72.1042911707735     
+          70 : check -->    72.1107166598780        72.1107166598781     
+          71 : check -->    72.1107265929377        72.1107265929379     
+          72 : check -->    72.1118396143130        72.1118396143131     
+          73 : check -->    72.1158538248388        72.1158538248390     
+          74 : check -->    72.1244785381394        72.1244785381397     
+          75 : check -->    72.1999149567032        72.1999149567034     
+          76 : check -->    72.2318398275523        72.2318398275526     
+          77 : check -->    72.2830119829750        72.2830119829751     
+          78 : check -->    72.2831320844003        72.2831320844003     
+          79 : check -->    72.6029053218436        72.6029053218435     
+          80 : check -->    72.6029054287324        72.6029054287324     
+          81 : check -->    72.7962876666938        72.7962876666939     
+  
+  Convergence Information
+  ======================= 
+  
+  Size of the matrix is          748
+  The number of Ritz values requested is           81
+  The number of Arnoldi vectors generated (NCV) is           86
+  What portion of the spectrum: LM
+  The number of converged Ritz values is           81
+  The number of Implicit Arnoldi update iterations taken is           87
+  The number of OP*x is          345
+  The convergence criterion is   1.110223024625157E-016
+  
+           3
+ order interpolant splines=           5
+ number atoms, first grid point           3  -11.3572530000000     
+  -11.3572530000000       -11.3572530000000     
+ IOSTAT=           0  0.000000000000000E+000
+ IOSTAT=           0 F
+ IOSTAT=           0 T
+ IOSTAT=           0  0.000000000000000E+000
+ IOSTAT=           0 no        
+ molecule shifted on x of  0.000000000000000E+000
+ molecule shifted on y of  0.000000000000000E+000
+ atomic number,charge,coordinates 
+    6  0.60000E+01  0.00000E+00  0.00000E+00  0.00000E+00
+    8  0.80000E+01  0.00000E+00  0.00000E+00  0.21921E+01
+    8  0.80000E+01  0.00000E+00  0.00000E+00 -0.21921E+01
+ position of atoms in the grid: r, theta, phi
+    1  0.00000E+00  0.62832E+01  0.12566E+02
+    2  0.21921E+01  0.00000E+00  0.12566E+02
+    3  0.21921E+01  0.31416E+01  0.12566E+02
+ subroutine dbsnak: 
+ eps =   2.220446049250313E-016
+           0
+           0
+ end grad_nabla_interp
+ done  interpolations
+ end V_conversion
+ p_Patch       37400
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=           1
+ partition           1
+ closed-closed
+ sort3
+ restore=no        
+ num Legendre points on singularity        4096         192
+ grad_nabla_integr_prep
+ potential empty         100
+ potential empty         200
+ potential empty         300
+ potential empty         400
+ potential empty         500
+ potential empty         600
+ potential empty         700
+ potential empty         800
+ potential empty         900
+ potential empty        1000
+ potential empty        1100
+ potential empty        1200
+ potential empty        1300
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+           1
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+           2
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+           3
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+           4
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+           5
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+           6
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+           7
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+           8
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+           9
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          10
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          11
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          12
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          13
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          14
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          15
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          16
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          17
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          18
+ potential empty        1400
+ potential empty        1500
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          19
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          20
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          21
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          22
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          23
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          24
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          25
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          26
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          27
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          28
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          29
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          30
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          31
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          32
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          33
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          34
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          35
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          36
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          37
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          38
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          39
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          40
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          41
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          42
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          43
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          44
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          45
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          46
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          47
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          48
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          49
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          50
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          51
+ inside   2.19208200000000       0.000000000000000E+000   12.5663706143592     
+          52
+ potential empty        1600
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          53
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          54
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          55
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          56
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          57
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          58
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          59
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          60
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          61
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          62
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          63
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          64
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          65
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          66
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          67
+ potential empty        1700
+ inside   2.19208200000000        3.14159265358979        12.5663706143592     
+          68
+ potential empty        1800
+ potential empty        1900
+ potential empty        2000
+ potential empty        2100
+ potential empty        2200
+ potential empty        2300
+ potential empty        2400
+ potential empty        2500
+ potential empty        2600
+ potential empty        2700
+ potential empty        2800
+ potential empty        2900
+ potential empty        3000
+ potential empty        3100
+ potential empty        3200
+ potential empty        3300
+ potential empty        3400
+ potential empty        3500
+ potential empty        3600
+ potential empty        3700
+ potential empty        3800
+ potential empty        3900
+ potential empty        4000
+ Atoms with grid points at nucleus positions
+ atom           1 yes  
+ atom           2 yes  
+ atom           3 yes  
+ after potential empty
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed gamma
+ closed-closed overlap         100
+ closed-closed overlap         200
+ closed-closed overlap         300
+ closed-closed overlap         400
+ closed-closed overlap         500
+ closed-closed overlap         600
+ closed-closed overlap         700
+ closed-closed overlap         800
+ closed-closed overlap         900
+ closed-closed overlap        1000
+ closed-closed overlap        1100
+ closed-closed overlap        1200
+ closed-closed overlap        1300
+ closed-closed overlap        1400
+ closed-closed overlap        1500
+ closed-closed overlap        1600
+ closed-closed overlap        1700
+ closed-closed overlap        1800
+ closed-closed overlap        1900
+ closed-closed overlap        2000
+ closed-closed overlap        2100
+ closed-closed overlap        2200
+ closed-closed overlap        2300
+ closed-closed overlap        2400
+ closed-closed overlap        2500
+ closed-closed overlap        2600
+ closed-closed overlap        2700
+ closed-closed overlap        2800
+ closed-closed overlap        2900
+ closed-closed overlap        3000
+ closed-closed overlap        3100
+ closed-closed overlap        3200
+ closed-closed overlap        3300
+ closed-closed overlap        3400
+ closed-closed overlap        3500
+ closed-closed overlap        3600
+ closed-closed overlap        3700
+ closed-closed overlap        3800
+ closed-closed overlap        3900
+ closed-closed overlap        4000
+ closed-closed potential         100
+ closed-closed potential         200
+ closed-closed potential         300
+ closed-closed potential         400
+ closed-closed potential         500
+ closed-closed potential         600
+ closed-closed potential         700
+ closed-closed potential         800
+ closed-closed potential         900
+ closed-closed potential        1000
+ closed-closed potential        1100
+ closed-closed potential        1200
+ closed-closed potential        1300
+ closed-closed potential        1400
+ closed-closed potential        1500
+ closed-closed potential        1600
+ closed-closed potential        1700
+ closed-closed potential        1800
+ closed-closed potential        1900
+ closed-closed potential        2000
+ closed-closed potential        2100
+ closed-closed potential        2200
+ closed-closed potential        2300
+ closed-closed potential        2400
+ closed-closed potential        2500
+ closed-closed potential        2600
+ closed-closed potential        2700
+ closed-closed potential        2800
+ closed-closed potential        2900
+ closed-closed potential        3000
+ closed-closed potential        3100
+ closed-closed potential        3200
+ closed-closed potential        3300
+ closed-closed potential        3400
+ closed-closed potential        3500
+ closed-closed potential        3600
+ closed-closed potential        3700
+ closed-closed potential        3800
+ closed-closed potential        3900
+ closed-closed potential        4000
+ partition           2
+ open-closed
+ sort3
+ restore=no        
+ after potential empty
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed gamma
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed overlap
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ open-closed potential
+ partition           3
+ open-open
+ sort3
+ restore=no        
+ after potential empty
+ open-open gamma
+ open-open overlap
+ open-open potential
+ grad_nabla_integr_prep release memory
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43687209
+ Number of factorization MFLOPS =        81485
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  1.416666666666667E-002
+ -1.852880895671029E-002 -1.049434859187960E-002 -1.939451797857013E-005
+ -1.937963024772377E-005 -8.144600807457057E-006 -8.113251512124465E-006
+ -5.321470896474004E-008 -2.819223495223468E-008 -2.819037772789049E-008
+ -1.214167802836596E-008 -3.119954360846945E-009 -3.119638354884110E-009
+ -1.339159474203022E-010 -1.335159084390673E-010 -1.595373605939917E-011
+ -1.593793320288929E-011 -1.001140535558973E-011 -1.000849055645965E-011
+  5.911110244672358E-013  6.205295183362069E-013  3.419449172294697E-012
+  7.499250919202086E-012  7.589779109129142E-012  1.136202379561198E-011
+  1.165967124013174E-011  1.169004931414131E-011  1.295072760978574E-011
+  1.367280279705034E-011  1.367433781113593E-011  6.607545557376029E-011
+  6.696582746606174E-011  5.235742955719179E-010  5.251915319823154E-010
+  9.741406534152798E-010  9.797721994529115E-010  1.296325206112458E-009
+  1.315584349119345E-009  2.212857270887061E-008  2.214375734385580E-008
+  5.460303557781690E-008  5.467785211775381E-008  8.315064670519684E-008
+  8.342406432749790E-008  1.490556422397585E-007  1.491834281367628E-007
+  1.570199894170901E-007  4.476319260033068E-007  4.476733909052358E-007
+  2.072376563091407E-006  2.072872862592132E-006  3.632782682337619E-006
+  3.635387305162963E-006  5.094680065034877E-005  5.094764502769500E-005
+  6.486914186087867E-005  1.101095827781506E-004  1.101212953783319E-004
+  2.824955700885691E-004  2.835843259664258E-004  2.403274432035907E-003
+  2.403279970181016E-003  2.122315244171770E-002  2.122412642664667E-002
+  3.357707223007851E-002
+ eigenphase sum=  1.416666666666667E-002   18.0527187519694     
+ No perturbative treatment
+ after plot           0
+ make grid for harmonics        2500
+ harmonic construction
+ end projection
+ cross sections
+ cross section xform=   10.8924951303163       1.416666666666667E-002
+ cross section=   10.8889483996325       1.416666666666667E-002
+ end subroutine kmatrix
+ end loop for energy   1.416666666666667E-002
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=           2
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43957174
+ Number of factorization MFLOPS =        82790
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  2.833333333333333E-002
+ -4.306784699661086E-002 -3.407426574392203E-002 -1.541939254159235E-004
+ -1.540301927516784E-004 -1.437386521661682E-004 -1.431359685029761E-004
+ -2.189414119750564E-006 -1.384887619990076E-006 -9.613985154093048E-007
+ -9.613338859889728E-007 -2.028669254575473E-007 -2.028489115793150E-007
+ -9.350037474468920E-009 -9.320617068934170E-009 -2.357731598684102E-009
+ -2.355422075595378E-009 -1.473475859957853E-009 -1.472870689174000E-009
+  9.639664329113025E-011  1.008345931751175E-010  3.188397634809602E-010
+  1.139467363096045E-009  1.153154466956654E-009  1.724086349655118E-009
+  1.769110372531347E-009  1.774758736240967E-009  1.965464085838203E-009
+  2.219672340193871E-009  2.219918850366690E-009  3.180555816216963E-009
+  3.258680802431168E-009  3.908601578541404E-008  3.920572944507729E-008
+  7.246931922009815E-008  7.288664570282546E-008  9.641288911316866E-008
+  9.784037689142556E-008  8.167416294897984E-007  8.172873480492617E-007
+  1.737725648236682E-006  1.985288975448657E-006  1.987991381678333E-006
+  3.020009057798346E-006  3.029892995452823E-006  5.622296632982598E-006
+  5.628690745939041E-006  8.893776599732333E-006  8.894480404132881E-006
+  3.673033982330300E-005  3.673902279258159E-005  6.419890179058159E-005
+  6.424459358901723E-005  4.436959001347434E-004  4.437028348512190E-004
+  4.735074837444146E-004  9.478108008109167E-004  9.479103119580519E-004
+  1.118892295347803E-003  1.123613391572523E-003  1.037636266408682E-002
+  1.037637729521755E-002  3.841844879749554E-002  3.849128996007387E-002
+  4.145489971571813E-002
+ eigenphase sum=  2.833333333333333E-002   18.0671181567528     
+ No perturbative treatment
+ cross sections
+ cross section xform=   17.2315644368448       2.833333333333333E-002
+ cross section=   17.2303213728100       2.833333333333333E-002
+ end subroutine kmatrix
+ end loop for energy   2.833333333333333E-002
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=           3
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43772134
+ Number of factorization MFLOPS =        81026
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  4.249999999999999E-002
+ -6.724383548244420E-002 -5.625145046276785E-002 -6.679992000448833E-004
+ -6.651762218252122E-004 -4.571340271965331E-004 -4.564748924043267E-004
+ -1.827958188189134E-005 -1.529912343458741E-005 -6.650951930607495E-006
+ -6.650494292978626E-006 -2.015909185821170E-006 -2.015752198171685E-006
+ -9.929504685048169E-008 -9.896252061130119E-008 -4.007131831345951E-008
+ -4.003260379655735E-008 -2.510076599479168E-008 -2.508570342795614E-008
+  1.815366942331196E-009  1.892637157271704E-009  2.644863880480007E-009
+  8.213131959558137E-009  9.372676989347181E-009  1.999400086347362E-008
+  2.023291551598534E-008  3.020947860209418E-008  3.099581417094195E-008
+  3.111383373282217E-008  3.444456528113296E-008  4.204344878533574E-008
+  4.204805760281000E-008  4.492479574048856E-007  4.506114215461867E-007
+  8.298337237408968E-007  8.345928553740045E-007  1.103713863597376E-006
+  1.119996523350949E-006  6.202860379010398E-006  6.206875177259374E-006
+  8.329664938348760E-006  1.481443141356352E-005  1.483444962414939E-005
+  2.250768809613790E-005  2.258098448784747E-005  4.202491067013517E-005
+  4.208837415673270E-005  4.856736434858469E-005  4.857062101421186E-005
+  1.782897467079376E-004  1.783312687936367E-004  3.105597718215342E-004
+  3.107790841108094E-004  1.278416243450009E-003  1.416915501677248E-003
+  1.416936122334715E-003  2.233477771288201E-003  2.242975271354035E-003
+  2.982382259384058E-003  2.982690497368030E-003  2.183189712990539E-002
+  2.183191117517407E-002  4.447824252899166E-002  4.467878511520561E-002
+  4.631755954065002E-002
+ eigenphase sum=  4.249999999999999E-002   18.0691586296221     
+ No perturbative treatment
+ cross sections
+ cross section xform=   21.3794401406001       4.249999999999999E-002
+ cross section=   21.3788680818986       4.249999999999999E-002
+ end subroutine kmatrix
+ end loop for energy   4.250000000000000E-002
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=           4
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     42970236
+ Number of factorization MFLOPS =        76495
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  5.666666666666666E-002
+ -9.000988429622746E-002 -7.474240619607665E-002 -1.782439448402381E-003
+ -1.775115890066812E-003 -9.311575370933737E-004 -9.293833345612164E-004
+ -7.597339572486439E-005 -6.642960904036260E-005 -2.373378140723201E-005
+ -2.373210422684198E-005 -9.286566395036136E-006 -9.285925197628540E-006
+ -4.823080603952734E-007 -4.805654727776777E-007 -2.800150500729814E-007
+ -2.797487244391865E-007 -1.784722438913172E-007 -1.783047426279805E-007
+ -1.636144163874575E-007 -1.574515932778393E-007  5.317297844131423E-009
+  1.411954647564580E-008  1.467475732423248E-008  1.448802482446178E-007
+  1.466019111525505E-007  2.185760886917443E-007  2.242459821968749E-007
+  2.252444281827087E-007  2.492615613865624E-007  3.327212036449962E-007
+  3.327572316613935E-007  2.398841440437677E-006  2.406050391619686E-006
+  4.413149040190130E-006  4.438348665254028E-006  5.868070984977653E-006
+  5.954311469117395E-006  2.468038855720515E-005  2.469578302642282E-005
+  2.822984137092376E-005  5.776527186060651E-005  5.784269344673214E-005
+  8.763879253311982E-005  8.792267889392068E-005  1.551627429644453E-004
+  1.554760041310259E-004  1.557504433230813E-004  1.557593163077590E-004
+  5.092027204733509E-004  5.093192797180608E-004  8.833661164580352E-004
+  8.839845911413632E-004  2.348014683379972E-003  3.007173703069223E-003
+  3.007213835194388E-003  3.394578679326078E-003  3.408512558295601E-003
+  6.210805599331111E-003  6.211434317468901E-003  3.429771422416335E-002
+  3.429775170916011E-002  4.375721343159798E-002  4.380096842226738E-002
+  4.820188042798731E-002
+ eigenphase sum=  5.666666666666666E-002   20.0653664168630     
+ No perturbative treatment
+ cross sections
+ cross section xform=   24.0376169593236       5.666666666666666E-002
+ cross section=   24.0373723917870       5.666666666666666E-002
+ end subroutine kmatrix
+ end loop for energy   5.666666666666666E-002
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=           5
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43558616
+ Number of factorization MFLOPS =        80175
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  7.083333333333333E-002
+ -0.111444315493611      -8.996331502572617E-002 -3.529124023075537E-003
+ -3.515141720164531E-003 -1.597441774573530E-003 -1.593467852066255E-003
+ -2.101999911857860E-004 -1.822958850503290E-004 -5.850850081433893E-005
+ -5.850424342581568E-005 -2.813469420800908E-005 -2.813294221155366E-005
+ -1.543611157745741E-006 -1.518135743341333E-006 -1.507304870870191E-006
+ -1.501320411658520E-006 -1.199215858961754E-006 -1.198094540185540E-006
+ -8.054776316786969E-007 -8.043137347140547E-007 -1.743564822832721E-008
+  6.762375506051408E-008  7.007803084225484E-008  6.463407733592663E-007
+  6.539764341558097E-007  9.735642824275165E-007  9.987276037497946E-007
+  1.003850496021659E-006  1.110443980298046E-006  1.641704365959366E-006
+  1.641880044817010E-006  8.411922612878438E-006  8.436933179379109E-006
+  1.540777049998825E-005  1.549534593946831E-005  2.048168894211666E-005
+  2.078149594688624E-005  6.895567065297576E-005  6.899691235275331E-005
+  7.484637882177361E-005  1.577565964288085E-004  1.579661228676773E-004
+  2.389530155376096E-004  2.397226765532885E-004  3.681522083259743E-004
+  3.691579888715033E-004  3.713997985971431E-004  3.714178796486958E-004
+  1.087483199846147E-003  1.087727192710659E-003  1.877205331862317E-003
+  1.878506593455891E-003  3.575881729098277E-003  4.432320944814942E-003
+  4.449810963656574E-003  5.111804734415722E-003  5.111866246499693E-003
+  1.031059137207402E-002  1.031160670811497E-002  3.972228154596755E-002
+  3.973773423818805E-002  4.622119749579595E-002  4.622129217220643E-002
+  4.841890851882818E-002
+ eigenphase sum=  7.083333333333333E-002   21.0599226905274     
+ No perturbative treatment
+ cross sections
+ cross section xform=   26.1484070092442       7.083333333333333E-002
+ cross section=   26.1483743068048       7.083333333333333E-002
+ end subroutine kmatrix
+ end loop for energy   7.083333333333333E-002
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=           6
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     42769010
+ Number of factorization MFLOPS =        76359
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  8.499999999999998E-002
+ -0.131743357513536      -0.102756919882392      -5.838345642227960E-003
+ -5.815977483880268E-003 -2.566855440136612E-003 -2.558608176035692E-003
+ -4.454378190833441E-004 -3.801815418296925E-004 -1.135699750193995E-004
+ -1.135614697983010E-004 -6.555127142903418E-005 -6.554751650620616E-005
+ -7.500813860337666E-006 -7.422519222840114E-006 -3.760074345575334E-006
+ -3.756620247702683E-006 -3.509891042063784E-006 -3.494179409721195E-006
+ -2.893666961013095E-006 -2.886935953606287E-006 -1.016477412724640E-007
+  2.382772046736765E-007  2.462504153687305E-007  2.120854172121161E-006
+  2.145752998944216E-006  3.189178701729666E-006  3.271295514333140E-006
+  3.290402157990973E-006  3.638269380565347E-006  6.033475535498601E-006
+  6.034112714586866E-006  2.260182479573178E-005  2.266825076890776E-005
+  4.120254118317505E-005  4.143558815142090E-005  5.475546791103025E-005
+  5.555359458237481E-005  1.541293396634341E-004  1.542173110294446E-004
+  1.649725592770241E-004  3.438162025912487E-004  3.442682410177480E-004
+  5.198031464589103E-004  5.214671517023828E-004  6.073540558784463E-004
+  6.096799578486576E-004  7.310280223723498E-004  7.310587310263535E-004
+  1.932499743945734E-003  1.932923343518889E-003  3.315422223363951E-003
+  3.317693017398167E-003  4.928391364286946E-003  5.243375076034598E-003
+  5.265774227270698E-003  7.566474472945920E-003  7.566555006184081E-003
+  1.483667991734642E-002  1.483809031675241E-002  3.513361487716336E-002
+  3.517716048672300E-002  4.743404136044537E-002  5.704093921351772E-002
+  5.704110420930732E-002
+ eigenphase sum=  8.499999999999998E-002   21.0552217186306     
+ No perturbative treatment
+ cross sections
+ cross section xform=   28.0627983716696       8.499999999999998E-002
+ cross section=   28.0629045219853       8.499999999999998E-002
+ end subroutine kmatrix
+ end loop for energy   8.499999999999999E-002
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=           7
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43844985
+ Number of factorization MFLOPS =        81797
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  9.916666666666667E-002
+ -0.151042244255899      -0.113873039915568      -8.604824413624541E-003
+ -8.572826825065310E-003 -4.164803583697954E-003 -4.148506374201447E-003
+ -7.756032016452734E-004 -6.683761950676652E-004 -1.865746467714634E-004
+ -1.865603753367842E-004 -1.276733636977089E-004 -1.276665015727262E-004
+ -2.596308259070782E-005 -2.576896767324999E-005 -1.002929552379473E-005
+ -9.992353160444572E-006 -9.490547009297835E-006 -9.481980566036450E-006
+ -6.531783473767559E-006 -6.497545499725225E-006 -1.433928789526605E-007
+  6.792086593818436E-007  7.001387247825309E-007  5.628208977836379E-006
+  5.693845181606695E-006  8.447996245213589E-006  8.664652167161411E-006
+  8.721740840340980E-006  9.639594566386095E-006  1.811881880920605E-005
+  1.812069528003158E-005  5.052294606574963E-005  5.066957419780871E-005
+  9.162703343856814E-005  9.214260279481324E-005  1.217313083559816E-004
+  1.234978039927617E-004  2.954384104831072E-004  2.955986371070329E-004
+  3.132598907638983E-004  6.410991787740451E-004  6.419325457805426E-004
+  6.839854556838339E-004  6.879113272298652E-004  9.671403316793194E-004
+  9.702153236960460E-004  1.255676443129449E-003  1.255722502944421E-003
+  3.025411786521917E-003  3.026057285974967E-003  5.151400721311177E-003
+  5.154877536311532E-003  5.802391558135344E-003  5.817008610453865E-003
+  6.425369317316634E-003  1.020294650630980E-002  1.020304063202385E-002
+  1.937531914884010E-002  1.937708366255369E-002  3.222399269174454E-002
+  3.228979705892912E-002  4.542610519413186E-002  6.683379543033710E-002
+  6.683403122578539E-002
+ eigenphase sum=  9.916666666666667E-002   21.0532086159817     
+ No perturbative treatment
+ cross sections
+ cross section xform=   29.9099788106401       9.916666666666667E-002
+ cross section=   29.9101158657803       9.916666666666667E-002
+ end subroutine kmatrix
+ end loop for energy   9.916666666666667E-002
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=           8
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43656237
+ Number of factorization MFLOPS =        80793
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.113333333333333     
+ -0.169436987636947      -0.123808414252634      -1.173493493939355E-002
+ -1.169254819006423E-002 -7.001827360135219E-003 -6.973293565769834E-003
+ -1.163409078025449E-003 -1.051642593544435E-003 -2.720963653658616E-004
+ -2.720755159705728E-004 -2.183636231886247E-004 -2.183524079400367E-004
+ -7.129938480027230E-005 -7.089798580069964E-005 -3.914182470219079E-005
+ -3.892539300181621E-005 -2.040931369631174E-005 -2.039119322672119E-005
+ -9.978041355736720E-006 -9.912996180832228E-006  5.430553758226684E-007
+  1.657586903571810E-006  1.704566500714439E-006  1.278334306833635E-005
+  1.293136588552527E-005  1.915085832354688E-005  1.963993451955701E-005
+  1.978479799795235E-005  2.185686657887183E-005  4.677459973341197E-005
+  4.677927687904134E-005  9.869152778982661E-005  9.897405901003497E-005
+  1.779772553182379E-004  1.789731655565717E-004  2.363816021778114E-004
+  2.397956495325216E-004  5.061301204285132E-004  5.063899572870195E-004
+  5.093598380308996E-004  5.233660154174760E-004  5.431939770049683E-004
+  1.066214355639500E-003  1.067582688903463E-003  1.604319823252251E-003
+  1.609381480122810E-003  1.946606724137410E-003  1.946669725398227E-003
+  4.318243684307884E-003  4.319136891546657E-003  6.154653932410327E-003
+  6.170296987681653E-003  7.286169239155539E-003  7.290999546033432E-003
+  8.048000317334486E-003  1.288302288002073E-002  1.288312372284489E-002
+  2.363088144861714E-002  2.363292918973938E-002  3.327091314683134E-002
+  3.335816640341657E-002  4.247006754365557E-002  7.594047566149209E-002
+  7.594077096098542E-002
+ eigenphase sum=  0.113333333333333        20.0565365641111     
+ No perturbative treatment
+ cross sections
+ cross section xform=   31.7970778575984       0.113333333333333     
+ cross section=   31.7972571973949       0.113333333333333     
+ end subroutine kmatrix
+ end loop for energy   0.113333333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=           9
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43578451
+ Number of factorization MFLOPS =        78876
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.127500000000000     
+ -0.186999396126285      -0.132820244935949      -1.516249748393081E-002
+ -1.510944839009737E-002 -1.149227043871775E-002 -1.145097179781413E-002
+ -1.576939773007565E-003 -1.516770734609130E-003 -3.656265304820988E-004
+ -3.655993633425182E-004 -3.382350188282747E-004 -3.382181485230405E-004
+ -1.633058048901828E-004 -1.626136887698176E-004 -1.390292327122835E-004
+ -1.381297682401967E-004 -3.879416941261297E-005 -3.876022084149102E-005
+ -1.230215398966303E-005 -1.219094460350297E-005  3.592334578573438E-006
+  3.685852246652983E-006  4.113200948969557E-006  2.577557044822599E-005
+  2.607177449096169E-005  3.853458190469946E-005  3.951432210209134E-005
+  3.983854870215626E-005  4.398968316471274E-005  1.065635959657405E-004
+  1.065736108493858E-004  1.739004187387659E-004  1.743908991081781E-004
+  3.116764882448825E-004  3.134101899259892E-004  3.899303323043988E-004
+  3.922285374004162E-004  4.138232243927954E-004  4.197698337602787E-004
+  7.878154870757779E-004  7.957495606006948E-004  7.961351135950688E-004
+  1.624606522585741E-003  1.626661516006398E-003  2.437091230594306E-003
+  2.444712308038086E-003  2.785305491500212E-003  2.785385717533726E-003
+  5.746469040096749E-003  5.747616605568969E-003  6.391193826771749E-003
+  6.405510995611208E-003  9.593197857438507E-003  9.599422439585880E-003
+  9.793543352102013E-003  1.551279416364208E-002  1.551289496089879E-002
+  2.744980180944547E-002  2.745205290580935E-002  3.823275153845107E-002
+  4.108944301102695E-002  4.165495218906663E-002  8.471822314074333E-002
+  8.471855803764579E-002
+ eigenphase sum=  0.127500000000000        20.0704879270957     
+ No perturbative treatment
+ cross sections
+ cross section xform=   33.9578452260469       0.127500000000000     
+ cross section=   33.9580949256649       0.127500000000000     
+ end subroutine kmatrix
+ end loop for energy   0.127500000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          10
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     42782632
+ Number of factorization MFLOPS =        76372
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.141666666666667     
+ -0.203784607230007      -0.140990305677391      -1.884645825771093E-002
+ -1.878310091910562E-002 -1.736056815176009E-002 -1.730889252016580E-002
+ -2.167446711920420E-003 -1.883613158900288E-003 -4.840783613594318E-004
+ -4.840545736876009E-004 -4.668336175615421E-004 -4.668012345902597E-004
+ -3.201983618137615E-004 -3.191708659026678E-004 -2.885029365850934E-004
+ -2.869239070222666E-004 -6.684463541005671E-005 -6.678680912433677E-005
+ -1.080505595068124E-005 -1.063016831319752E-005  7.088227772952557E-006
+  7.257481536388240E-006  1.563455765984478E-005  4.730481916439197E-005
+  4.784402357158249E-005  7.056297101696713E-005  7.234863861326387E-005
+  7.300553550978087E-005  8.057192334429825E-005  2.169238127954055E-004
+  2.169423489242980E-004  2.824710533574248E-004  2.832549482948955E-004
+  4.653370004818759E-004  4.678927079510492E-004  5.028490288986006E-004
+  5.056281806577235E-004  6.674138416039502E-004  6.769520420767669E-004
+  1.058958493847469E-003  1.168940841626945E-003  1.169474148331932E-003
+  2.310064168355533E-003  2.312938832113227E-003  3.452923941977304E-003
+  3.463610950132220E-003  3.738460945907478E-003  3.738557402226291E-003
+  6.614978243473113E-003  6.627299163423622E-003  7.241429617003169E-003
+  7.242820088575020E-003  1.163404770774570E-002  1.194315640370166E-002
+  1.195071305257146E-002  1.804342602987228E-002  1.804352126978130E-002
+  3.080188679055485E-002  3.080426847839075E-002  3.379507644319217E-002
+  6.217745705706849E-002  6.296681487573505E-002  9.342060098259083E-002
+  9.342094844603416E-002
+ eigenphase sum=  0.141666666666667        20.1094530343632     
+ No perturbative treatment
+ cross sections
+ cross section xform=   37.2668496558480       0.141666666666667     
+ cross section=   37.2671449067877       0.141666666666667     
+ end subroutine kmatrix
+ end loop for energy   0.141666666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          11
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43950779
+ Number of factorization MFLOPS =        82006
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.155833333333333     
+ -0.219836795436331      -0.148271606764134      -2.410130117171901E-002
+ -2.404320435508990E-002 -2.275021215143145E-002 -2.267574340433402E-002
+ -2.955032577515559E-003 -2.154513601571060E-003 -6.487290001575255E-004
+ -6.486971611998083E-004 -5.793507486503536E-004 -5.793143124781846E-004
+ -5.474544414597155E-004 -5.460922182186860E-004 -4.287280241909541E-004
+ -4.268583953694401E-004 -1.063166700701514E-004 -1.062254007961626E-004
+ -1.612896111827115E-006 -1.355924722750956E-006  1.296210180121649E-005
+  1.324560353502968E-005  4.496675204418490E-005  8.044049018705360E-005
+  8.134942318863489E-005  1.197007381874724E-004  1.227148837382504E-004
+  1.239422764395210E-004  1.367151375898490E-004  3.976606852547311E-004
+  3.976907348996038E-004  4.295674738058527E-004  4.307387549321406E-004
+  7.110437878220713E-004  7.141705180537239E-004  7.590489675333087E-004
+  7.632147779073291E-004  1.007051530652353E-003  1.021357425284472E-003
+  1.262785477509050E-003  1.624788094827878E-003  1.625485116820145E-003
+  3.106015360966300E-003  3.109810009980799E-003  4.623192861102016E-003
+  4.637331660995886E-003  4.765666675679136E-003  4.765777324968553E-003
+  6.908660604810185E-003  6.918875575724677E-003  8.740344175156407E-003
+  8.741951746865104E-003  1.353840386874800E-002  1.422367728100971E-002
+  1.423242118355599E-002  2.046425917579125E-002  2.046434523885158E-002
+  2.865330298890313E-002  3.374232345087037E-002  3.374477921770680E-002
+  0.102163358906584       0.102163715635268       0.125447499362018     
+  0.128435688434456     
+ eigenphase sum=  0.155833333333333        20.2340628968365     
+ No perturbative treatment
+ cross sections
+ cross section xform=   47.5000179278445       0.155833333333333     
+ cross section=   47.5003477987045       0.155833333333333     
+ end subroutine kmatrix
+ end loop for energy   0.155833333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          12
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43839573
+ Number of factorization MFLOPS =        80217
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.170000000000000     
+ -0.235193343927258      -0.154388299604907      -3.133399166460812E-002
+ -3.127019047035261E-002 -2.686656367893092E-002 -2.678291042296113E-002
+ -4.052102141577234E-003 -2.348334413591958E-003 -8.314481622935369E-004
+ -8.298805597816494E-004 -8.214947388156834E-004 -8.214539048084949E-004
+ -7.078602101286928E-004 -7.078202531704791E-004 -5.749890549531943E-004
+ -5.730075170359432E-004 -1.582024433462339E-004 -1.580670562446941E-004
+  2.013301616571730E-005  2.048997505209913E-005  2.225735528435387E-005
+  2.270264364547825E-005  1.082691275910710E-004  1.284207659366287E-004
+  1.298583050993449E-004  1.905984027270726E-004  1.953725575625827E-004
+  1.975169040864173E-004  2.177498982706171E-004  6.186603834457460E-004
+  6.203152843665918E-004  6.626828374530863E-004  6.627265121817694E-004
+  1.084317931901411E-003  1.085879336654194E-003  1.087153907269372E-003
+  1.090223318023819E-003  1.272846944442880E-003  1.437909924020748E-003
+  1.458201426415776E-003  2.156718810806046E-003  2.157588295141405E-003
+  3.988072234777207E-003  3.992845076888784E-003  5.826969642731263E-003
+  5.827091783134799E-003  5.907406467685580E-003  5.925224428125005E-003
+  7.316264976791467E-003  7.324599585083671E-003  1.019290889622187E-002
+  1.019469868845401E-002  1.547587769266083E-002  1.635165286174388E-002
+  1.636138631655589E-002  2.279251487554469E-002  2.279259025795361E-002
+  2.344416544798621E-002  3.637181819632675E-002  3.637431074132530E-002
+  0.110940188674956       0.110940493449319       0.451981908157893     
+  0.469086312251383     
+ eigenphase sum=  0.170000000000000        18.8976379343423     
+ No perturbative treatment
+ cross sections
+ cross section xform=   109.408366702190       0.170000000000000     
+ cross section=   109.408702596972       0.170000000000000     
+ end subroutine kmatrix
+ end loop for energy   0.170000000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          13
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43885310
+ Number of factorization MFLOPS =        81634
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.184166666666667     
+ -0.249893202598798      -0.180092631074316      -0.176495921455739     
+ -0.153501887825577      -3.885207003048333E-002 -3.878422100888241E-002
+ -3.116444866847915E-002 -3.107212282253230E-002 -5.778984544452583E-003
+ -2.489074685214056E-003 -1.142636126642682E-003 -1.141001451966965E-003
+ -9.891974769688679E-004 -9.891469264256760E-004 -8.555530579943184E-004
+ -8.555094727566630E-004 -7.485522241829559E-004 -7.465450306491214E-004
+ -2.225005806535855E-004 -2.223097840535724E-004  3.624347458051005E-005
+  3.690588864673296E-005  5.987683119376312E-005  6.034988031218551E-005
+  1.944174424502905E-004  1.965718961510470E-004  2.268995071052288E-004
+  2.877271165134471E-004  2.948937869899907E-004  2.984336988419412E-004
+  3.288092398123384E-004  8.511875725638568E-004  8.534178128237803E-004
+  9.253341945496030E-004  1.015856336681067E-003  1.015914725920331E-003
+  1.478668687622929E-003  1.486653861081873E-003  1.545552934110778E-003
+  1.552640559738288E-003  1.959740974380827E-003  1.987193088852937E-003
+  2.753003124096917E-003  2.754046356927213E-003  4.927227132378858E-003
+  4.932990351587585E-003  6.888273412589366E-003  6.888404097707067E-003
+  7.258521839943085E-003  7.280070702254590E-003  7.844887473993676E-003
+  7.851714817842919E-003  1.156445363659956E-002  1.156638713423714E-002
+  1.738915858876152E-002  1.827787376041313E-002  1.828837770491513E-002
+  1.888827924903675E-002  2.506232379944221E-002  2.506238901703802E-002
+  3.880402663820039E-002  3.880653657861757E-002  0.119661884471575     
+  0.119662124705496     
+ eigenphase sum=  0.184166666666667        19.6230687272578     
+ No perturbative treatment
+ cross sections
+ cross section xform=   56.6245979351188       0.184166666666667     
+ cross section=   56.6247334189077       0.184166666666667     
+ end subroutine kmatrix
+ end loop for energy   0.184166666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          14
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43959772
+ Number of factorization MFLOPS =        81772
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.198333333333333     
+ -0.263960840343529      -0.167276535645840      -0.104390940247588     
+ -0.101823374002181      -4.651214908710888E-002 -4.644121398228450E-002
+ -3.562341239751809E-002 -3.552315050765299E-002 -8.700451584670312E-003
+ -2.613204432528547E-003 -1.446685674906026E-003 -1.445088487548131E-003
+ -1.137698657423920E-003 -1.137637873921761E-003 -1.023191938875982E-003
+ -1.023144166990653E-003 -9.578171662780916E-004 -9.558635108746517E-004
+ -2.980907589328970E-004 -2.978331769772755E-004  5.639806619429669E-005
+  5.733864056112735E-005  1.230785097530044E-004  1.236808978810014E-004
+  2.309536164855964E-004  2.812936998036017E-004  2.843771719330068E-004
+  4.150059050967476E-004  4.252808728632289E-004  4.255058790871993E-004
+  4.308479878222331E-004  4.744024349554682E-004  1.126419735639010E-003
+  1.129306018893428E-003  1.450476693945257E-003  1.450550036624529E-003
+  1.938019690666603E-003  1.948387929092395E-003  2.047677343420247E-003
+  2.054194417254192E-003  2.566783450131402E-003  2.602443653013880E-003
+  3.397853633941993E-003  3.399064944991609E-003  5.893146806110768E-003
+  5.899868082117832E-003  7.924109629234776E-003  7.924246036176846E-003
+  8.478981840041235E-003  8.484684749757589E-003  8.628416772647004E-003
+  8.653576637141837E-003  1.283623464160168E-002  1.283827441847778E-002
+  1.562863237983574E-002  1.939446869036699E-002  1.998542308411442E-002
+  1.999648466025279E-002  2.731461893351544E-002  2.731467626082686E-002
+  4.114306594302292E-002  4.114558821111722E-002  0.128201967244231     
+  0.128202126848737     
+ eigenphase sum=  0.198333333333333        19.7617396094558     
+ No perturbative treatment
+ cross sections
+ cross section xform=   45.7481564225617       0.198333333333333     
+ cross section=   45.7482877791518       0.198333333333333     
+ end subroutine kmatrix
+ end loop for energy   0.198333333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          15
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43973631
+ Number of factorization MFLOPS =        81705
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.212500000000000     
+ -0.277433792507445      -0.170554267214470      -7.988005972079411E-002
+ -7.858212910652876E-002 -5.418107407028432E-002 -5.410636832766279E-002
+ -4.022167035938486E-002 -4.011415580123499E-002 -1.317923809490123E-002
+ -2.753895288757815E-003 -1.713688999018222E-003 -1.712189434229966E-003
+ -1.253622511388082E-003 -1.253551170517372E-003 -1.209086416332055E-003
+ -1.209033734272072E-003 -1.202520032473976E-003 -1.200757394970064E-003
+ -5.132723772644643E-004 -3.827079195025223E-004 -3.823726281415327E-004
+  8.436911725893504E-005  8.565180851687663E-005  2.145464487082058E-004
+  2.152878734933120E-004  3.913804705994603E-004  3.956206792441806E-004
+  5.754613036873987E-004  5.896172881826735E-004  5.980124970605118E-004
+  6.580246386638423E-004  7.047963453118773E-004  1.441513246422812E-003
+  1.445119730754677E-003  1.951383210623082E-003  1.951471089646317E-003
+  2.454546387202092E-003  2.467542545311891E-003  2.561904851560126E-003
+  2.568123228105525E-003  3.248236200837112E-003  3.292948962966595E-003
+  4.073033740380614E-003  4.074401580572879E-003  6.857121253069756E-003
+  6.864729869551051E-003  8.918334756449982E-003  8.918474450876891E-003
+  9.195094401879256E-003  9.199999837177649E-003  9.972744311613387E-003
+  1.000124585850546E-002  1.400371929232341E-002  1.400583246757350E-002
+  1.413326017418733E-002  2.129061826273087E-002  2.148398315483801E-002
+  2.149541602336204E-002  2.958875300505927E-002  2.958880609457181E-002
+  4.347046587592786E-002  4.347300525922845E-002  0.136435336283361     
+  0.136435423002628     
+ eigenphase sum=  0.212500000000000        20.8083359037705     
+ No perturbative treatment
+ cross sections
+ cross section xform=   43.9076482010185       0.212500000000000     
+ cross section=   43.9077721758828       0.212500000000000     
+ end subroutine kmatrix
+ end loop for energy   0.212500000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          16
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43518082
+ Number of factorization MFLOPS =        79021
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.226666666666667     
+ -0.290341693807585      -0.173389557251048      -6.881641760611226E-002
+ -6.800545095920485E-002 -6.141270032235140E-002 -6.128503795853055E-002
+ -4.493786348418728E-002 -4.482359152462040E-002 -1.885014872097952E-002
+ -2.928813328254475E-003 -1.922496076197857E-003 -1.921119613288991E-003
+ -1.476891340368109E-003 -1.475486169679301E-003 -1.409328165790795E-003
+ -1.409269836775632E-003 -1.325948261764593E-003 -1.325866123858220E-003
+ -1.066921739280995E-003 -4.730100257783368E-004 -4.725870556781352E-004
+  1.219163735222875E-004  1.236048743103429E-004  3.377697925764533E-004
+  3.386560556440592E-004  5.262923533967810E-004  5.319225404591215E-004
+  7.709525348835764E-004  7.897861380552209E-004  8.019894151655039E-004
+  8.818403245343483E-004  1.065151061010118E-003  1.791716521430060E-003
+  1.796086767792322E-003  2.498338423305463E-003  2.498439915203299E-003
+  3.017371413209456E-003  3.033165243942778E-003  3.070721900618704E-003
+  3.076529926669486E-003  3.989195136991150E-003  4.043543088250378E-003
+  4.759746050628732E-003  4.761254455582870E-003  7.794370042850854E-003
+  7.802766214367304E-003  9.863572950636956E-003  9.863714041758646E-003
+  9.971193262551487E-003  9.975557320209530E-003  1.125463736602683E-002
+  1.128609712307762E-002  1.393335925935253E-002  1.507372405094322E-002
+  1.507588433136858E-002  2.280220545378689E-002  2.281386195883376E-002
+  2.313506634530708E-002  3.191636554963225E-002  3.191641918966314E-002
+  4.583968115462109E-002  4.584224790529991E-002  0.144263889389504     
+  0.144264005740957     
+ eigenphase sum=  0.226666666666667        20.8302444095866     
+ No perturbative treatment
+ cross sections
+ cross section xform=   43.7165802058915       0.226666666666667     
+ cross section=   43.7166929517192       0.226666666666667     
+ end subroutine kmatrix
+ end loop for energy   0.226666666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          17
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43561400
+ Number of factorization MFLOPS =        80112
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.240833333333333     
+ -0.302713682016651      -0.175511765237743      -7.040637743883738E-002
+ -7.026917534517164E-002 -6.122177307177788E-002 -6.063343539867450E-002
+ -4.975054917690681E-002 -4.962936736842091E-002 -2.504363882629108E-002
+ -3.139000304720628E-003 -2.061384121525532E-003 -2.060135440424385E-003
+ -1.771402230847226E-003 -1.770172963155944E-003 -1.618138106472718E-003
+ -1.618073505591933E-003 -1.397711035101169E-003 -1.347205721663923E-003
+ -1.347112749933785E-003 -5.647398070702285E-004 -5.642205729070000E-004
+  1.708312649267004E-004  1.729857236080217E-004  4.943607718682587E-004
+  4.953937395835030E-004  6.867975417925138E-004  6.940452928110841E-004
+  1.001985938685969E-003  1.026280405413103E-003  1.043452901112807E-003
+  1.146467864315331E-003  1.483909052498944E-003  2.170693953438297E-003
+  2.175848620994872E-003  3.069605308958733E-003  3.069719116745233E-003
+  3.565677252694860E-003  3.570999804535285E-003  3.613488757179078E-003
+  3.632164440346731E-003  4.771913577712414E-003  4.836180512532842E-003
+  5.440473359265527E-003  5.442103608821463E-003  8.685562389653782E-003
+  8.694628221711184E-003  1.076001760559067E-002  1.076015880465364E-002
+  1.079082513470612E-002  1.079483924952112E-002  1.244700641621563E-002
+  1.248096887120039E-002  1.456862279731041E-002  1.606110983070887E-002
+  1.606329827705006E-002  2.397984138642889E-002  2.399161725042499E-002
+  2.489753817844091E-002  3.431779804512999E-002  3.431785811457253E-002
+  4.827617006222075E-002  4.827877610485821E-002  0.151627968319189     
+  0.151628191818790     
+ eigenphase sum=  0.240833333333333        20.8427591152483     
+ No perturbative treatment
+ cross sections
+ cross section xform=   43.9703025685081       0.240833333333333     
+ cross section=   43.9704026684830       0.240833333333333     
+ end subroutine kmatrix
+ end loop for energy   0.240833333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          18
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43726517
+ Number of factorization MFLOPS =        80055
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.255000000000000     
+ -0.314577162007234      -0.176959249187339      -7.768212340138890E-002
+ -7.758305106463780E-002 -5.791825153824881E-002 -5.743123761441951E-002
+ -5.462509121871133E-002 -5.448881827622596E-002 -3.121876232920079E-002
+ -3.374986606332746E-003 -2.127026902297649E-003 -2.125910264120062E-003
+ -2.074205558427189E-003 -2.072819934919320E-003 -1.828353682491839E-003
+ -1.828282308088625E-003 -1.547120156655227E-003 -1.314117914423315E-003
+ -1.314014153791990E-003 -6.529817156655940E-004 -6.523593340318604E-004
+  2.328364253024430E-004  2.355103796971313E-004  6.837120422879599E-004
+  6.848898265082114E-004  8.727491076480275E-004  8.818249892343890E-004
+  1.267631827888803E-003  1.298118487599792E-003  1.321596073223290E-003
+  1.450880729435974E-003  1.935371483687102E-003  2.570937516471607E-003
+  2.576873837180458E-003  3.644953927495668E-003  3.645078522349654E-003
+  4.043325923591026E-003  4.048150026535213E-003  4.228805910819363E-003
+  4.250358421634616E-003  5.577227567120138E-003  5.651385756660925E-003
+  6.100455059640476E-003  6.102187342902295E-003  9.517543060334215E-003
+  9.527153624715231E-003  1.161391641581751E-002  1.161405708872241E-002
+  1.164405068101110E-002  1.164785309801486E-002  1.353342721750700E-002
+  1.356940778860470E-002  1.579479119211876E-002  1.698552290066643E-002
+  1.698772771226992E-002  2.506073320543224E-002  2.507256634041416E-002
+  2.655187440917122E-002  3.680106219435456E-002  3.680113550703357E-002
+  5.078126514468141E-002  5.078392115928630E-002  0.158506102367524     
+  0.158506448331723     
+ eigenphase sum=  0.255000000000000        20.8512094954557     
+ No perturbative treatment
+ cross sections
+ cross section xform=   44.3458609281505       0.255000000000000     
+ cross section=   44.3459477382639       0.255000000000000     
+ end subroutine kmatrix
+ end loop for energy   0.255000000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          19
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43515782
+ Number of factorization MFLOPS =        79757
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.269166666666667     
+ -0.325957547751881      -0.177855018511515      -8.504346654508396E-002
+ -8.494959672646873E-002 -5.964225445857391E-002 -5.951916153205065E-002
+ -5.584205206777138E-002 -5.543315904980903E-002 -3.697683175910144E-002
+ -3.623070502942169E-003 -2.373008793224329E-003 -2.371522790767024E-003
+ -2.122365321023899E-003 -2.121343124189543E-003 -2.032054959326611E-003
+ -2.031976439812714E-003 -1.556828344901234E-003 -1.227648827738976E-003
+ -1.227534465123270E-003 -7.325042956147714E-004 -7.317737685666201E-004
+  3.094678562190114E-004  3.127056467908463E-004  9.029472738045683E-004
+  9.042645493981454E-004  1.083078149310935E-003  1.094165064430366E-003
+  1.565546510934884E-003  1.602867816415354E-003  1.634145877962255E-003
+  1.792428965143701E-003  2.396011049612576E-003  2.984244389818337E-003
+  2.990937262583849E-003  4.207670357129102E-003  4.207804125546976E-003
+  4.502457246598166E-003  4.506815230928168E-003  4.849191402797668E-003
+  4.873529596245699E-003  6.385989878959848E-003  6.469711370191373E-003
+  6.728606361864590E-003  6.730421273617088E-003  1.028335782112592E-002
+  1.029339110803803E-002  1.243588635825623E-002  1.243602647754342E-002
+  1.252672341205858E-002  1.253041092423141E-002  1.450780736357567E-002
+  1.454533135599117E-002  1.754335690980137E-002  1.786846936095109E-002
+  1.787068501406641E-002  2.608722447724222E-002  2.609908973755734E-002
+  2.807390237231532E-002  3.936299186595218E-002  3.936308569778710E-002
+  5.333827865721134E-002  5.334099215184724E-002  0.164907555200638     
+  0.164908027120408     
+ eigenphase sum=  0.269166666666667        20.8579868806074     
+ No perturbative treatment
+ cross sections
+ cross section xform=   44.7330948880708       0.269166666666667     
+ cross section=   44.7331681633316       0.269166666666667     
+ end subroutine kmatrix
+ end loop for energy   0.269166666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          20
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43234173
+ Number of factorization MFLOPS =        77565
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.283333333333333     
+ -0.336878234692733      -0.178379391838215      -9.227647018289693E-002
+ -9.218361320813061E-002 -6.462932377407479E-002 -6.450019310391876E-002
+ -5.477844055647765E-002 -5.448008440192138E-002 -4.198604542094774E-002
+ -3.869152521500711E-003 -2.655573930569461E-003 -2.654062480864159E-003
+ -2.221266746854780E-003 -2.221180852127126E-003 -2.055506935265863E-003
+ -2.054590261665529E-003 -1.461167785199348E-003 -1.092504519833448E-003
+ -1.092379906748129E-003 -7.981600190815187E-004 -7.973182836362016E-004
+  4.019456262755770E-004  4.057804773275186E-004  1.147194709461485E-003
+  1.148643112605611E-003  1.315843589741951E-003  1.329087654886758E-003
+  1.892092814211367E-003  1.936769682250343E-003  1.977479586994811E-003
+  2.166973827000946E-003  2.847602833394825E-003  3.402241570603806E-003
+  3.409645995429973E-003  4.745511565317359E-003  4.745652943621547E-003
+  4.942692073518658E-003  4.946641459369126E-003  5.461430184342009E-003
+  5.488385814702449E-003  7.180375837682100E-003  7.273064952142070E-003
+  7.317857801802648E-003  7.319737540177378E-003  1.098173269018540E-002
+  1.099207759561773E-002  1.323914808046743E-002  1.323928813459655E-002
+  1.343906243628183E-002  1.344270064728006E-002  1.537313262355697E-002
+  1.541176687360540E-002  1.873086674759240E-002  1.873309278273217E-002
+  1.985415162353896E-002  2.709615779562108E-002  2.710805936725180E-002
+  2.944266696788043E-002  4.199188020410180E-002  4.199200178832213E-002
+  5.591946610150865E-002  5.592224046363462E-002  0.170861953699375     
+  0.170862551008932     
+ eigenphase sum=  0.283333333333333        20.8643719878623     
+ No perturbative treatment
+ cross sections
+ cross section xform=   45.0923098275644       0.283333333333333     
+ cross section=   45.0923695809135       0.283333333333333     
+ end subroutine kmatrix
+ end loop for energy   0.283333333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          21
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43803354
+ Number of factorization MFLOPS =        81621
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.297500000000000     
+ -0.347360751037513      -0.178762863100179      -9.933958065997983E-002
+ -9.924652783332792E-002 -6.965732548981837E-002 -6.952390442718473E-002
+ -5.435786936671721E-002 -5.422247236022221E-002 -4.593608432290491E-002
+ -4.100628201339286E-003 -2.911757282634311E-003 -2.910277975381005E-003
+ -2.388642671886564E-003 -2.388549241256805E-003 -1.936799066020841E-003
+ -1.935979714870771E-003 -1.288879279536267E-003 -9.162094930020027E-004
+ -9.160751723317971E-004 -8.452990125985521E-004 -8.443448794796964E-004
+  5.110424847587389E-004  5.154953460954929E-004  1.410149675839193E-003
+  1.411718263939696E-003  1.568329397218795E-003  1.583832974045568E-003
+  2.242544698182199E-003  2.294950423293349E-003  2.346828677215954E-003
+  2.569119523948536E-003  3.277787923576373E-003  3.816930722507002E-003
+  3.824985248883780E-003  5.250822813468161E-003  5.250970393161095E-003
+  5.364027537334594E-003  5.367635454528449E-003  6.054012540399174E-003
+  6.083353946224807E-003  7.865023539385769E-003  7.866952739534304E-003
+  7.944956129335812E-003  8.045798520189402E-003  1.161618298884569E-002
+  1.162674491849352E-002  1.403778111962366E-002  1.403792210304976E-002
+  1.438407266609331E-002  1.438770414384442E-002  1.613962983599998E-002
+  1.617900536725482E-002  1.959113497380121E-002  1.959337464974864E-002
+  2.284387071974143E-002  2.811639190380034E-002  2.812835471042425E-002
+  3.064139152212947E-002  4.467076421659946E-002  4.467092043911739E-002
+  5.849269639358824E-002  5.849553080153816E-002  0.176409008575407     
+  0.176409728471282     
+ eigenphase sum=  0.297500000000000        20.8711486589053     
+ No perturbative treatment
+ cross sections
+ cross section xform=   45.4128317286315       0.297500000000000     
+ cross section=   45.4128779531349       0.297500000000000     
+ end subroutine kmatrix
+ end loop for energy   0.297500000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          22
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43766067
+ Number of factorization MFLOPS =        81448
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.311666666666667     
+ -0.357425033736123      -0.179274634372583      -0.106220099590693     
+ -0.106126373199709      -7.469948624861888E-002 -7.456238690339242E-002
+ -5.452906434536359E-002 -5.441320711676443E-002 -4.855924133828683E-002
+ -4.307236063737284E-003 -3.133622897632207E-003 -3.132203936169026E-003
+ -2.528045154459078E-003 -2.527944128476670E-003 -1.777640082263270E-003
+ -1.776911010345232E-003 -1.064014343968428E-003 -8.701469968193617E-004
+ -8.690810167902626E-004 -7.079335569510819E-004 -7.077902730481787E-004
+  6.369634796678706E-004  6.420426217863772E-004  1.684827880413558E-003
+  1.686503661449225E-003  1.837178066205815E-003  1.854995354585389E-003
+  2.611355915049324E-003  2.671698326730738E-003  2.736549947967716E-003
+  2.992519384007284E-003  3.679467298445504E-003  4.221210916341645E-003
+  4.229841781616124E-003  5.720134079013023E-003  5.720286675410213E-003
+  5.766866306082826E-003  5.770199216919540E-003  6.617709513228461E-003
+  6.649158413537522E-003  8.370357946331492E-003  8.372324150181213E-003
+  8.667470626384989E-003  8.775493180056488E-003  1.219391948370966E-002
+  1.220462353205521E-002  1.484513180190194E-002  1.484527513798223E-002
+  1.536613678474018E-002  1.536978730526133E-002  1.682266090279365E-002
+  1.686248631229261E-002  2.046385468340056E-002  2.046611363694503E-002
+  2.669671311956593E-002  2.916765551318333E-002  2.917971666615872E-002
+  3.165787546783819E-002  4.738061073846279E-002  4.738080801099345E-002
+  6.102699215439139E-002  6.102988214861588E-002  0.181590124577106     
+  0.181590962798143     
+ eigenphase sum=  0.311666666666667        20.8788443892048     
+ No perturbative treatment
+ cross sections
+ cross section xform=   45.6984573522708       0.311666666666667     
+ cross section=   45.6984905311748       0.311666666666667     
+ end subroutine kmatrix
+ end loop for energy   0.311666666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          23
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43477681
+ Number of factorization MFLOPS =        78718
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.325833333333333     
+ -0.367089768831013      -0.180196585273541      -0.112917709877461     
+ -0.112823106809746      -7.973972027097985E-002 -7.959922593757893E-002
+ -5.518979008462022E-002 -5.482919792315063E-002 -4.978703115309254E-002
+ -4.481377889757714E-003 -3.315883639269459E-003 -3.314538287499240E-003
+ -2.634960261854663E-003 -2.634851653507400E-003 -1.588943350207089E-003
+ -1.588296971646931E-003 -8.701018871029608E-004 -8.689261837333948E-004
+ -8.058175975356712E-004 -4.772741843197189E-004 -4.771228733554680E-004
+  7.792527777223076E-004  7.849540502378550E-004  1.964367247163197E-003
+  1.966135791389528E-003  2.118549341636097E-003  2.138684690632381E-003
+  2.992469304581576E-003  3.060782135492445E-003  3.140440146174624E-003
+  3.430229723232010E-003  4.049850794735482E-003  4.609323383669148E-003
+  4.618449032071545E-003  6.152187930123562E-003  6.153509210555403E-003
+  6.153666255714272E-003  6.155305968412186E-003  7.145915339099993E-003
+  7.179165107975596E-003  8.836944397418445E-003  8.838938207906571E-003
+  9.339276897272713E-003  9.453412495909736E-003  1.272469095367745E-002
+  1.273548290316731E-002  1.567252116819479E-002  1.567266862649247E-002
+  1.638995178420092E-002  1.639363537119498E-002  1.744060530150250E-002
+  1.748067162152553E-002  2.135900610756163E-002  2.136129110275393E-002
+  3.026051201431066E-002  3.027271302614195E-002  3.165396941562360E-002
+  3.249367117364563E-002  5.010290378787875E-002  5.010314802352614E-002
+  6.349647596722584E-002  6.349941443918460E-002  0.186442608764820     
+  0.186443560029995     
+ eigenphase sum=  0.325833333333333        20.8878310808708     
+ No perturbative treatment
+ cross sections
+ cross section xform=   45.9618149571608       0.325833333333333     
+ cross section=   45.9618352743546       0.325833333333333     
+ end subroutine kmatrix
+ end loop for energy   0.325833333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          24
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43888342
+ Number of factorization MFLOPS =        81461
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.340000000000000     
+ -0.376372741134260      -0.181781385562062      -0.119439409228619     
+ -0.119343869867936      -8.476438000842354E-002 -8.462065688267892E-002
+ -5.593971457132951E-002 -5.552615866486028E-002 -4.976488542167192E-002
+ -4.618141868718402E-003 -3.455885803078147E-003 -3.454620252352424E-003
+ -2.706722904687538E-003 -2.706606798704314E-003 -1.380197461287899E-003
+ -1.379625309507746E-003 -8.439163417585064E-004 -8.426344484656325E-004
+ -5.284720695012984E-004 -2.331917386863877E-004 -2.330334847025284E-004
+  9.367452094407509E-004  9.430528190995278E-004  2.242729830353659E-003
+  2.244575959086319E-003  2.408294911634006E-003  2.430703764302627E-003
+  3.379642271149379E-003  3.455785968954369E-003  3.552069124862310E-003
+  3.875083300633824E-003  4.389506585127001E-003  4.977162553581965E-003
+  4.986698235604842E-003  6.521668540841468E-003  6.524621029516633E-003
+  6.553820150789326E-003  6.553980310036607E-003  7.634761874114940E-003
+  7.669495761350551E-003  9.270015878411992E-003  9.272030870550422E-003
+  9.955482370454970E-003  1.007463395655690E-002  1.321966631913442E-002
+  1.323051187998288E-002  1.652838006895681E-002  1.652853367352081E-002
+  1.745986690652195E-002  1.746359004864956E-002  1.801291774796877E-002
+  1.805309616873919E-002  2.228177905769092E-002  2.228409688163378E-002
+  3.139719590236497E-002  3.140957614966629E-002  3.310274214933741E-002
+  3.806991388033682E-002  5.282141287332472E-002  5.282170951760257E-002
+  6.588261441854194E-002  6.588559277747688E-002  0.190996469380613     
+  0.190997527669702     
+ eigenphase sum=  0.340000000000000        20.8983635049249     
+ No perturbative treatment
+ cross sections
+ cross section xform=   46.2219676582648       0.340000000000000     
+ cross section=   46.2219753185418       0.340000000000000     
+ end subroutine kmatrix
+ end loop for energy   0.340000000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          25
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43826736
+ Number of factorization MFLOPS =        81487
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.354166666666667     
+ -0.385291149959856      -0.184207246754123      -0.125796662386481     
+ -0.125700219889178      -8.976180440817377E-002 -8.961498769457292E-002
+ -5.675939720132166E-002 -5.644694159732912E-002 -4.858589487966856E-002
+ -4.715134129632211E-003 -3.553363405058674E-003 -3.552180736943551E-003
+ -2.742554631778231E-003 -2.742431189227644E-003 -1.158989873403297E-003
+ -1.158482805894637E-003 -7.917482441658634E-004 -7.903649603700672E-004
+ -2.412998265328036E-004  1.675415976046940E-005  1.691818900554475E-005
+  1.107578295828257E-003  1.114465946600123E-003  2.515191482049896E-003
+  2.517099999636397E-003  2.702142135238767E-003  2.726734326983406E-003
+  3.766765044538543E-003  3.850436561868414E-003  3.965107484311418E-003
+  4.320055308828862E-003  4.701507563754669E-003  5.322416364558599E-003
+  5.332278524105117E-003  6.877667798599841E-003  6.880494187630191E-003
+  6.926023919056246E-003  6.926187148453445E-003  8.083029232578755E-003
+  8.118937230576422E-003  9.676265203204816E-003  9.678297667058161E-003
+  1.051479656698260E-002  1.063789587765500E-002  1.369042401084180E-002
+  1.370130678956588E-002  1.741787812253332E-002  1.741804005588514E-002
+  1.855847875811421E-002  1.857958718038231E-002  1.858335233415325E-002
+  1.859871289559966E-002  2.323290254268601E-002  2.323525909662670E-002
+  3.257307455662833E-002  3.258566629218830E-002  3.352716858082105E-002
+  4.625162942688802E-002  5.552314417209406E-002  5.552349826134380E-002
+  6.817492693716647E-002  6.817793625271773E-002  0.195273403298449     
+  0.195274562055569     
+ eigenphase sum=  0.354166666666667        18.9105851432654     
+ No perturbative treatment
+ cross sections
+ cross section xform=   46.5028095327561       0.354166666666667     
+ cross section=   46.5028046619498       0.354166666666667     
+ end subroutine kmatrix
+ end loop for energy   0.354166666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          26
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43725336
+ Number of factorization MFLOPS =        81732
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.368333333333333     
+ -0.393861861387930      -0.187550926582262      -0.132003296352919     
+ -0.131906044851252      -9.472235731671877E-002 -9.457258460592091E-002
+ -5.774102283785168E-002 -5.754925601757141E-002 -4.641746799318588E-002
+ -4.772180417685164E-003 -3.610036806167886E-003 -3.608938754077196E-003
+ -2.743436472476879E-003 -2.743305938999238E-003 -9.309280668157938E-004
+ -9.304767160439052E-004 -7.150785578679943E-004 -7.135998295392439E-004
+  5.047225292425049E-005  2.668035872312911E-004  2.669722185982896E-004
+  1.289274665343167E-003  1.296706926695201E-003  2.778571521586946E-003
+  2.780527933148288E-003  2.995881506717225E-003  3.022526510306611E-003
+  4.148151152834251E-003  4.238901647535028E-003  4.373627401030792E-003
+  4.758598008493947E-003  4.990670687959326E-003  5.644530197250045E-003
+  5.654640378218497E-003  7.223096404131045E-003  7.225824918455725E-003
+  7.276471107426464E-003  7.276637276229635E-003  8.491889866456326E-003
+  8.528683234006344E-003  1.006317668143038E-002  1.006522526081031E-002
+  1.101915781798758E-002  1.114521536055599E-002  1.414808752337652E-002
+  1.415900618696354E-002  1.834302614733916E-002  1.834319865940791E-002
+  1.909429807666002E-002  1.913459250454305E-002  1.975214446214658E-002
+  1.975595281600260E-002  2.420938833621693E-002  2.421178796462779E-002
+  3.374357717924475E-002  3.377848466774606E-002  3.379130973148115E-002
+  5.655374811005914E-002  5.819860856260897E-002  5.819902476134357E-002
+  7.037049198389740E-002  7.037352395988658E-002  0.199287402061837     
+  0.199288654365068     
+ eigenphase sum=  0.368333333333333        17.9245157430785     
+ No perturbative treatment
+ cross sections
+ cross section xform=   46.8308552006728       0.368333333333333     
+ cross section=   46.8308378034829       0.368333333333333     
+ end subroutine kmatrix
+ end loop for energy   0.368333333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          27
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43405767
+ Number of factorization MFLOPS =        78669
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.382500000000000     
+ -0.402101580600521      -0.191792225465380      -0.138073837816737     
+ -0.137975904117517      -9.963845598995723E-002 -9.948587351271387E-002
+ -5.890179986252979E-002 -5.880108319964902E-002 -4.361675154551978E-002
+ -4.790944649229602E-003 -3.629127464388775E-003 -3.628114940409033E-003
+ -2.711850859145747E-003 -2.711713573203981E-003 -6.998363760465378E-004
+ -6.994316380312341E-004 -6.165109312897129E-004 -6.149437429012197E-004
+  3.445890879270286E-004  5.130566129883117E-004  5.132287461087167E-004
+  1.478894788570726E-003  1.486828605946791E-003  3.031221728681659E-003
+  3.033212879640784E-003  3.285552388810494E-003  3.314086047249182E-003
+  4.518783663806119E-003  4.616042578894841E-003  4.772359475652545E-003
+  5.184924837211283E-003  5.262860744258892E-003  5.944520035969520E-003
+  5.954808092420077E-003  7.561200744147423E-003  7.563849507016861E-003
+  7.612250619457395E-003  7.612419817833934E-003  8.864530120873440E-003
+  8.901952912145232E-003  1.043840086727868E-002  1.044046614051634E-002
+  1.147319760209333E-002  1.160134171806730E-002  1.460262677336458E-002
+  1.461359179728811E-002  1.930314741814902E-002  1.930333275023498E-002
+  1.963458796820208E-002  1.967499458986663E-002  2.098001352810483E-002
+  2.098386699605689E-002  2.520553745202482E-002  2.520798253726456E-002
+  3.374862314168314E-002  3.500069966552633E-002  3.501376788380910E-002
+  6.084159182653833E-002  6.084207465555716E-002  6.919805084678908E-002
+  7.247264466246836E-002  7.247569235827900E-002  0.203046380343848     
+  0.203047719063305     
+ eigenphase sum=  0.382500000000000        17.9400315203368     
+ No perturbative treatment
+ cross sections
+ cross section xform=   47.2315710179084       0.382500000000000     
+ cross section=   47.2315409536474       0.382500000000000     
+ end subroutine kmatrix
+ end loop for energy   0.382500000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          28
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43818264
+ Number of factorization MFLOPS =        81876
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.396666666666667     
+ -0.410026939070650      -0.196843104130068      -0.144022229981783     
+ -0.143923748740511      -0.104504512311483      -0.104349271116317     
+ -6.021627391289631E-002 -6.017783239350118E-002 -4.058800913167766E-002
+ -4.774504314492418E-003 -3.614853241306369E-003 -3.613926240887314E-003
+ -2.651433128436090E-003 -2.651289525688484E-003 -4.994811465142270E-004
+ -4.978334024107787E-004 -4.680949569349490E-004 -4.677283920713448E-004
+  6.405827562074169E-004  7.532865888950777E-004  7.534612626241537E-004
+  1.673247282622724E-003  1.681633595770063E-003  3.272839905908575E-003
+  3.274854489967541E-003  3.567619343912697E-003  3.597851638135600E-003
+  4.874505653854854E-003  4.977609348866348E-003  5.156893392715553E-003
+  5.524337455473264E-003  5.594230495943269E-003  6.224680554575964E-003
+  6.235087024331162E-003  7.895326911477058E-003  7.897905234332349E-003
+  7.940583828753475E-003  7.940756337133283E-003  9.205694725715740E-003
+  9.243531996581818E-003  1.080919372367281E-002  1.081127775573136E-002
+  1.188360647859258E-002  1.201311053140393E-002  1.506233444143131E-002
+  1.507336472940272E-002  2.019019476404722E-002  2.023079836264189E-002
+  2.029556196354561E-002  2.029576229476369E-002  2.226526279900525E-002
+  2.226916526498740E-002  2.621404111226642E-002  2.621653193714094E-002
+  3.353809816696034E-002  3.622581141249320E-002  3.623912053454352E-002
+  6.344861196992559E-002  6.344916557389921E-002  7.448924341821439E-002
+  7.449230169012890E-002  8.419216104891668E-002  0.206554287408551     
+  0.206555705360880     
+ eigenphase sum=  0.396666666666667        17.9568501674293     
+ No perturbative treatment
+ cross sections
+ cross section xform=   47.7241265392754       0.396666666666667     
+ cross section=   47.7240834905663       0.396666666666667     
+ end subroutine kmatrix
+ end loop for energy   0.396666666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          29
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43382783
+ Number of factorization MFLOPS =        79346
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.410833333333333     
+ -0.417654500525172      -0.202582978320188      -0.149860910039900     
+ -0.149762005704186      -0.109316783414334      -0.109159034145387     
+ -6.166049686496957E-002 -6.165640896139297E-002 -3.765050712545707E-002
+ -4.726918199012216E-003 -3.571958647348359E-003 -3.571115949881021E-003
+ -2.566576308238408E-003 -2.566426918689022E-003 -3.679147891628278E-004
+ -3.661951600592826E-004 -2.370100561154113E-004 -2.366741521883389E-004
+  9.387545273756327E-004  9.866213985918249E-004  9.867978376595905E-004
+  1.869131695522176E-003  1.877917163677342E-003  3.504188242948164E-003
+  3.506217146492087E-003  3.839128199580032E-003  3.870851629449368E-003
+  5.212148512871705E-003  5.320371490577743E-003  5.523815442747099E-003
+  5.781139534873873E-003  5.982839508963548E-003  6.488238993631182E-003
+  6.498716579042262E-003  8.228711184447490E-003  8.231221199503765E-003
+  8.268288745777544E-003  8.268464999381289E-003  9.521196972852440E-003
+  9.559279619376656E-003  1.118194463313986E-002  1.118405051612007E-002
+  1.225846060890510E-002  1.238875833300030E-002  1.553348178140224E-002
+  1.554460135511855E-002  2.076835964732969E-002  2.080926369067440E-002
+  2.131632430753943E-002  2.131654172665033E-002  2.360966544707472E-002
+  2.361362332878748E-002  2.722702421568026E-002  2.722955906792979E-002
+  3.310769578291890E-002  3.744035666856994E-002  3.745389356622678E-002
+  6.601821814008171E-002  6.601884654363525E-002  7.643082093500082E-002
+  7.643388660439170E-002  0.101270965885533       0.209813264495347     
+  0.209814754593221     
+ eigenphase sum=  0.410833333333333        17.9745339872179     
+ No perturbative treatment
+ cross sections
+ cross section xform=   48.3156763979047       0.410833333333333     
+ cross section=   48.3156199902747       0.410833333333333     
+ end subroutine kmatrix
+ end loop for energy   0.410833333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          30
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43112053
+ Number of factorization MFLOPS =        76713
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.425000000000000     
+ -0.425000696684598      -0.208886083617132      -0.155600225050619     
+ -0.155501001894441      -0.114073149403440      -0.113913038445869     
+ -6.323438533665433E-002 -6.320052093744857E-002 -3.499523922956416E-002
+ -4.652817834657783E-003 -3.505320289606166E-003 -3.504559224293717E-003
+ -2.462033165625539E-003 -2.461878601529343E-003 -2.258768885358961E-004
+ -2.240946048638942E-004 -7.144572029911850E-006 -6.832872902280108E-006
+  1.213192558946366E-003  1.213370217136370E-003  1.239433055873384E-003
+  2.063580551541938E-003  2.072709386768006E-003  3.726786058420391E-003
+  3.728822532185028E-003  4.097828815705093E-003  4.130827000700919E-003
+  5.529596616126066E-003  5.642183418823948E-003  5.870781018889921E-003
+  6.038507121044688E-003  6.348281500501908E-003  6.738999198869742E-003
+  6.749513374550490E-003  8.564327698447607E-003  8.566766195617840E-003
+  8.601342451494957E-003  8.601523001573174E-003  9.817431841774117E-003
+  9.855638252940785E-003  1.156181885336355E-002  1.156395024739748E-002
+  1.260655920992098E-002  1.273724903196846E-002  1.602015495657021E-002
+  1.603138985429938E-002  2.137276906512492E-002  2.141408260343016E-002
+  2.236089076751733E-002  2.236112726771920E-002  2.501473984477207E-002
+  2.501876201665585E-002  2.823692077026234E-002  2.823949623954810E-002
+  3.245357167823539E-002  3.863257875358152E-002  3.864632153659511E-002
+  6.855025291161529E-002  6.855095996780006E-002  7.830885308040220E-002
+  7.831192487544754E-002  0.119917800741228       0.212825534158703     
+  0.212827089548561     
+ eigenphase sum=  0.425000000000000        17.9925213411948     
+ No perturbative treatment
+ cross sections
+ cross section xform=   48.9973414196407       0.425000000000000     
+ cross section=   48.9972711053540       0.425000000000000     
+ end subroutine kmatrix
+ end loop for energy   0.425000000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          31
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43760514
+ Number of factorization MFLOPS =        82265
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.439166666666667     
+ -0.432081708879365      -0.215636982538704      -0.161248150413791     
+ -0.161148689383503      -0.118772842052031      -0.118610509222603     
+ -6.488822183940841E-002 -6.483286019518110E-002 -3.270239061179138E-002
+ -4.557049153977095E-003 -3.419650045954679E-003 -3.418966458510747E-003
+ -2.342555797489903E-003 -2.342396731751359E-003 -7.725591716763034E-005
+ -7.542050369981200E-005  2.214221641989189E-004  2.217150342819805E-004
+  1.433816597581640E-003  1.433995119946503E-003  1.542521304513194E-003
+  2.254066707027764E-003  2.263482589831988E-003  3.942623229599459E-003
+  3.944662897352891E-003  4.342252312036633E-003  4.376308431189562E-003
+  5.825791217846490E-003  5.941987229491604E-003  6.196524676739226E-003
+  6.300336689113671E-003  6.689296479100453E-003  6.981008176696243E-003
+  6.991537003197945E-003  8.904803120656399E-003  8.907163443627283E-003
+  8.944568868538746E-003  8.944754342502984E-003  1.010092231652882E-002
+  1.013917719110286E-002  1.195253571904320E-002  1.195469640742024E-002
+  1.293681286055419E-002  1.306765254628689E-002  1.652426688358537E-002
+  1.653564237937320E-002  2.200384751277361E-002  2.204567380810086E-002
+  2.342464616657073E-002  2.342490365849821E-002  2.648172417155250E-002
+  2.648582091943626E-002  2.923712146811876E-002  2.923973287276115E-002
+  3.157306546733071E-002  3.979327635310783E-002  3.980719702512914E-002
+  7.104516257845353E-002  7.104595197143500E-002  8.013429894777341E-002
+  8.013737726520379E-002  0.139455310967388       0.215594832792996     
+  0.215596446972436     
+ eigenphase sum=  0.439166666666667        16.0101870851131     
+ No perturbative treatment
+ cross sections
+ cross section xform=   49.7441908618431       0.439166666666667     
+ cross section=   49.7441060728875       0.439166666666667     
+ end subroutine kmatrix
+ end loop for energy   0.439166666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          32
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43788808
+ Number of factorization MFLOPS =        81299
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.453333333333333     
+ -0.438913314757271      -0.222736697025901      -0.166810262842381     
+ -0.166710622776268      -0.123416148458611      -0.123251725744333     
+ -6.661343030227111E-002 -6.654208700427494E-002 -3.078041152941243E-002
+ -4.444383856908997E-003 -3.319299853268551E-003 -3.318688295626206E-003
+ -2.212604299654516E-003 -2.212441436276584E-003  7.448424755454158E-005
+  7.636328553364000E-005  4.489071069712854E-004  4.491854872548695E-004
+  1.649735929659406E-003  1.649915194052273E-003  1.847291596639716E-003
+  2.438649551422355E-003  2.448297561250533E-003  4.153916951049539E-003
+  4.155957677342534E-003  4.571734928524430E-003  4.606639628039630E-003
+  6.100679894803931E-003  6.219759545458863E-003  6.500813968334409E-003
+  6.568633666738300E-003  7.005777467718799E-003  7.218265228510367E-003
+  7.228798491153180E-003  9.252390619862430E-003  9.254664470857760E-003
+  9.301468922025614E-003  9.301659985730983E-003  1.037792158132641E-002
+  1.041619237053278E-002  1.235629292915541E-002  1.235848640680359E-002
+  1.325771182148401E-002  1.338860513932679E-002  1.704572928074641E-002
+  1.705726752801755E-002  2.265923875652997E-002  2.270166610858871E-002
+  2.450327013561137E-002  2.450355047150272E-002  2.801151109719038E-002
+  2.801568781810049E-002  3.022237949673623E-002  3.022502136296762E-002
+  3.046557223305230E-002  4.091624491853503E-002  4.093031221930622E-002
+  7.350341289057770E-002  7.350428812308656E-002  8.191649494626665E-002
+  8.191958149461313E-002  0.159165183263185       0.218127310147554     
+  0.218128977053824     
+ eigenphase sum=  0.453333333333333        14.0269197828186     
+ No perturbative treatment
+ cross sections
+ cross section xform=   50.5199805141374       0.453333333333333     
+ cross section=   50.5198807028349       0.453333333333333     
+ end subroutine kmatrix
+ end loop for energy   0.453333333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          33
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43463268
+ Number of factorization MFLOPS =        79108
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.467500000000000     
+ -0.445510720407348      -0.230103390137110      -0.172289912313786     
+ -0.172190133284370      -0.128004110981952      -0.127837721858717     
+ -6.840356906722725E-002 -6.832002500707039E-002 -2.920111239905536E-002
+ -4.319310816193324E-003 -3.208156144442410E-003 -3.207610232087781E-003
+ -2.076142561870073E-003 -2.075976601608040E-003  2.264655790939041E-004
+  2.283790939936346E-004  6.756949351377933E-004  6.759622101585462E-004
+  1.862420815545578E-003  1.862600885853921E-003  2.152369080158817E-003
+  2.616047023401870E-003  2.625875481361900E-003  4.362917265632415E-003
+  4.364958911583549E-003  4.786387632900766E-003  4.821946053987675E-003
+  6.355120369117208E-003  6.476411559768689E-003  6.784355894031752E-003
+  6.842867780071819E-003  7.298660714161972E-003  7.454483925930451E-003
+  7.465021741096763E-003  9.608984355793587E-003  9.611163369724424E-003
+  9.674193458074675E-003  9.674390781933870E-003  1.065408640512843E-002
+  1.069237790568791E-002  1.277383120619769E-002  1.277606032568242E-002
+  1.357689337346683E-002  1.370787063488540E-002  1.758275671679455E-002
+  1.759447491181381E-002  2.333441612967206E-002  2.337751119367702E-002
+  2.559295758735334E-002  2.559326259001738E-002  2.913338348618517E-002
+  2.960457451014432E-002  2.960901399635953E-002  3.118899408349593E-002
+  3.119166070145135E-002  4.199835594495873E-002  4.201253807810257E-002
+  7.592504394947844E-002  7.592600832166943E-002  8.366243048779003E-002
+  8.366552786762704E-002  0.178395430418197       0.220431909270686     
+  0.220433623329426     
+ eigenphase sum=  0.467500000000000        14.0421947805316     
+ No perturbative treatment
+ cross sections
+ cross section xform=   51.2849972793267       0.467500000000000     
+ cross section=   51.2848819794722       0.467500000000000     
+ end subroutine kmatrix
+ end loop for energy   0.467500000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          34
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43750814
+ Number of factorization MFLOPS =        80858
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.481666666666667     
+ -0.451888397385969      -0.237670591358797      -0.177688535503980     
+ -0.177588642766562      -0.132538240966970      -0.132370000005654     
+ -7.025384746533188E-002 -7.016076806983766E-002 -2.792259144712203E-002
+ -4.185907853250697E-003 -3.089601854987445E-003 -3.089114701556735E-003
+ -1.936523433206345E-003 -1.936355038608710E-003  3.764686700594258E-004
+  3.784082026676677E-004  9.022507015392589E-004  9.025094000506586E-004
+  2.073420732016677E-003  2.073601832510652E-003  2.455845159226532E-003
+  2.785635345034369E-003  2.795597452702202E-003  4.571757624450134E-003
+  4.573801722972293E-003  4.987017812128270E-003  5.023055445704196E-003
+  6.590749057917083E-003  6.713652972253929E-003  7.048666440116930E-003
+  7.119020303165370E-003  7.569775454185026E-003  7.692910515379330E-003
+  7.703461556002482E-003  9.976152102124297E-003  9.978229085949404E-003
+  1.006364058441734E-002  1.006384481468737E-002  1.093423028082237E-002
+  1.097257792541956E-002  1.320461647122800E-002  1.320688317056270E-002
+  1.390081815652241E-002  1.403201253058124E-002  1.813226274137116E-002
+  1.814417187900270E-002  2.402336005852806E-002  2.406716377192661E-002
+  2.669052414714708E-002  2.669085563886832E-002  2.758381432862874E-002
+  3.126091452514172E-002  3.126536864571635E-002  3.213481041811034E-002
+  3.213749620397713E-002  4.303934398059405E-002  4.305361099929019E-002
+  7.830937922316165E-002  7.831043580837084E-002  8.537639184153491E-002
+  8.537950311257807E-002  0.196630545371282       0.222520301956848     
+  0.222522058057421     
+ eigenphase sum=  0.481666666666667        14.0556238063801     
+ No perturbative treatment
+ cross sections
+ cross section xform=   52.0038713089447       0.481666666666667     
+ cross section=   52.0037401768476       0.481666666666667     
+ end subroutine kmatrix
+ end loop for energy   0.481666666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          35
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43563876
+ Number of factorization MFLOPS =        81233
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.495833333333333     
+ -0.458059941544501      -0.245384681290410      -0.183006055990493     
+ -0.182906063727640      -0.137020259713743      -0.136850272329614     
+ -7.216071077138352E-002 -7.206002448044795E-002 -2.690150428046997E-002
+ -4.047786225312380E-003 -2.966520690407769E-003 -2.966085332336186E-003
+ -1.796451276180851E-003 -1.796281039646765E-003  5.229301382280369E-004
+  5.248882089091915E-004  1.129059685840817E-003  1.129311584328845E-003
+  2.284252052609845E-003  2.284434534403889E-003  2.755469459418776E-003
+  2.947390253742227E-003  2.957445424100548E-003  4.782343922900536E-003
+  4.784393304329069E-003  5.175014726039479E-003  5.211381884153242E-003
+  6.809825311730413E-003  6.933831127733117E-003  7.295914361749071E-003
+  7.387875870990630E-003  7.821665875551298E-003  7.936198279210580E-003
+  7.946777769967835E-003  1.035516653265591E-002  1.035713631770673E-002
+  1.046964384553302E-002  1.046985558380445E-002  1.122215902480391E-002
+  1.126062140754280E-002  1.364710332461075E-002  1.364940845567254E-002
+  1.423455782038768E-002  1.436617925862354E-002  1.869030155282980E-002
+  1.870240580636841E-002  2.471924310999166E-002  2.476376916052242E-002
+  2.582982953603600E-002  2.779342953412201E-002  2.779378935636852E-002
+  3.298003832727916E-002  3.298462913913058E-002  3.305908232761496E-002
+  3.306178239993399E-002  4.404138188763998E-002  4.405570758915633E-002
+  8.065488802875140E-002  8.065603965089466E-002  8.705993226627512E-002
+  8.706306054236196E-002  0.213518742479136       0.224406488778838     
+  0.224408281852974     
+ eigenphase sum=  0.495833333333333        14.0669724199809     
+ No perturbative treatment
+ cross sections
+ cross section xform=   52.6506788837681       0.495833333333333     
+ cross section=   52.6505317162065       0.495833333333333     
+ end subroutine kmatrix
+ end loop for energy   0.495833333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          36
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43778303
+ Number of factorization MFLOPS =        80924
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.510000000000000     
+ -0.464037966614598      -0.253202438520176      -0.188241322785249     
+ -0.188141237313085      -0.141451876257422      -0.141280238548748     
+ -7.412148382973069E-002 -7.401461926775003E-002 -2.609856273247940E-002
+ -3.908097585175863E-003 -2.841321186194957E-003 -2.840930935502712E-003
+ -1.658000893557201E-003 -1.657829311695608E-003  6.648867177663827E-004
+  6.668570528219492E-004  1.356586622199770E-003  1.356832844890391E-003
+  2.496312806306106E-003  2.496497112418663E-003  3.048876797692217E-003
+  3.101789637717799E-003  3.111904445620223E-003  4.996276419418845E-003
+  4.998334816213655E-003  5.352212769312323E-003  5.388787562948813E-003
+  7.015062151206916E-003  7.139756486518565E-003  7.528750264219381E-003
+  7.631584541692559E-003  8.057397714252739E-003  8.186335111024907E-003
+  8.196962734576946E-003  1.074702286977534E-002  1.074888277628852E-002
+  1.089121009808974E-002  1.089142989065624E-002  1.152058668807759E-002
+  1.155923782791842E-002  1.409903769469420E-002  1.410138096064974E-002
+  1.458169001059860E-002  1.471399848320892E-002  1.925250915303700E-002
+  1.926480585884905E-002  2.389499883115864E-002  2.541507007524132E-002
+  2.546030567026555E-002  2.889974634641328E-002  2.890013638421766E-002
+  3.396224304939125E-002  3.396495291533458E-002  3.476098012630010E-002
+  3.476573104598162E-002  4.500852459321315E-002  4.502288784736957E-002
+  8.295918787984870E-002  8.296043709660668E-002  8.871210831425455E-002
+  8.871525641703309E-002  0.226106171707708       0.226108006383920     
+  0.228864388190419     
+ eigenphase sum=  0.510000000000000        14.0761490040140     
+ No perturbative treatment
+ cross sections
+ cross section xform=   53.2104750481015       0.510000000000000     
+ cross section=   53.2103117758784       0.510000000000000     
+ end subroutine kmatrix
+ end loop for energy   0.510000000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          37
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     44144646
+ Number of factorization MFLOPS =        81849
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.524166666666667     
+ -0.469834040744672      -0.261088943090036      -0.193392547137316     
+ -0.193292369499485      -0.145834607981572      -0.145661406652971     
+ -7.613407085875967E-002 -7.602210938387380E-002 -2.548041342516824E-002
+ -3.769599657332673E-003 -2.715964825075223E-003 -2.715613520882577E-003
+ -1.522669616680468E-003 -1.522497072749187E-003  8.018899240015845E-004
+  8.038676020492618E-004  1.585252127018393E-003  1.585493233186472E-003
+  2.710821111487537E-003  2.711007743096169E-003  3.249697733218739E-003
+  3.259846452215406E-003  3.333810058072638E-003  5.214801422184169E-003
+  5.216873077847455E-003  5.520746153407204E-003  5.557435966278582E-003
+  7.209453558019460E-003  7.334524764747709E-003  7.750131303418114E-003
+  7.816288701616003E-003  8.280361005069624E-003  8.444620412110316E-003
+  8.455318252646926E-003  1.115243921524204E-002  1.115418917089725E-002
+  1.132676751677641E-002  1.132699585358095E-002  1.183112583540707E-002
+  1.187004762731075E-002  1.455775891851686E-002  1.456013891635878E-002
+  1.494429176586978E-002  1.507757131994191E-002  1.981450500804405E-002
+  1.982698518622383E-002  2.182047177426493E-002  2.610423195529406E-002
+  2.615014051283574E-002  3.000809395771567E-002  3.000851614135846E-002
+  3.484562455889309E-002  3.484834123001539E-002  3.660235682552574E-002
+  3.660728738538433E-002  4.594609378843288E-002  4.596047928804624E-002
+  8.521916289747432E-002  8.522051199205298E-002  9.032991235232597E-002
+  9.033308254387280E-002  0.227636071581418       0.227637931869132     
+  0.242599791631527     
+ eigenphase sum=  0.524166666666667        14.0831763057549     
+ No perturbative treatment
+ cross sections
+ cross section xform=   53.6780563382909       0.524166666666667     
+ cross section=   53.6778769988559       0.524166666666667     
+ end subroutine kmatrix
+ end loop for energy   0.524166666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          38
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43401051
+ Number of factorization MFLOPS =        78859
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.538333333333333     
+ -0.475458669198349      -0.269015890362179      -0.198457706771218     
+ -0.198357434761348      -0.150169646926554      -0.149994959310449     
+ -7.819671100809616E-002 -7.808048729251464E-002 -2.501980805887803E-002
+ -3.634798631922826E-003 -2.591990465035560E-003 -2.591672621703603E-003
+ -1.391443077372325E-003 -1.391269832249830E-003  9.339112997362365E-004
+  9.358928136746994E-004  1.815427900072418E-003  1.815663938372503E-003
+  2.928778943628850E-003  2.928968429496579E-003  3.392247212958317E-003
+  3.402411942667144E-003  3.608293873911532E-003  5.438792267844244E-003
+  5.440881570944007E-003  5.682906350234740E-003  5.719647885255301E-003
+  7.396107192256207E-003  7.521344849845156E-003  7.875948673329400E-003
+  7.963150640979999E-003  8.494079112190668E-003  8.711687030588937E-003
+  8.722477661789858E-003  1.157184345653216E-002  1.157348583939024E-002
+  1.177439308547416E-002  1.177463040703390E-002  1.215434357033116E-002
+  1.219361880655194E-002  1.502047038551246E-002  1.502288473901129E-002
+  1.532301873314762E-002  1.545755365239178E-002  1.968138440600919E-002
+  2.037222645710608E-002  2.038487576094200E-002  2.678094631665816E-002
+  2.682747160679492E-002  3.111755040442038E-002  3.111800671210225E-002
+  3.571115834878703E-002  3.571387974281313E-002  3.850245242852084E-002
+  3.850758081206496E-002  4.686006396138251E-002  4.687446243170598E-002
+  8.743116749245484E-002  8.743261847544283E-002  9.190882849573107E-002
+  9.191202230023597E-002  0.229013125112953       0.229015012545865     
+  0.254750017986416     
+ eigenphase sum=  0.538333333333333        14.0881572257457     
+ No perturbative treatment
+ cross sections
+ cross section xform=   54.0553796071628       0.538333333333333     
+ cross section=   54.0551843113180       0.538333333333333     
+ end subroutine kmatrix
+ end loop for energy   0.538333333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          39
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43904307
+ Number of factorization MFLOPS =        80937
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.552500000000000     
+ -0.480921321789512      -0.276960273096234      -0.203434895820456     
+ -0.203334525512085      -0.154457771868149      -0.154281666061617     
+ -8.030778871512272E-002 -8.018795858345890E-002 -2.469506758031411E-002
+ -3.506242809937458E-003 -2.470534283324791E-003 -2.470245150468765E-003
+ -1.264862158140950E-003 -1.264688349337433E-003  1.061251445766696E-003
+  1.063234684900847E-003  2.047454441257122E-003  2.047684908533993E-003
+  3.150966692142417E-003  3.151159562524286E-003  3.530729994287092E-003
+  3.540900412082641E-003  3.870657687024005E-003  5.668761568396734E-003
+  5.670872728320756E-003  5.841010648882194E-003  5.877768692232934E-003
+  7.578089952821875E-003  7.679786534043884E-003  7.703380089386562E-003
+  8.170879316124190E-003  8.702032469134254E-003  8.987564397862658E-003
+  8.998469201009805E-003  1.200535549622704E-002  1.200689478511043E-002
+  1.223200146156472E-002  1.223224817176735E-002  1.248987326121701E-002
+  1.252957952913648E-002  1.548445980078969E-002  1.548690536154075E-002
+  1.571725520635982E-002  1.585330929128429E-002  1.761971922363092E-002
+  2.092218052959201E-002  2.093498049489790E-002  2.744057030298710E-002
+  2.748764152902636E-002  3.222755094614418E-002  3.222804339682699E-002
+  3.656108342883733E-002  3.656380854489675E-002  4.045931794503346E-002
+  4.046466133834113E-002  4.775649636369399E-002  4.777090430220956E-002
+  8.959128117753105E-002  8.959283579908130E-002  9.344344223118790E-002
+  9.344666034664283E-002  0.230253869670183       0.230255781960031     
+  0.265399642805647     
+ eigenphase sum=  0.552500000000000        14.0912431683500     
+ No perturbative treatment
+ cross sections
+ cross section xform=   54.3488172875619       0.552500000000000     
+ cross section=   54.3486061359187       0.552500000000000     
+ end subroutine kmatrix
+ end loop for energy   0.552500000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          40
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43855014
+ Number of factorization MFLOPS =        80586
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.566666666666667     
+ -0.486230499786417      -0.284903362072203      -0.208322607017463     
+ -0.208222133883267      -0.158699303833684      -0.158521838962866     
+ -8.246569610721730E-002 -8.234278324314116E-002 -2.448931620154982E-002
+ -3.387209983065204E-003 -2.352348905737899E-003 -2.352084462830656E-003
+ -1.143085795536129E-003 -1.142911442989741E-003  1.184459113328133E-003
+  1.186443276358349E-003  2.281687447896284E-003  2.281910895566446E-003
+  3.377977857827389E-003  3.378174623767093E-003  3.666502386048337E-003
+  3.676675176956977E-003  4.118867873762286E-003  5.904909777357791E-003
+  5.907046554090046E-003  5.997287295363096E-003  6.034052390518536E-003
+  6.996135851637304E-003  7.758292204951549E-003  7.883608908429143E-003
+  8.376226574143693E-003  8.907503616808646E-003  9.271780945670759E-003
+  9.282818721696569E-003  1.245277504519741E-002  1.245421735888505E-002
+  1.269748926552890E-002  1.269774574772124E-002  1.283657215416146E-002
+  1.287677683653345E-002  1.588173060051331E-002  1.594726173101602E-002
+  1.594973482178617E-002  1.612531896768558E-002  1.626311867792022E-002
+  2.146160905348768E-002  2.147453851251887E-002  2.807978498576327E-002
+  2.812732230419046E-002  3.333778006204242E-002  3.333831070266537E-002
+  3.739768037230310E-002  3.740040919722248E-002  4.247087896478638E-002
+  4.247645361400756E-002  4.864105382813309E-002  4.865547286715570E-002
+  9.169558075264675E-002  9.169724052395789E-002  9.492804197016441E-002
+  9.493128426322905E-002  0.231373850470142       0.231375785431144     
+  0.274666074658265     
+ eigenphase sum=  0.566666666666667        14.0926090735350     
+ No perturbative treatment
+ cross sections
+ cross section xform=   54.5669177543157       0.566666666666667     
+ cross section=   54.5666909047103       0.566666666666667     
+ end subroutine kmatrix
+ end loop for energy   0.566666666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          41
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43256364
+ Number of factorization MFLOPS =        78102
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.580833333333333     
+ -0.491393834244493      -0.292829916817748      -0.213119939840790     
+ -0.213019359533760      -0.162894100697210      -0.162715327313095     
+ -8.466874259899539E-002 -8.454317131078472E-002 -2.438969214516935E-002
+ -3.283664042065727E-003 -2.237826909345050E-003 -2.237583818431419E-003
+ -1.025949529615249E-003 -1.025774546714727E-003  1.304261445098135E-003
+  1.306246898093615E-003  2.518585539151151E-003  2.518797087504820E-003
+  3.610311327320025E-003  3.610512465868089E-003  3.800906338515713E-003
+  3.811084368767307E-003  4.340765850518172E-003  5.579245305312255E-003
+  6.147221554358845E-003  6.149387051540879E-003  6.153780332742180E-003
+  6.190565586662392E-003  7.939314878958650E-003  8.064709043298047E-003
+  8.581823033844263E-003  9.113448268456413E-003  9.563509382113379E-003
+  9.574695301208273E-003  1.291358366424476E-002  1.291493625657868E-002
+  1.316883785894469E-002  1.316910449297935E-002  1.319271807507272E-002
+  1.323347460058011E-002  1.474271775431044E-002  1.640676411558036E-002
+  1.640926078994884E-002  1.654470565000120E-002  1.668442757140327E-002
+  2.198857161956928E-002  2.200160815307006E-002  2.869665970669258E-002
+  2.874457973318878E-002  3.444806344511515E-002  3.444863433383788E-002
+  3.822304467952238E-002  3.822577803944139E-002  4.453504231720957E-002
+  4.454086357842686E-002  4.951861688267445E-002  4.953305287702493E-002
+  9.374039983467468E-002  9.374216605702339E-002  9.635716239262139E-002
+  9.636042796403223E-002  0.232387191641910       0.232389147288292     
+  0.282680317427082     
+ eigenphase sum=  0.580833333333333        14.0924361465122     
+ No perturbative treatment
+ cross sections
+ cross section xform=   54.7188547267186       0.580833333333333     
+ cross section=   54.7186121715340       0.580833333333333     
+ end subroutine kmatrix
+ end loop for energy   0.580833333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          42
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43550875
+ Number of factorization MFLOPS =        81287
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.595000000000000     
+ -0.496418206121142      -0.300727568976379      -0.217826734156294     
+ -0.217726043013570      -0.167041584829743      -0.166861545428181     
+ -8.691510508476508E-002 -8.678722368883823E-002 -2.438661537936610E-002
+ -3.211591828206677E-003 -2.127032866465830E-003 -2.126808405796277E-003
+ -9.130221200859772E-004 -9.128463282331018E-004  1.421503656643325E-003
+  1.423491751474149E-003  2.758871066049546E-003  2.758995966694402E-003
+  3.316313458278571E-003  3.848561690348565E-003  3.848767635692758E-003
+  3.935206308953086E-003  3.945397613375348E-003  4.630510495058540E-003
+  6.312275533779870E-003  6.349112790618512E-003  6.395638835874755E-003
+  6.397835361720554E-003  8.123382080786693E-003  8.248968072739348E-003
+  8.789929468955964E-003  9.322395341067274E-003  9.861773605777602E-003
+  9.873118524047507E-003  1.338696611617148E-002  1.338823686206856E-002
+  1.355624767738434E-002  1.359759310405985E-002  1.364418248210346E-002
+  1.364445965985888E-002  1.425082274090922E-002  1.686126599698815E-002
+  1.686378229264839E-002  1.697236112040350E-002  1.711412396068405E-002
+  2.250195673830657E-002  2.251507805586606E-002  2.929061219771029E-002
+  2.933883312147247E-002  3.555826712327625E-002  3.555888031083462E-002
+  3.903890812776777E-002  3.904164750144019E-002  4.664979617655191E-002
+  4.665587861244125E-002  5.039301088978544E-002  5.040747283284686E-002
+  9.572255193712212E-002  9.572442573589969E-002  9.772603327399625E-002
+  9.772932057807109E-002  0.233306308199372       0.233308282717415     
+  0.289574358007030     
+ eigenphase sum=  0.595000000000000        14.0909017851814     
+ No perturbative treatment
+ cross sections
+ cross section xform=   54.8134856720946       0.595000000000000     
+ cross section=   54.8132279520892       0.595000000000000     
+ end subroutine kmatrix
+ end loop for energy   0.595000000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          43
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     42825120
+ Number of factorization MFLOPS =        76239
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.609166666666667     
+ -0.308586333527498      -0.222443633429401      -0.222342828750564     
+ -0.171140796300620      -0.170959525952087      -8.920281105882125E-002
+ -8.907290883527594E-002 -2.447313557580992E-002 -3.239976400083197E-003
+ -2.019745487590780E-003 -2.019537509902294E-003 -8.036625005024496E-004
+ -8.034856457576052E-004  6.378343678398464E-004  1.537095805721248E-003
+  1.539088673837194E-003  3.003854418444410E-003  3.004098510552184E-003
+  4.070540353738815E-003  4.080757006479229E-003  4.093819587365671E-003
+  4.094030731754175E-003  4.832321915228198E-003  6.474247640898007E-003
+  6.511183260079674E-003  6.650392243896163E-003  6.652621253046906E-003
+  8.312280409714091E-003  8.438221445518585E-003  9.002372484499564E-003
+  9.536377239847103E-003  1.016578143013287E-002  1.017729160708516E-002
+  1.387185168160601E-002  1.387304846689732E-002  1.392506598775572E-002
+  1.396701997843533E-002  1.412185666068432E-002  1.412214478831071E-002
+  1.421555299878794E-002  1.730949609906313E-002  1.731202826580398E-002
+  1.740498168010594E-002  1.754884280393272E-002  2.300143464586979E-002
+  2.301461980822117E-002  2.986228460471472E-002  2.991073062262852E-002
+  3.666821177167083E-002  3.666886928268554E-002  3.984651333949425E-002
+  3.984926065124708E-002  4.881329986479704E-002  4.881965739281690E-002
+  5.126684516669273E-002  5.128134403242641E-002  9.763950094247340E-002
+  9.764148330367406E-002  9.903091199266965E-002  9.903421899284319E-002
+  0.234141759093213       0.234143750798075       0.295473673706201     
+  0.498690121972453     
+ eigenphase sum=  0.609166666666667        14.0881762108080     
+ No perturbative treatment
+ cross sections
+ cross section xform=   54.8588913086987       0.609166666666667     
+ cross section=   54.8586186590085       0.609166666666667     
+ end subroutine kmatrix
+ end loop for energy   0.609166666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          44
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43516411
+ Number of factorization MFLOPS =        81436
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.623333333333333     
+ -0.316398214217907      -0.226972084928375      -0.226871165072198     
+ -0.175190462082370      -0.175007989147421      -9.152974670003296E-002
+ -9.139806636307340E-002 -2.464434749171845E-002 -3.948663192203531E-003
+ -1.915508323783987E-003 -1.915317437156535E-003 -1.768627475169176E-003
+ -6.970777454697539E-004 -6.968995159997051E-004  1.651965106855604E-003
+  1.653965442233855E-003  3.256197211320849E-003  3.256422944322721E-003
+  4.207884070561352E-003  4.218141005357802E-003  4.348643968065847E-003
+  4.348860670078955E-003  5.047630589240117E-003  6.640828372162318E-003
+  6.677918837713876E-003  6.912753623613928E-003  6.915015761283692E-003
+  8.507324900846606E-003  8.633817892737608E-003  9.220507033076610E-003
+  9.756890210370038E-003  1.047560460456528E-002  1.048728192797584E-002
+  1.429755015247572E-002  1.434011552929317E-002  1.436697209690272E-002
+  1.436810032050730E-002  1.444638168623859E-002  1.460041932745217E-002
+  1.460071890411677E-002  1.775060192787103E-002  1.775314661712708E-002
+  1.783937913894626E-002  1.798533568071531E-002  2.348736625386420E-002
+  2.350059667599439E-002  3.041335741835278E-002  3.046196229402297E-002
+  3.777761275030731E-002  3.777831656591733E-002  4.064654515490870E-002
+  4.064930256416373E-002  5.102396194010398E-002  5.103060802064675E-002
+  5.214145831931642E-002  5.215600591756612E-002  9.948947071251393E-002
+  9.949156251902602E-002  0.100269291646618       0.100272615988884     
+  0.234902228343970       0.234904235638944       0.300493358850985     
+  0.493925372088534     
+ eigenphase sum=  0.623333333333333        15.0844274355258     
+ No perturbative treatment
+ cross sections
+ cross section xform=   54.8621844260504       0.623333333333333     
+ cross section=   54.8618974126676       0.623333333333333     
+ end subroutine kmatrix
+ end loop for energy   0.623333333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          45
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43660329
+ Number of factorization MFLOPS =        80250
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.637500000000000     
+ -0.324156877972602      -0.231414286613744      -0.231313250952715     
+ -0.179189065513772      -0.179005412411695      -9.389368233618019E-002
+ -9.376042929488111E-002 -2.489676351161103E-002 -6.718606261629633E-003
+ -2.382614219263857E-003 -1.813684791237929E-003 -1.813503958258267E-003
+ -5.923805950002856E-004 -5.922006381995027E-004  1.767013770867195E-003
+  1.769024613697126E-003  3.522157700242001E-003  3.522375325317424E-003
+  4.348026530765576E-003  4.358340369157173E-003  4.620046878530580E-003
+  4.620269504383879E-003  5.271989635505691E-003  6.812794209481063E-003
+  6.850101779608509E-003  7.187239954995023E-003  7.189535325379164E-003
+  8.709350440008283E-003  8.836611016248049E-003  9.445204571514732E-003
+  9.984883314748847E-003  1.079411586299634E-002  1.080595911267707E-002
+  1.467377732743715E-002  1.471694329065040E-002  1.483197159504948E-002
+  1.487093009058422E-002  1.487201491589118E-002  1.507866956118362E-002
+  1.507898105280591E-002  1.818411778831227E-002  1.818667219623693E-002
+  1.827310848791545E-002  1.842110416956206E-002  2.396068231351869E-002
+  2.397394251245394E-002  3.094632320828232E-002  3.099503284968163E-002
+  3.888606858766310E-002  3.888682063048732E-002  4.143912683058461E-002
+  4.144189653281828E-002  5.301696011699913E-002  5.303156803634532E-002
+  5.328051077423365E-002  5.328745861934475E-002  0.101271492780853     
+  0.101273694845913       0.101439988508857       0.101443327696859     
+  0.235594614846666       0.235596636189609       0.304736657059744     
+  0.489282123889354     
+ eigenphase sum=  0.637500000000000        15.0798454981512     
+ No perturbative treatment
+ cross sections
+ cross section xform=   54.8295533863344       0.637500000000000     
+ cross section=   54.8292519872627       0.637500000000000     
+ end subroutine kmatrix
+ end loop for energy   0.637500000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          46
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     44349586
+ Number of factorization MFLOPS =        84128
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.651666666666667     
+ -0.331857375606178      -0.235773091758214      -0.235671940526190     
+ -0.183134866697036      -0.182950050671341      -9.629230857411390E-002
+ -9.615765768667231E-002 -2.522683827117839E-002 -1.026987423859061E-002
+ -2.409441083700018E-003 -1.713511493990858E-003 -1.713342727679639E-003
+ -4.886431498093843E-004 -4.884610883696179E-004  1.883084046506542E-003
+  1.885108577376404E-003  3.820526208886969E-003  3.820738358332199E-003
+  4.491558090216072E-003  4.501946028927535E-003  4.932623388509361E-003
+  4.932852498469744E-003  5.531553583705050E-003  6.990572814190959E-003
+  7.028161395595065E-003  7.490908131215942E-003  7.493237577839133E-003
+  8.918726682823822E-003  9.046975007120459E-003  9.676864734082972E-003
+  1.022077357097079E-002  1.113550272343114E-002  1.114751374891982E-002
+  1.506064749491266E-002  1.510440394859406E-002  1.531459894223887E-002
+  1.538227112730499E-002  1.538330378690557E-002  1.555565142945314E-002
+  1.555597538359280E-002  1.860991836851052E-002  1.861248032928408E-002
+  1.870661370921160E-002  1.885656255508389E-002  2.442274553684615E-002
+  2.443602361094476E-002  3.146424048912276E-002  3.151301451785069E-002
+  3.999320417350002E-002  3.999400629222206E-002  4.222393131988262E-002
+  4.222671537633475E-002  5.389236601976172E-002  5.390704472314715E-002
+  5.558208946860330E-002  5.558935224196537E-002  0.102543121675809     
+  0.102546473234452       0.102985396898048       0.102987709996381     
+  0.236224208373482       0.236226242252143       0.308295133772176     
+  0.484755201203358     
+ eigenphase sum=  0.651666666666667        15.0747524718452     
+ No perturbative treatment
+ cross sections
+ cross section xform=   54.7664923933720       0.651666666666667     
+ cross section=   54.7661766776350       0.651666666666667     
+ end subroutine kmatrix
+ end loop for energy   0.651666666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          47
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43681065
+ Number of factorization MFLOPS =        80815
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.665833333333333     
+ -0.339495834651703      -0.240051882893623      -0.239950616957959     
+ -0.187025484399943      -0.186839518026563      -9.872327752180798E-002
+ -9.858737598047937E-002 -2.561773204462312E-002 -1.405269672736563E-002
+ -2.349840384309823E-003 -1.614142693549917E-003 -1.613984660830357E-003
+ -3.849419033578886E-004 -3.847573497820310E-004  2.000933834854928E-003
+  2.002975186893512E-003  4.245432894241017E-003  4.245641164824541E-003
+  4.638870867786362E-003  4.649349666871395E-003  5.449111764042491E-003
+  5.449350358852021E-003  5.989592838494163E-003  7.174267070874030E-003
+  7.212198473993204E-003  7.931915185257260E-003  7.934294978413232E-003
+  9.135394020790480E-003  9.264841942377569E-003  9.915447725978157E-003
+  1.046448405228685E-002  1.160996618329201E-002  1.162223806224135E-002
+  1.552424298083992E-002  1.556878540243738E-002  1.586383586591860E-002
+  1.589955210777796E-002  1.590055547382647E-002  1.603064972669382E-002
+  1.603098673755000E-002  1.902816292991202E-002  1.903073096030498E-002
+  1.916536795704919E-002  1.931746631249385E-002  2.487520662423610E-002
+  2.488849447017926E-002  3.197048551647826E-002  3.201929786721720E-002
+  4.110022949394633E-002  4.110108342075029E-002  4.300101151162732E-002
+  4.300381181784178E-002  5.476596018559568E-002  5.478071845648955E-002
+  5.792868156740974E-002  5.793627247302496E-002  0.103580003924718     
+  0.103583365539957       0.104631753318817       0.104634178206805     
+  0.236794936543784       0.236796981464070       0.311251641312542     
+  0.480339577788476     
+ eigenphase sum=  0.665833333333333        15.0705882480352     
+ No perturbative treatment
+ cross sections
+ cross section xform=   54.6794824777275       0.665833333333333     
+ cross section=   54.6791526695811       0.665833333333333     
+ end subroutine kmatrix
+ end loop for energy   0.665833333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          48
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     45396602
+ Number of factorization MFLOPS =        89512
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.680000000000000     
+ -0.347071085035825      -0.244254432204002      -0.244153054128288     
+ -0.191635450671544      -0.191449115006329      -0.101184266713869     
+ -0.101047293252398      -6.131909666432050E-002 -6.131717369459528E-002
+ -2.640498645751995E-002 -1.797022254866192E-002 -2.265258980338714E-003
+ -1.514677857709728E-003 -1.514533695513643E-003 -2.803880548036245E-004
+ -2.802006234816402E-004  2.121228257572623E-003  2.123289352434208E-003
+  3.909830959254841E-003  3.910092583874087E-003  4.188171822149795E-003
+  4.790173932508853E-003  4.800759037094812E-003  6.446820631675869E-003
+  6.449603286721082E-003  7.363696481890417E-003  7.402027181682340E-003
+  9.358918121976336E-003  9.489758082748037E-003  1.016052427825290E-002
+  1.071550133198676E-002  1.100328716134742E-002  1.101606807834905E-002
+  1.538840711557226E-002  1.543398859299038E-002  1.642140043654344E-002
+  1.642231231401544E-002  1.646312241455932E-002  1.650317678731163E-002
+  1.650352761824734E-002  1.940208614254468E-002  1.943923397235939E-002
+  1.944180727118594E-002  1.955616224894173E-002  2.531986320876399E-002
+  2.533315649782755E-002  3.246851675013856E-002  3.251735539011840E-002
+  4.217804528670949E-002  4.217895382842948E-002  4.374956633695579E-002
+  4.375238789784437E-002  5.563241964979501E-002  5.564726439421875E-002
+  6.011995400947237E-002  6.012791979114249E-002  0.104552966047925     
+  0.104556335678990       0.106211778108466       0.106214315543394     
+  0.237309387258443       0.237311441652726       0.313629247269691     
+  0.476030286395911     
+ eigenphase sum=  0.680000000000000        16.9174049009036     
+ No perturbative treatment
+ cross sections
+ cross section xform=   55.2599263493566       0.680000000000000     
+ cross section=   55.2596365852433       0.680000000000000     
+ end subroutine kmatrix
+ end loop for energy   0.680000000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          49
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43326129
+ Number of factorization MFLOPS =        77869
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.694166666666666     
+ -0.354577518482183      -0.248384719923657      -0.248283228373697     
+ -0.194647239115123      -0.194459002736972      -0.103672909283956     
+ -0.103534907131436      -2.691405945677347E-002 -2.191846458381409E-002
+ -2.169492107731056E-003 -1.414161488361848E-003 -1.414024491341249E-003
+ -1.741350887027844E-004 -1.739444072291966E-004  2.244556112512697E-003
+  2.246639524752576E-003  3.981419143602897E-003  3.981624373659037E-003
+  4.945527583294074E-003  4.956232403446492E-003  5.172226122188894E-003
+  5.172473631931044E-003  5.563487762836239E-003  7.558457590669458E-003
+  7.597236088495788E-003  7.840575697224980E-003  7.842988832595101E-003
+  9.588561393498016E-003  9.720957410676235E-003  1.041134008930776E-002
+  1.097294871878957E-002  1.172951791729223E-002  1.174192015605253E-002
+  1.595070426542905E-002  1.599585547352408E-002  1.694656431335093E-002
+  1.694746263147537E-002  1.697295082400919E-002  1.697331569615675E-002
+  1.710300687269556E-002  1.984367363182713E-002  1.984625204288588E-002
+  1.986423497706332E-002  2.001887752199063E-002  2.575852885811823E-002
+  2.577182680434158E-002  3.296166347363699E-002  3.301052936836645E-002
+  4.328505274745920E-002  4.328601588690281E-002  4.451256050505432E-002
+  4.451539659689478E-002  5.649378899452742E-002  5.650872163677292E-002
+  6.274647269498582E-002  6.275476338459068E-002  0.105465137736301     
+  0.105468513693985       0.107727213603815       0.107729864355059     
+  0.237770019148342       0.237772081613510       0.315591722820940     
+  0.471822439933060     
+ eigenphase sum=  0.694166666666666        15.0489460959889     
+ No perturbative treatment
+ cross sections
+ cross section xform=   54.4242369060370       0.694166666666666     
+ cross section=   54.4238792053032       0.694166666666666     
+ end subroutine kmatrix
+ end loop for energy   0.694166666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          50
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43562570
+ Number of factorization MFLOPS =        80546
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.708333333333333     
+ -0.362016604107845      -0.252446837850416      -0.252345235230040     
+ -0.198366620911610      -0.198177255551553      -0.106187047361916     
+ -0.106048141146584      -2.806884246291756E-002 -2.553837082172949E-002
+ -2.066661014801010E-003 -1.311536288616867E-003 -1.311407965436822E-003
+ -6.535052218365649E-005 -6.515623685267851E-005  2.371488522463816E-003
+  2.373596376395022E-003  4.408053083886357E-003  4.408258706842953E-003
+  5.104906457171978E-003  5.115741825411876E-003  5.532512468449225E-003
+  5.532766157863006E-003  5.875267871130443E-003  7.758010117220729E-003
+  7.797274975059830E-003  8.185202986852646E-003  8.187628633019759E-003
+  9.823372307493297E-003  9.957453251171478E-003  1.066689253001929E-002
+  1.123567259287348E-002  1.207000958615220E-002  1.208248517639857E-002
+  1.631449382759623E-002  1.635994393643253E-002  1.743986710995982E-002
+  1.744024690296584E-002  1.747394580506600E-002  1.747481891377602E-002
+  1.777844962501299E-002  2.024212105890751E-002  2.024470499794257E-002
+  2.025545948014277E-002  2.041119906100166E-002  2.619291760420109E-002
+  2.620622256408810E-002  3.345294687136596E-002  3.350185234604331E-002
+  4.437495675491412E-002  4.437597672266120E-002  4.525181423476418E-002
+  4.525466892086146E-002  5.734295198550064E-002  5.735797427837357E-002
+  6.522517575508321E-002  6.523383748618893E-002  0.106320206873026     
+  0.106323587864637       0.109180195735567       0.109182960584717     
+  0.238177919902412       0.238179988918887       0.317111747863957     
+  0.467711081343062     
+ eigenphase sum=  0.708333333333333        15.0418657614825     
+ No perturbative treatment
+ cross sections
+ cross section xform=   54.2758742238753       0.708333333333333     
+ cross section=   54.2755029143374       0.708333333333333     
+ end subroutine kmatrix
+ end loop for energy   0.708333333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          51
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43690186
+ Number of factorization MFLOPS =        79935
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.722500000000000     
+ -0.369386850001838      -0.256444790983479      -0.256343077908775     
+ -0.202027643452631      -0.201837153004049      -0.108724542992516     
+ -0.108584821641829      -3.111104910177238E-002 -2.743268171834054E-002
+ -1.957804828716288E-003 -1.205506980387474E-003 -1.205386780657777E-003
+  4.687564069287132E-005  4.707385909452914E-005  2.502720243382821E-003
+  2.504854147957519E-003  4.713852876044918E-003  4.714060696684974E-003
+  5.268315602141255E-003  5.279289427389433E-003  5.817542787032795E-003
+  5.817803218523068E-003  6.109423430577124E-003  7.961809184812757E-003
+  8.001587798696429E-003  8.460263395799658E-003  8.462704306333254E-003
+  1.006230084959602E-002  1.019815617013896E-002  1.092602015265411E-002
+  1.150234197118313E-002  1.236549885958800E-002  1.237804707456622E-002
+  1.664782258676234E-002  1.669354006578954E-002  1.790396564025519E-002
+  1.790436108062324E-002  1.800262840736238E-002  1.800347813574415E-002
+  1.848693753028132E-002  2.062633944815325E-002  2.063525478795075E-002
+  2.063784514686124E-002  2.078299537206194E-002  2.662454814160729E-002
+  2.663786508824623E-002  3.394493892574547E-002  3.399390558303331E-002
+  4.545631684588429E-002  4.545739524311918E-002  4.597426848971436E-002
+  4.597714170582513E-002  5.817720066429271E-002  5.819231064887771E-002
+  6.774790920290313E-002  6.775695765453985E-002  0.107122176562807     
+  0.107125561705208       0.110573118808330       0.110575998548348     
+  0.238534330147909       0.238536404236639       0.318254663535385     
+  0.463691286031033     
+ eigenphase sum=  0.722500000000000        13.0335586982692     
+ No perturbative treatment
+ cross sections
+ cross section xform=   54.1120900175164       0.722500000000000     
+ cross section=   54.1117051833533       0.722500000000000     
+ end subroutine kmatrix
+ end loop for energy   0.722500000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          52
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     44284553
+ Number of factorization MFLOPS =        83583
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.736666666666667     
+ -0.376687790749080      -0.260382398666506      -0.260280575044430     
+ -0.205628847847428      -0.205437234893328      -0.111283409281929     
+ -0.111142950325818      -3.521428161708057E-002 -2.840686018492120E-002
+ -1.842448946871656E-003 -1.094198109616988E-003 -1.094085340808612E-003
+  1.637562963132177E-004  1.639587524200524E-004  2.639405297102529E-003
+  2.641566331828628E-003  4.990716614716194E-003  4.990928379955126E-003
+  5.436026151010725E-003  5.447143306794242E-003  6.079333657194758E-003
+  6.079601067141868E-003  6.324071401277570E-003  8.169545772158239E-003
+  8.209854010672519E-003  8.712380538024433E-003  8.714834575652655E-003
+  1.030437042818363E-002  1.044204854114708E-002  1.118751387515794E-002
+  1.177156997702674E-002  1.264241074680943E-002  1.265501812813881E-002
+  1.696496397196110E-002  1.701089463968634E-002  1.836539982423732E-002
+  1.836581154300335E-002  1.853189956439126E-002  1.853272847245720E-002
+  1.922773855761744E-002  2.098192993351708E-002  2.102374669895906E-002
+  2.102634475061560E-002  2.113930413568723E-002  2.705467107530416E-002
+  2.706800699042873E-002  3.443966194042863E-002  3.448871829683422E-002
+  4.652846760516226E-002  4.652960597607685E-002  4.667842307176945E-002
+  4.668131422015709E-002  5.899334580006558E-002  5.900853904368845E-002
+  7.031592829842133E-002  7.032537963066322E-002  0.107875135846753     
+  0.107878524651042       0.111908506448969       0.111911501875376     
+  0.238840351196014       0.238842428904913       0.319062707975558     
+  0.459758127764388     
+ eigenphase sum=  0.736666666666667        13.0246310815451     
+ No perturbative treatment
+ cross sections
+ cross section xform=   53.9355334088819       0.736666666666667     
+ cross section=   53.9351352113787       0.736666666666667     
+ end subroutine kmatrix
+ end loop for energy   0.736666666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          53
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43432237
+ Number of factorization MFLOPS =        78986
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.750833333333333     
+ -0.383919300079233      -0.264263183372807      -0.264161248220204     
+ -0.209169670081644      -0.208976936598631      -0.113861803698616     
+ -0.113720675607713      -3.952911458766392E-002 -2.929714726132856E-002
+ -1.718652657626158E-003 -9.742309523033146E-004 -9.741248126183374E-004
+  2.873806036273301E-004  2.875875836132934E-004  2.784056796188879E-003
+  2.786245592647430E-003  5.257058367058131E-003  5.257275808095363E-003
+  5.609145271946859E-003  5.620407843068758E-003  6.330301191845186E-003
+  6.330575794902172E-003  6.533370588079328E-003  8.381709481884388E-003
+  8.422552638461586E-003  8.952241138963805E-003  8.954705639664464E-003
+  1.054901583307810E-002  1.068852589553512E-002  1.145028863654513E-002
+  1.204209659683860E-002  1.290754303956320E-002  1.292019517285281E-002
+  1.727002384136900E-002  1.731611429268790E-002  1.882442056481683E-002
+  1.882484919310117E-002  1.906128639523038E-002  1.906209693804034E-002
+  2.000142625098101E-002  2.132428322888483E-002  2.140824359796817E-002
+  2.141085086361886E-002  2.148219161777446E-002  2.748422348877428E-002
+  2.749758671518910E-002  3.493852963500529E-002  3.498770863230158E-002
+  4.736258813372059E-002  4.736549619386382E-002  4.759032089600684E-002
+  4.759152076516875E-002  5.978851438612208E-002  5.980378439412121E-002
+  7.293008614284413E-002  7.293995704479037E-002  0.108583056328362     
+  0.108586448660895       0.113188895588578       0.113192007486901     
+  0.239097194322080       0.239099274237399       0.319572655019981     
+  0.455906714228743     
+ eigenphase sum=  0.750833333333333        13.0152785406694     
+ No perturbative treatment
+ cross sections
+ cross section xform=   53.7481481025997       0.750833333333333     
+ cross section=   53.7477365462287       0.750833333333333     
+ end subroutine kmatrix
+ end loop for energy   0.750833333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          54
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43733469
+ Number of factorization MFLOPS =        81594
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.765000000000000     
+ -0.391081485769693      -0.268090288645197      -0.267988239959823     
+ -0.212649941483049      -0.212456089196590      -0.116458034648589     
+ -0.116316298249112      -4.393489610114694E-002 -3.021343997749704E-002
+ -1.581574168924667E-003 -8.377049063531696E-004 -8.376044472460858E-004
+  4.224313931983449E-004  4.226431894035567E-004  2.943578884409159E-003
+  2.945796015588722E-003  5.518917479363713E-003  5.519142276005179E-003
+  5.791381131544095E-003  5.802789589292272E-003  6.574875758225226E-003
+  6.575157787834895E-003  6.742411420183407E-003  8.601404960274662E-003
+  8.642782302248544E-003  9.183675750437404E-003  9.186148175256236E-003
+  1.079706541905853E-002  1.093838640889199E-002  1.171379384433533E-002
+  1.231321597805283E-002  1.316371488790496E-002  1.317639855537403E-002
+  1.756516241917910E-002  1.761136507016971E-002  1.928141326442188E-002
+  1.928185940771411E-002  1.959067053938541E-002  1.959146489145999E-002
+  2.080964407315499E-002  2.165510170824215E-002  2.178943589789655E-002
+  2.179205404201708E-002  2.181338416546411E-002  2.791382310364304E-002
+  2.792722270142298E-002  3.544233101372181E-002  3.549166755329367E-002
+  4.802523934861302E-002  4.802816296445250E-002  4.864079393568329E-002
+  4.864205682714640E-002  6.056031259503911E-002  6.057565128821828E-002
+  7.559113482773701E-002  7.560144243189583E-002  0.109249623204945     
+  0.109253019230291       0.114416738316307       0.114419967446527     
+  0.239306315272652       0.239308396031921       0.319817176609352     
+  0.452132227216350     
+ eigenphase sum=  0.765000000000000        13.0056549710520     
+ No perturbative treatment
+ cross sections
+ cross section xform=   53.5515976453086       0.765000000000000     
+ cross section=   53.5511727583837       0.765000000000000     
+ end subroutine kmatrix
+ end loop for energy   0.765000000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          55
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43158928
+ Number of factorization MFLOPS =        78717
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.779166666666667     
+ -0.398174616905625      -0.271866420274793      -0.271764254963935     
+ -0.216069804416907      -0.215874835022759      -0.119070552226982     
+ -0.118928261804010      -4.840068677147995E-002 -3.117719161554616E-002
+ -1.417037110521714E-003 -6.582093496408368E-004 -6.581133569096558E-004
+  5.830844540703158E-004  5.833014705982263E-004  3.144484928267798E-003
+  3.146733261814591E-003  5.778726858284144E-003  5.778960600736917E-003
+  5.996970332093147E-003  6.008529611086891E-003  6.815012131785621E-003
+  6.815301850844294E-003  6.953244764274940E-003  8.843621437304269E-003
+  8.885553351537722E-003  9.408489045178150E-003  9.410967191190365E-003
+  1.105549246933265E-002  1.119862203933697E-002  1.197985705247354E-002
+  1.258668989767934E-002  1.341258091700665E-002  1.342528491118938E-002
+  1.785205984782181E-002  1.789833515279069E-002  1.973717234043537E-002
+  1.973763656878628E-002  2.012084717763443E-002  2.012162717753332E-002
+  2.165511963512912E-002  2.197616107255880E-002  2.213468702949456E-002
+  2.216858584261708E-002  2.217121660116854E-002  2.834387126313503E-002
+  2.835731644637313E-002  3.595127311003139E-002  3.600080178433639E-002
+  4.866512251488076E-002  4.866806008960169E-002  4.967890578099091E-002
+  4.968023323533999E-002  6.130691773720841E-002  6.132231597637697E-002
+  7.829969879694540E-002  7.831046054590703E-002  0.109878105707720     
+  0.109881505819280       0.115594324689332       0.115597671768694     
+  0.239469498867955       0.239471579172353       0.319825524128371     
+  0.448429972707407     
+ eigenphase sum=  0.779166666666667        12.9960581333452     
+ No perturbative treatment
+ cross sections
+ cross section xform=   53.3474512351743       0.779166666666667     
+ cross section=   53.3470132906107       0.779166666666667     
+ end subroutine kmatrix
+ end loop for energy   0.779166666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          56
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43602809
+ Number of factorization MFLOPS =        79239
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.793333333333333     
+ -0.405199066139722      -0.275593786710673      -0.275491500602389     
+ -0.219429669944710      -0.219233585228744      -0.121697819722160     
+ -0.121555023944282      -5.291217943274598E-002 -3.219404273757277E-002
+ -1.158646724295148E-003 -2.476054277847989E-004 -2.475114612637608E-004
+  8.424158084856327E-004  8.426394800378741E-004  3.637875392919643E-003
+  3.640213854199168E-003  6.037511807887403E-003  6.037755967968968E-003
+  6.328113448843705E-003  6.339919753620715E-003  7.051692929956548E-003
+  7.051990634437280E-003  7.166559965008860E-003  9.276806342640605E-003
+  9.320077672967952E-003  9.627736870708845E-003  9.630218969396451E-003
+  1.140412930087729E-002  1.155023771185774E-002  1.227953041505714E-002
+  1.289561847331411E-002  1.365538426459521E-002  1.366809979796428E-002
+  1.813227461296363E-002  1.817859224645094E-002  2.019511226051779E-002
+  2.019559511523412E-002  2.065949001049709E-002  2.066025666929138E-002
+  2.228935570437516E-002  2.244802732881789E-002  2.254275495284943E-002
+  2.255524166045794E-002  2.255788832452092E-002  2.877566658120458E-002
+  2.878916720723755E-002  3.646547420399079E-002  3.651522935422610E-002
+  4.928130149933348E-002  4.928425129475832E-002  5.070381314053359E-002
+  5.070520672902537E-002  6.202712291156398E-002  6.204257103471458E-002
+  8.105621330802015E-002  8.106744679291519E-002  0.110471268895549     
+  0.110474673639523       0.116723728881496       0.116727194567459     
+  0.239588898323929       0.239590976949289       0.319624011190627     
+  0.444795455584562     
+ eigenphase sum=  0.793333333333333        12.9884483517623     
+ No perturbative treatment
+ cross sections
+ cross section xform=   53.1384992642535       0.793333333333333     
+ cross section=   53.1380481620663       0.793333333333333     
+ end subroutine kmatrix
+ end loop for energy   0.793333333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          57
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43836839
+ Number of factorization MFLOPS =        79624
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.807500000000000     
+ -0.412155263360140      -0.279274558529820      -0.279172145971780     
+ -0.222730177851769      -0.222532979649728      -0.124340348488232     
+ -0.124197090973287      -5.745986759853039E-002 -3.326517100486910E-002
+ -8.785230349331725E-003 -8.783263219365071E-003 -1.561850757956596E-003
+ -1.561766641890511E-003  2.608339245615999E-003  2.738484034367414E-003
+  2.740830189251070E-003  5.596422952537297E-003  5.608826567118274E-003
+  6.295629862487149E-003  6.295885954697557E-003  7.285452676653617E-003
+  7.285758696079456E-003  7.382349474947701E-003  8.904981209621302E-003
+  8.948197047929714E-003  9.842153371120965E-003  9.844638135626565E-003
+  1.132936539357131E-002  1.147641205692186E-002  1.241888271225740E-002
+  1.303984560123787E-002  1.389319388387251E-002  1.390591478117528E-002
+  1.840732290067828E-002  1.845366227559181E-002  2.035533179422755E-002
+  2.035586927212039E-002  2.112919516159840E-002  2.112995553407184E-002
+  2.259664866128152E-002  2.275540207334630E-002  2.288798774391537E-002
+  2.289065124985635E-002  2.358750300262243E-002  2.919235976405680E-002
+  2.920593002828916E-002  3.698089657330596E-002  3.703090273505354E-002
+  4.987317595492003E-002  4.987613618986249E-002  5.171482351853240E-002
+  5.171628485543195E-002  6.272034072615311E-002  6.273582906608505E-002
+  8.386086441279340E-002  8.387258720530270E-002  0.111031325362039     
+  0.111034735360115       0.117806509089940       0.117810093902793     
+  0.239667034395628       0.239669110201404       0.319236379878214     
+  0.441226380097228     
+ eigenphase sum=  0.807500000000000        13.9524330784369     
+ No perturbative treatment
+ cross sections
+ cross section xform=   52.9264889814707       0.807500000000000     
+ cross section=   52.9260269868387       0.807500000000000     
+ end subroutine kmatrix
+ end loop for energy   0.807500000000000     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          58
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43954374
+ Number of factorization MFLOPS =        81794
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.821666666666667     
+ -0.419043662170467      -0.282909278332114      -0.282806733427763     
+ -0.225972153061464      -0.225773843564768      -0.126993645394974     
+ -0.126849965896158      -6.203726080025323E-002 -3.439030576018675E-002
+ -1.534525443582444E-003 -7.652759679153551E-004 -7.651898002904710E-004
+  5.244650510772894E-004  5.246975338162878E-004  3.195286176008179E-003
+  3.197600963750106E-003  6.215567589697533E-003  6.227492125757341E-003
+  6.553075031580931E-003  6.553343841334544E-003  7.516591691667601E-003
+  7.516906388507818E-003  7.600003115178033E-003  9.248727487737002E-003
+  9.291921734741262E-003  1.005231241356762E-002  1.005479905165984E-002
+  1.164441971819461E-002  1.179190985486392E-002  1.269514550348872E-002
+  1.332051939808506E-002  1.412697729740765E-002  1.413970002792889E-002
+  1.867867067402013E-002  1.872502092537852E-002  2.106758584536975E-002
+  2.106810752487553E-002  2.167923471211667E-002  2.167998368660679E-002
+  2.289999532278301E-002  2.305880013328209E-002  2.326528559193560E-002
+  2.326796349445597E-002  2.442878570515890E-002  2.962613668146706E-002
+  2.963976643668147E-002  3.750094105216482E-002  3.755121974212686E-002
+  5.044047654645478E-002  5.044344548906859E-002  5.271139532496588E-002
+  5.271292607765297E-002  6.338657183554428E-002  6.340209119077587E-002
+  8.671354008795422E-002  8.672576951548447E-002  0.111559926970411     
+  0.111563342845709       0.118844979421908       0.118848683955474     
+  0.239706760839027       0.239708832774900       0.318684083010894     
+  0.437711940290011     
+ eigenphase sum=  0.821666666666667        12.9594518860808     
+ No perturbative treatment
+ cross sections
+ cross section xform=   52.6962314861638       0.821666666666667     
+ cross section=   52.6957539478986       0.821666666666667     
+ end subroutine kmatrix
+ end loop for energy   0.821666666666667     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          59
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43811951
+ Number of factorization MFLOPS =        80991
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.835833333333333     
+ -0.425864707778255      -0.286499385653344      -0.286396701063198     
+ -0.229156558755161      -0.228957139871604      -0.129659144143893     
+ -0.129515078487956      -6.663721076210032E-002 -3.556835098943476E-002
+ -1.227357272230091E-003 -5.487390517304424E-004 -5.486521786151497E-004
+  7.749564458786742E-004  7.751936840349821E-004  3.392593620464961E-003
+  3.394922624224445E-003  6.434935530023521E-003  6.446930688479387E-003
+  6.809625977461467E-003  6.809908737853677E-003  7.745273853054899E-003
+  7.745597619049185E-003  7.818895646365717E-003  9.471944493804677E-003
+  9.515439856475814E-003  1.025869086834284E-002  1.026117906895198E-002
+  1.188371723779546E-002  1.203228586914685E-002  1.294232429646114E-002
+  1.357247007497660E-002  1.435761345099590E-002  1.437033702974105E-002
+  1.894769724841679E-002  1.899405676529074E-002  2.151824617119246E-002
+  2.151878770557845E-002  2.220682512328620E-002  2.220756593438923E-002
+  2.320126387069505E-002  2.336012123765231E-002  2.362962110987660E-002
+  2.363231638570752E-002  2.546195859473674E-002  3.005233955161398E-002
+  3.006604153731044E-002  3.802136782118493E-002  3.807193588956870E-002
+  5.098324239352558E-002  5.098621844292533E-002  5.369312913640998E-002
+  5.369473103290191E-002  6.402634481932536E-002  6.404188685730423E-002
+  8.961379632590026E-002  8.962654936240839E-002  0.112058185634939     
+  0.112061607945375       0.119839707357367       0.119843531943534     
+  0.239711203586992       0.239713270696832       0.317986503753288     
+  0.434255690040746     
+ eigenphase sum=  0.835833333333333        12.9492615549423     
+ No perturbative treatment
+ cross sections
+ cross section xform=   52.4717041626623       0.835833333333333     
+ cross section=   52.4712136754568       0.835833333333333     
+ end subroutine kmatrix
+ end loop for energy   0.835833333333333     
+ max open channels total=          64 max num harmonics in grid         748
+ max_open channels           64
+ at energy point nE=          60
+ partition           1
+ closed-closed
+ partition           2
+ open-closed
+ partition           3
+ open-open
+ sparse_sparse subroutine
+ before pardiso
+ enter pardiso subroutine
+ Reordering completed ... 
+ Number of nonzeros in factors =     43643308
+ Number of factorization MFLOPS =        81304
+ 2          -2
+ Factorization completed ... 
+ Solve completed ... 
+ The solution of the system is 
+ sparse error           0
+ nClosed=       36652 p_Patch=       37400 max_index=         748
+ Rmatrix
+ Kmatrix
+ QD/phase shift modulo 1 at E=  0.850000000000000     
+ -0.432618823591214      -0.290045294556233      -0.289942462283121     
+ -0.232284447785078      -0.232083921396766      -0.132335524096669     
+ -0.132191104961681      -7.125417961753341E-002 -3.679814333542664E-002
+ -1.036876051623638E-003 -3.911968696954361E-004 -3.911082140410320E-004
+  9.385544849173575E-004  9.387972162605499E-004  3.550323244668956E-003
+  3.552667028092274E-003  6.613244695217823E-003  6.625315368643709E-003
+  7.064929162932443E-003  7.065226745115679E-003  7.971575612064137E-003
+  7.971908863301595E-003  8.038071538650850E-003  9.671836606135686E-003
+  9.715611508847198E-003  1.046169181906828E-002  1.046418171685405E-002
+  1.210651360105710E-002  1.225604581905617E-002  1.317991125529578E-002
+  1.381418353665956E-002  1.458588332551438E-002  1.459860910594468E-002
+  1.921565245235174E-002  1.926202803321928E-002  2.196280900626989E-002
+  2.196337081105815E-002  2.273160836720370E-002  2.273234255366505E-002
+  2.350216252444264E-002  2.366110197899971E-002  2.398803431111986E-002
+  2.399074767464381E-002  2.655125439036803E-002  3.047460909181060E-002
+  3.048838642429296E-002  3.854061703244534E-002  3.859148301570844E-002
+  5.150178493695641E-002  5.150476669109001E-002  5.465975288341366E-002
+  5.466142771742320E-002  6.464063448576358E-002  6.465619206380017E-002
+  9.256083965370333E-002  9.257413271080187E-002  0.112526725742026     
+  0.112530154923763       0.120791990782442       0.120795935688012     
+  0.239683681359950       0.239685742783271       0.317161128998396     
+  0.430851516315028     
+ eigenphase sum=  0.850000000000000        12.9382546148987     
+ No perturbative treatment
+ cross sections
+ cross section xform=   52.2439729535931       0.850000000000000     
+ cross section=   52.2434694240157       0.850000000000000     
+ end subroutine kmatrix
+ end loop for energy   0.850000000000000     
+ end FERM3D code

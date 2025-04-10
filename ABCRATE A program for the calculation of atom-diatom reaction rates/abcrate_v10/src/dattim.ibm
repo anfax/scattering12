@@ -1,0 +1,23 @@
+      SUBROUTINE DATTIM (CDATE)                                         TCA0197
+C
+C  Determine the date and time for IBM RS/6000 computers
+C
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+
+      CHARACTER*1  CDATE(80)
+      CHARACTER*26 STR
+
+        CALL FDATE_(STR)
+
+        DO 10 I=1,80
+   10     CDATE(I)=' '
+
+        DO 20 I=1,26
+          CDATE(I)=' '
+          IF ((STR(I:I) .NE. CHAR(10)) .AND. (STR(I:I) .NE. CHAR(13)))
+     &      CDATE(I)=STR(I:I)
+   20   CONTINUE
+
+      RETURN
+
+      END

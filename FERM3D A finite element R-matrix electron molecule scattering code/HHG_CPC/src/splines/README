@@ -1,0 +1,669 @@
+
+  ---------------------------------------------------------------------------
+
+
+   BSPLINE LIBRARY VERSION 2.2 (07/27/2000)
+
+    Copyright (C) 2000  Wolfgang Schadow
+
+
+    This library contains routines for B-spline interpolation in
+    one, two, and three dimensions. Part of the routines are based
+    on the book by Carl de Boor: A practical guide to Splines (Springer,
+    New-York 1978) and have the same calling sequence and names as
+    the corresponding routines from the IMSL library. For documen-
+    tation see the additional files. NOTE: The results in the demo
+    routines may vary slightly on different architectures.
+
+    There is a FORTRAN77 and a FORTRAN90 version of the library and
+    the demo files. All codes have been carefully tested on various
+    platforms (PC Linux, DEC alpha, Cray T90, Cray T3E) using differnt
+    f77 and f90 compilers. Only on some RedHat Linux systems the Absoft
+    f77 needs the special option '-s' to compile the f77 version of the
+    demo codes. All other compilers work fine. Please report any bugs
+    or problems to the author.
+
+    Wolfgang Schadow
+    TRIUMF
+    4004 Wesbrook Mall
+    Vancouver, B.C. V6T 2A3
+    Canada
+ 
+    email: schadow@triumf.ca  or  schadow@physik.uni-bonn.de
+ 
+    www  : http://www.triumf.ca/people/schadow
+ 
+ 
+  ---------------------------------------------------------------------------
+
+    Copyright (C) 2000  Wolfgang Schadow
+ 
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Library General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+ 
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Library General Public License for more details.
+ 
+    You should have received a copy of the GNU Library General Public
+    License along with this library; if not, write to the
+    Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+    Boston, MA  02111-1307, USA.
+
+  ---------------------------------------------------------------------------
+
+
+   The following routines are included:
+
+
+    dbsnak:  compute the `not-a-knot' spline knot sequence.
+
+
+   
+    dbsint:  compute the spline interpolant, returning the B-spline
+             coefficients.
+   
+    dbsval:  evaluate a spline, given its B-spline representation.
+
+    dbsder:  evaluate the derivative of a spline, given its B-spline
+             representation.
+   
+    dbs1gd:  evaluate the derivative of a spline on a grid, given
+             its B-spline representation.
+
+    
+
+    dbs2in:  compute a two-dimensional tensor-product spline
+             interpolant, returning the tensor-product B-spline
+             coefficients.
+ 
+    dbs2vl:  evaluate a two-dimensional tensor-product spline, 
+             given its tensor-product B-spline representation.
+
+    dbs2dr:  evaluate the derivative of a two-dimensional
+             tensor-product spline, given its tensor-product
+             B-spline representation.
+
+    dbs2gd:  evaluate the derivative of a two-dimensional
+             tensor-product spline, given its tensor-product
+             B-spline representation on a grid.
+
+
+
+    dbs3in:  compute a three-dimensional tensor-product spline
+             interpolant, returning the tensor-product B-spline
+             coefficients.
+ 
+    dbs3vl:  evaluate a three-dimensional tensor-product spline, 
+             given its tensor-product B-spline representation.
+
+    dbs3dr:  evaluate the derivative of a three-dimensional
+             tensor-product spline, given its tensor-product
+             B-spline representation.
+
+    dbs3gd:  evaluate the derivative of a three-dimensional
+             tensor-product spline, given its tensor-product
+             B-spline representation on a grid.
+
+
+   For the the detailed calling sequence see end of this file.
+
+
+  ---------------------------------------------------------------------------
+
+
+   bspline90_20.f90
+
+    This is the self-contained FORTRAN90 version of the library.
+    To use this library, compile it and the module bspline can be
+    used via 'use bspline' in FORTRAN90 code. The precision of the
+    library can be set in the module numeric at the beginning of the
+    file.
+
+
+  ---------------------------------------------------------------------------
+
+
+   bspline_20.f
+
+    This is the FORTRAN77 version of the library. It calls the function
+    dlamch from the BLASLIB to set the accuracy. A file containing 
+    this subroutine is provided. 
+
+    NOTE: the FORTRAN77 has some 'natural' restrictions. Since the
+    workspace for work arrays can not be allocated dynamically there
+    some maximum dimensions set in the library. They can simply be
+    increased in the source code.
+
+
+  ---------------------------------------------------------------------------
+
+
+   Demo codes: 
+
+    Edit the 'makefile' and specify your f77 and f90 compiler.
+    Then simply type 'make' and all demo codes are generated.
+
+
+  ---------------------------------------------------------------------------
+
+
+   Bug reports:
+
+    Wolfgang Schadow
+    TRIUMF / Theory Group
+    4004 Wesbrook Mall
+    Vancouver, B.C. V6T 2A3
+    Canada
+
+    email: schadow@triumf.ca  or  schadow@physik.uni-bonn.de
+
+
+  ---------------------------------------------------------------------------
+
+
+   Calling sequences:
+
+
+!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    subroutine dbsnak(nx,xvec,kxord,xknot)
+    
+!   
+!    Compute the `not-a-knot' spline knot sequence.
+!    (see de Boor p. 167)
+!   
+!     nx     - number of data points.  (input)
+!     xvec   - array of length ndata containing the location of the
+!              data points.  (input)
+!     kxord  - order of the spline.  (input)
+!     xknot  - array of length ndata+korder containing the knot
+!              sequence.  (output)
+!   
+    
+
+!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    subroutine dbsint(nx,xvec,xdata,kx,xknot,bcoef)
+    
+!   
+!    Computes the spline interpolant, returning the B-spline coefficients.
+!    (see de Boor p. 204)
+!   
+!     nx     - number of data points.  (input)
+!     xvec   - array of length nx containing the data point
+!              abscissas.  (input)
+!     xdata  - array of length ndata containing the data point
+!              ordinates.  (input)
+!     kx     - order of the spline.  (input)
+!              korder must be less than or equal to ndata.
+!     xknot  - array of length nx+kx containing the knot
+!              sequence.  (input)
+!              xknot must be nondecreasing.
+!     bscoef - array of length ndata containing the b-spline
+!              coefficients.  (output)
+!   
+
+    
+!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    function dbsval(x,kx,xknot,nx,bcoef)
+    
+!   
+!    Evaluates a spline, given its B-spline representation.
+!   
+!     x      - point at which the spline is to be evaluated.  (input)
+!     kx     - order of the spline.  (input)
+!     xknot  - array of length nx+kx containing the knot
+!              sequence.  (input)
+!              xknot must be nondecreasing.
+!     nx     - number of b-spline coefficients.  (input)
+!     bcoef  - array of length nx containing the b-spline
+!              coefficients.  (input)
+!     dbsval - value of the spline at x.  (output)
+!   
+    
+
+!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    
+    function dbsder(iderx,x,kx,xknot,nx,bcoef)
+    
+!   
+!    Evaluates the derivative of a spline, given its B-spline representation.
+!   
+!   
+!     iderx  - order of the derivative to be evaluated.  (input)
+!              in particular, iderx = 0 returns the value of the
+!              spline.
+!     x      - point at which the spline is to be evaluated.  (input)
+!     kx     - order of the spline.  (input)
+!     xknot  - array of length nx+kx containing the knot
+!              sequence.  (input)
+!              xknot must be nondecreasing.
+!     nx     - number of b-spline coefficients.  (input)
+!     bcoef  - array of length nx containing the b-spline
+!              coefficients.  (input)
+!     dbsder - value of the iderx-th derivative of the spline at x.
+!              (output)
+!   
+    
+
+!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    
+    subroutine dbs1gd(iderx,nxvec,xvec,kx,xknot,nx,bcoef,val)
+    
+!   
+!    Evaluates the derivative of a spline on a grid, given its B-spline
+!    representation.
+!   
+!     iderx  - order of the derivative to be evaluated.  (input)
+!              in particular, iderx = 0 returns the value of the
+!              spline.
+!     nxvec  - length of vector xvec.  (input)
+!     xvec   - array of length nxvec containing the points at which the
+!              spline is to be evaluated.  (input)
+!              xvec should be strictly increasing.
+!     kx     - order of the spline.  (input)
+!     xknot  - array of length nx+kx containing the knot
+!              sequence.  (input)
+!              xknot must be nondecreasing.
+!     nx     - number of b-spline coefficients.  (input)
+!     bcoef  - array of length nx containing the b-spline
+!              coefficients.  (input)
+!     val    - array of length nxvec containing the values of the
+!              iderx-th derivative of the spline at the points in
+!              xvec.  (output)
+!   
+    
+
+!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    
+    function dbsdca(iderx,x,kx,xknot,nx,bcoef,leftx)
+    
+!   
+!   This routine is equivalent to the routine dbsder, but it does not
+!   check the parameters!!!
+!   
+!   Evaluates the derivative of a spline, given its B-spline representation.
+!   
+!   
+!     iderx  - order of the derivative to be evaluated.  (input)
+!              in particular, iderx = 0 returns the value of the
+!              spline.
+!     x      - point at which the spline is to be evaluated.  (input)
+!     kx     - order of the spline.  (input)
+!     xknot  - array of length nx+kx containing the knot
+!              sequence.  (input)
+!              xknot must be nondecreasing.
+!     nx     - number of b-spline coefficients.  (input)
+!     bcoef  - array of length nx containing the b-spline
+!              coefficients.  (input)
+!     leftx  - number of the intervall of xknot that includes x
+!     dbsdca - value of the ideriv-th derivative of the spline at x.
+!              (output)
+!   
+    
+
+!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    
+    subroutine dbs2in(nx,xvec,ny,yvec,xydata,ldf,kx,ky,xknot,yknot,bcoef)
+    
+!   
+!    Computes a two-dimensional tensor-product spline interpolant,
+!    returning the tensor-product B-spline coefficients.
+!   
+!      nx     - number of data points in the x-direction.  (input)
+!      xvec   - array of length nx containing the data points in
+!               the x-direction.  (input)
+!               xdata must be strictly increasing.
+!      ny     - number of data points in the y-direction.  (input)
+!      yvec   - array of length ny containing the data points in
+!               the y-direction.  (input)
+!               ydata must be strictly increasing.
+!      xydata - array of size nx by nydata containing the values to
+!               be interpolated.  (input)
+!               fdata(i,j) is the value at (xdata(i),ydata(j)).
+!      ldf    - the leading dimension of fdata exactly as specified in
+!               the dimension statement of the calling program.
+!               (input)
+!      kx     - order of the spline in the x-direction.  (input)
+!               kxord must be less than or equal to nxdata.
+!      ky     - order of the spline in the y-direction.  (input)
+!               kyord must be less than or equal to nydata.
+!      xknot  - array of length nx+kx containing the knot
+!               sequence in the x-direction.  (input)
+!               xknot must be nondecreasing.
+!      yknot  - array of length ny+ky containing the knot
+!               sequence in the y-direction.  (input)
+!               yknot must be nondecreasing.
+!      bcoef  - array of length nx*ny containing the
+!               tensor-product b-spline coefficients.  (output)
+!               bscoef is treated internally as a matrix of size nxdata
+!               by nydata.
+!   
+    
+
+!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    
+    function dbs2vl(x,y,kx,ky,xknot,yknot,nx,ny,bcoef)
+    
+!   
+!    evaluates a two-dimensional tensor-product spline, given its
+!    tensor-product b-spline representation.    use numeric
+!   
+!     x      - x-coordinate of the point at which the spline is to be
+!              evaluated.  (input)
+!     y      - y-coordinate of the point at which the spline is to be
+!              evaluated.  (input)
+!     kx     - order of the spline in the x-direction.  (input)
+!     ky     - order of the spline in the y-direction.  (input)
+!     xknot  - array of length nx+kx containing the knot
+!              sequence in the x-direction.  (input)
+!              xknot must be nondecreasing.
+!     yknot  - array of length ny+ky containing the knot
+!              sequence in the y-direction.  (input)
+!              yknot must be nondecreasing.
+!     nx     - number of b-spline coefficients in the x-direction.
+!              (input)
+!     ny     - number of b-spline coefficients in the y-direction.
+!              (input)
+!     bcoef  - array of length nx*ny containing the
+!              tensor-product b-spline coefficients.  (input)
+!              bscoef is treated internally as a matrix of size nx
+!              by ny.
+!     dbs2vl - value of the spline at (x,y).  (output)
+!   
+    
+
+!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    
+    function dbs2dr(iderx,idery,x,y,kx,ky,xknot,yknot,nx,ny,bcoef)
+    
+!   
+!    Evaluates the derivative of a two-dimensional tensor-product spline,
+!    given its tensor-product B-spline representation.
+!   
+!     iderx  - order of the derivative in the x-direction.  (input)
+!     idery  - order of the derivative in the y-direction.  (input)
+!     x      - x-coordinate of the point at which the spline is to be
+!              evaluated.  (input)
+!     y      - y-coordinate of the point at which the spline is to be
+!              evaluated.  (input)
+!     kx     - order of the spline in the x-direction.  (input)
+!     ky     - order of the spline in the y-direction.  (input)
+!     xknot  - array of length nx+kx containing the knot
+!              sequence in the x-direction.  (input)
+!              xknot must be nondecreasing.
+!     yknot  - array of length ny+ky containing the knot
+!              sequence in the y-direction.  (input)
+!              yknot must be nondecreasing.
+!     nx     - number of b-spline coefficients in the x-direction.
+!              (input)
+!     ny     - number of b-spline coefficients in the y-direction.
+!              (input)
+!     bcoef  - array of length nx*ny containing the
+!              tensor-product b-spline coefficients.  (input)
+!              bscoef is treated internally as a matrix of size nx
+!              by ny.
+!     dbs2dr  - value of the (iderx,idery) derivative of the spline at
+!              (x,y).  (output)
+!   
+    
+!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    
+    subroutine dbs2gd(iderx,idery,nxvec,xvec,nyvec,yvec,kx,ky,xknot,yknot, &
+         & nx,ny,bcoef,val,ldf)
+    
+!   
+!    Evaluates the derivative of a two-dimensional tensor-product spline,
+!    given its tensor-product B-spline representation on a grid.
+!   
+!     iderx   - order of the derivative in the x-direction.  (input)
+!     idery   - order of the derivative in the y-direction.  (input)
+!     nxvec   - number of grid points in the x-direction.  (input)
+!     xvec    - array of length nx containing the x-coordinates at
+!               which the spline is to be evaluated.  (input)
+!               the points in xvec should be strictly increasing.
+!     nyvec   - number of grid points in the y-direction.  (input)
+!     yvec    - array of length ny containing the y-coordinates at
+!               which the spline is to be evaluated.  (input)
+!               the points in yvec should be strictly increasing.
+!     kx      - order of the spline in the x-direction.  (input)
+!     ky      - order of the spline in the y-direction.  (input)
+!     xknot   - array of length nx+kx containing the knot
+!               sequence in the x-direction.  (input)
+!               xknot must be nondecreasing.
+!     yknot   - array of length ny+ky containing the knot
+!               sequence in the y-direction.  (input)
+!               yknot must be nondecreasing.
+!     nx      - number of b-spline coefficients in the x-direction.
+!               (input)
+!     ny      - number of b-spline coefficients in the y-direction.
+!               (input)
+!     bcoef   - array of length nx*ny containing the
+!               tensor-product b-spline coefficients.  (input)
+!               bscoef is treated internally as a matrix of size nx
+!               by ny.
+!     val     - value of the (iderx,idery) derivative of the spline on
+!               the nx by ny grid.  (output)
+!               value(i,j) contains the derivative of the spline at the
+!               point (xvec(i),yvec(j)).
+!     ldf     - leading dimension of value exactly as specified in the
+!               dimension statement of the calling program.  (input)
+!   
+    
+    
+!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    subroutine dbs3in(nx,xvec,ny,yvec,nz,zvec,xyzdata,ldf,mdf,kx,ky,kz,    &
+         & xknot,yknot,zknot,bcoef)
+    
+!   
+!    Computes a three-dimensional tensor-product spline interpolant,
+!    returning the tensor-product B-spline coefficients.
+!   
+!     nx      - number of data points in the x-direction.  (input)
+!     xvec    - array of length nxdata containing the data points in
+!               the x-direction.  (input)
+!               xdata must be increasing.
+!     ny      - number of data points in the y-direction.  (input)
+!     yvec    - array of length nydata containing the data points in
+!               the y-direction.  (input)
+!               ydata must be increasing.
+!     nz      - number of data points in the z-direction.  (input)
+!     zvec    - array of length nzdata containing the data points in
+!               the z-direction.  (input)
+!               zdata must be increasing.
+!     xyzdata - array of size nx by ny by nz containing the
+!               values to be interpolated.  (input)
+!               xyzdata(i,j,k) contains the value at
+!               (xvec(i),yvec(j),zvec(k)).
+!     ldf     - leading dimension of fdata exactly as specified in the
+!               dimension statement of the calling program.  (input)
+!     mdf     - middle dimension of fdata exactly as specified in the
+!               dimension statement of the calling program.  (input)
+!     kx      - order of the spline in the x-direction.  (input)
+!               kxord must be less than or equal to nxdata.
+!     ky      - order of the spline in the y-direction.  (input)
+!               kyord must be less than or equal to nydata.
+!     kz      - order of the spline in the z-direction.  (input)
+!               kzord must be less than or equal to nzdata.
+!     xknot   - array of length nx+kx containing the knot
+!               sequence in the x-direction.  (input)
+!               xknot must be nondecreasing.
+!     yknot   - array of length ny+ky containing the knot
+!               sequence in the y-direction.  (input)
+!               yknot must be nondecreasing.
+!     zknot   - array of length nz+kz containing the knot
+!               sequence in the z-direction.  (input)
+!               zknot must be nondecreasing.
+!     bcoef   - array of length nx*ny*nz containing the
+!               tensor-product b-spline coefficients.  (output)
+!               bscoef is treated internally as a matrix of size nx
+!               by ny by nz.
+!   
+    
+
+!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    
+    function dbs3vl(x,y,z,kx,ky,kz,xknot,yknot,zknot,nx,ny,nz,bcoef)
+    
+!   
+!    Evaluates a three-dimensional tensor-product spline, given its
+!    tensor-product B-spline representation.
+!   
+!     x      - x-coordinate of the point at which the spline is to be
+!              evaluated.  (input)
+!     y      - y-coordinate of the point at which the spline is to be
+!              evaluated.  (input)
+!     z      - z-coordinate of the point at which the spline is to be
+!              evaluated.  (input)
+!     kx     - order of the spline in the x-direction.  (input)
+!     ky     - order of the spline in the y-direction.  (input)
+!     kz     - order of the spline in the z-direction.  (input)
+!     xknot  - array of length nx+kx containing the knot
+!              sequence in the x-direction.  (input)
+!              xknot must be nondecreasing.
+!     yknot  - array of length ny+ky containing the knot
+!              sequence in the y-direction.  (input)
+!              yknot must be nondecreasing.
+!     zknot  - array of length nz+kz containing the knot
+!              sequence in the z-direction.  (input)
+!              zknot must be nondecreasing.
+!     nx     - number of b-spline coefficients in the x-direction.
+!              (input)
+!     ny     - number of b-spline coefficients in the y-direction.
+!              (input)
+!     nz     - number of b-spline coefficients in the z-direction.
+!              (input)
+!     bcoef  - array of length nx*ny*nz containing the
+!              tensor-product b-spline coefficients.  (input)
+!              bscoef is treated internally as a matrix of size nx
+!              by ny by nz.
+!     dbs3vl - value of the spline at (x,y,z).  (output)
+!   
+    
+    
+!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    function dbs3dr(iderx,idery,iderz,x,y,z,kx,ky,kz,xknot,yknot,zknot,    &
+         & nx,ny,nz,bcoef)
+    
+!   
+!    Evaluates the derivative of a three-dimensional tensor-product spline,
+!    given its tensor-product B-spline representation.
+!   
+!     iderx  - order of the x-derivative.  (input)
+!     idery  - order of the y-derivative.  (input)
+!     iderz  - order of the z-derivative.  (input)
+!     x      - x-coordinate of the point at which the spline is to be
+!              evaluated.  (input)
+!     y      - y-coordinate of the point at which the spline is to be
+!              evaluated.  (input)
+!     z      - z-coordinate of the point at which the spline is to be
+!              evaluated.  (input)
+!     kx     - order of the spline in the x-direction.  (input)
+!     ky     - order of the spline in the y-direction.  (input)
+!     kz     - order of the spline in the z-direction.  (input)
+!     xknot  - array of length nx+kx containing the knot
+!              sequence in the x-direction.  (input)
+!              xknot must be nondecreasing.
+!     yknot  - array of length ny+ky containing the knot
+!              sequence in the y-direction.  (input)
+!              yknot must be nondecreasing.
+!     zknot  - array of length nz+kz containing the knot
+!              sequence in the z-direction.  (input)
+!              zknot must be nondecreasing.
+!     nx     - number of b-spline coefficients in the x-direction.
+!              (input)
+!     ny     - number of b-spline coefficients in the y-direction.
+!              (input)
+!     nz     - number of b-spline coefficients in the z-direction.
+!              (input)
+!     bcoef  - array of length nx*ny*nz containing the
+!              tensor-product b-spline coefficients.  (input)
+!              bscoef is treated internally as a matrix of size nx
+!              by ny by nz.
+!     dbs3dr - value of the (iderx,idery,iderz) derivative of the
+!              spline at (x,y,z).  (output)
+!   
+    
+
+!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    
+    subroutine dbs3gd(iderx,idery,iderz,nxvec,xvec,nyvec,yvec,nzvec,zvec,  &
+         & kx,ky,kz,xknot,yknot,zknot,nx,ny,nz,bcoef,val,ldf,mdf)
+    
+!   
+!    Evaluates the derivative of a three-dimensional tensor-product spline,
+!    given its tensor-product b-spline representation on a grid.
+!   
+!     iderx  - order of the x-derivative.  (input)
+!     idery  - order of the y-derivative.  (input)
+!     iderz  - order of the z-derivative.  (input)
+!     nx     - number of grid points in the x-direction.  (input)
+!     xvec   - array of length nx containing the x-coordinates at
+!              which the spline is to be evaluated.  (input)
+!              the points in xvec should be strictly increasing.
+!     ny     - number of grid points in the y-direction.  (input)
+!     yvec   - array of length ny containing the y-coordinates at
+!              which the spline is to be evaluated.  (input)
+!              the points in yvec should be strictly increasing.
+!     nz     - number of grid points in the z-direction.  (input)
+!     zvec   - array of length nz containing the z-coordinates at
+!              which the spline is to be evaluated.  (input)
+!              the points in yvec should be strictly increasing.
+!     kx     - order of the spline in the x-direction.  (input)
+!     ky     - order of the spline in the y-direction.  (input)
+!     kz     - order of the spline in the z-direction.  (input)
+!     xknot  - array of length nx+kx containing the knot
+!              sequence in the x-direction.  (input)
+!              xknot must be nondecreasing.
+!     yknot  - array of length ny+ky containing the knot
+!              sequence in the y-direction.  (input)
+!              yknot must be nondecreasing.
+!     zknot  - array of length nz+kz containing the knot
+!              sequence in the z-direction.  (input)
+!              zknot must be nondecreasing.
+!     nx     - number of b-spline coefficients in the x-direction.
+!              (input)
+!     ny     - number of b-spline coefficients in the y-direction.
+!              (input)
+!     nz     - number of b-spline coefficients in the z-direction.
+!              (input)
+!     bcoef  - array of length nx*ny*nz containing the
+!              tensor-product b-spline coefficients.  (input)
+!              bscoef is treated internally as a matrix of size nx
+!              by ny by nz.
+!     val    - array of size nx by ny by nz containing the values of
+!              the (iderx,idery,iderz) derivative of the spline on the
+!              nx by ny by nz grid.  (output)
+!              value(i,j,k) contains the derivative of the spline at
+!              the point (xvec(i), yvec(j), zvec(k)).
+!     ldf    - leading dimension of value exactly as specified in the
+!              dimension statement of the calling program.  (input)
+!     mdf    - middle dimension of value exactly as specified in the
+!              dimension statement of the calling program.  (input)
+!
+
+!  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+  ---------------------------------------------------------------------------

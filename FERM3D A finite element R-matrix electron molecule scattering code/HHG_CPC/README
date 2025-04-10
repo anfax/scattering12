@@ -1,0 +1,137 @@
+INSTRUCTIONS FOR INSTALLATION OF FERM3D:
+
+Three different installing scripts are provided: 
+a) one oriented to Intel compilers (file "install.adv.pl.Intel")
+(and Intel or AMD architectures, the code has been tested on Xeon 32-bit
+machines and Opteron 64-bit machines running Linux),
+with all the libraries (ARPACK, CERNLIB) installed (this script installs also the post-processing R_mat_post_proc.x), 
+b) the second for Tru64 (file "install.adv.pl.Tru64") (tested on a HP Alpha machine with the HP Fortran
+compiler) without those libraries.
+c) the third again for Tru64 (file "install.adv.pl.Tru64.SuperLU") (tested on a HP Alpha machine with the HP Fortran
+compiler) using SuperLU instead of Pardiso (good for commercial applications) without the optional libraries.
+
+
+====================================================================================================================
+
+LIBRARIES: 
+	LAPACK/BLAS have to be installed ALWAYS.
+	The PARDISO (or in alternative SuperLU) library needs to be installed ALWAYS, since without it the code
+		will not work on any platform.
+	ARPACK does not need to be installed all the time, see notes below,
+	CERNLIB (in particular its WCLBES routine) needs to be installed only
+		if post processing code is needed (again see notes below)
+	Libraries from Computer Physics Communications: ADDA is already
+		included in distribuion, ACDP is superseded by CERNLIB (that provides the same routine updated, 
+		since ADCP does not work on Intel compilers) and it is therefore not needed.
+
+====================================================================================================================
+
+If using the second script (for Tru64), to install CM.x one needs to "cd ../utils_dipole"
+and "make CM.x".
+
+In the following we will call <FERM3D-dir> the root directory of the package (the one with make/ src/ lib/ directories).
+
+The installing scripts are "install.adv.pl<system>" (<system> is either Intel
+or Tru64 depending on which system one wants to install the program on, see
+also notes above). The installing scripts generate all the files needed for
+compilation and installing.
+
+To install:
+
+1) Install all the required libraries
+2) cd to <FERM3D-dir>/make
+3) change the location of the compiler and libraries in "install.adv.pl<system>" (defined
+	at beginning of script)
+4) run the install.adv.pl<system> Perl script:
+	perl  install.adv.pl<system>
+	all the binaries will be in the <FERM3D-dir>/bin/ directory
+
+
+====================================================================================================================
+
+NOTES:
+	The PARDISO library must be installed ( see http://www.computational.unibas.ch/cs/scicomp/software/pardiso/ 
+		for download, installation and  information consult the
+		documentation if having problems with linking)
+	In alternative to Pardiso, SuperLU can be installed (see http://crd.lbl.gov/~xiaoye/SuperLU/ for downloads and details)
+		IMPORTANT: We have interfaced the code to version 2.0 of this library. If using newer versions, 
+		the file src/SuperLUCustom/dSLUsolve.c will have to be changed.
+ 	the variable $LAPACK is used for linking the Lapack/Blas libraries and the pardiso/superlu solver as well,
+		on an Intel machine it will look like: 
+		$LAPACK='-L<Path to mkl libs> -L/usr/lib64 -lguide -lmkl_solver -lmkl_lapack -lmkl_em64t -lpthread -Vaxlib'
+		and on a Tru64: 
+		$LAPACK='-L<Path to Pardiso> -lpardiso_TRU64 -lcxml'
+		or, if using SuperLU
+		$LAPACK='-L<Path to SuperLU> -lcxml'
+	the variable "PARDISOLIB" should point to the location of the pardiso library file:
+		PARDISOLIB='<Path to pardiso>/<name of library file>'
+		if using SuperLU, set PARDISOLIB='' 
+	if using SUPERLU, SUPERLU_SOURCE='Path to SuperLU source code', 
+		otherwise SUPERLU_SOURCE='' 
+	if ARPACK is not present: set $ARPACK='' 
+		Otherwise $ARPACK='<Path to ARPACK/Library name>' (or however it is linked on that specific system)
+	if CERNLIB does not exist: set $CERNLIB=''
+		otherwise $CERNLIB='<Path to CERNLIB/Library name>' (or however it is linked on that specific system)
+	set $THR to the number of processors (if shared memory machine), usually $THR=1
+
+	The post processing module is installed automatically by the Intel
+	script but not by the Tru64 script, to install it in that case, install
+	CERNLIB, then uncomment the last line of the Tru64 install script.
+
+
+====================================================================================================================
+
+RUNNING THE EXAMPLES:
+
+The examples are in the "examples" directory. Three are given: CO2 neutral
+(elastic scattering), CO2+ (photoionization) and benzene (elastic scattering).
+The input and output files are in the "examples" directory and are named as
+specified in the CPC article. 
+
+IMPORTANT: The grids have already generated, so running CM.x  can be skipped.
+
+1) Neutral system: 
+cd to <FERM3D-dir>/examples/neutral
+Generate the potential files from Gaussian: 
+	a) run the script "co2.potential.inp" using Gaussian 
+	OR
+	b) pick the potential files at:
+	http://fermion.colorado.edu/~tonzani/Software/rmatrix/Software.html ("files for CPC neutral calculation" link)
+Generate the grid:
+	run CM.x: <FERM3D-dir>/bin/CM.x 
+		mv fort.16 input_grid.dat
+Run the code:
+        <FERM3D-dir>/bin/FERM3D.x
+Run the post processing if needed
+        <FERM3D-dir>/bin/R_mat_post_proc.x
+
+2) ionic system:
+cd to <FERM3D-dir>/examples/ion
+Generate the potential files and initial molecular orbitals from Gaussian:
+        a) run the scripts "co2.potential.inp" and "co2.plus.MO.inp" using Gaussian
+        OR
+        b) pick the potential files at:
+        http://fermion.colorado.edu/~tonzani/Software/rmatrix/Software.html ("files for CPC ion calculation" link)
+Generate the grid:
+        run CM.x: <FERM3D-dir>/bin/CM.x
+		mv fort.16 input_grid.dat
+Run the code:
+        <FERM3D-dir>/bin/FERM3D.x
+Run the post processing if needed
+        <FERM3D-dir>/bin/R_mat_post_proc.x
+
+3) benzene:
+cd to <FERM3D-dir>/examples/benzene
+Generate the potential files and initial molecular orbitals from Gaussian:
+        a) run the scripts "benzene.cube.inp"  using Gaussian
+        OR
+        b) pick the potential files at:
+        http://fermion.colorado.edu/~tonzani/Software/rmatrix/Software.html ("files for benzene calculation" link)
+Generate the grid:
+        run CM.x: <FERM3D-dir>/bin/CM.x
+		mv fort.16 input_grid.dat
+Run the code:
+        <FERM3D-dir>/bin/FERM3D.x
+Run the post processing if needed
+        <FERM3D-dir>/bin/R_mat_post_proc.x
+

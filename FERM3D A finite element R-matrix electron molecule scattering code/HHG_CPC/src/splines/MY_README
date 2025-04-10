@@ -1,0 +1,5 @@
+modify dbs3ine90.f90, make it a subroutine, change xdata,ydata,zdata (points of
+the grid) and fdata (points to interpolate, are the midpoints of each sector)
+and that's it.
+
+library : blibsplines= ar cr bsplines.mod bspline90_22.o dbs3ine90.o

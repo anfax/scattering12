@@ -1,0 +1,379 @@
+
+program CM
+
+  ! Program to do gridding for FERM3D.x, on the basis of the position of the
+  ! atoms in the molecule.
+  ! Some fixed points are: R0= R-matrix radius, R_cutoff+0.5d0, theta=Pi, phi=2Pi
+  ! There are  an internal and external region with different radial grids
+
+  integer :: i,j,f,k,natom,n,signo,kk
+  integer,dimension(3) ::f_store 
+  real*8,dimension(:),allocatable :: x,y,z,charge,r,theta,phi,r_a,theta_a,phi_a,delta,phi_b,phi_c
+  real*8,dimension(:,:),allocatable :: cross_product
+  real*8 :: XCM,YCM,ZCM,M_tot,dummy,temp1,temp2,shiftx,shifty,shiftz,R_cutoff
+  real*8,parameter :: thresh_r=1.d-5,thresh_theta=1.d-5,thresh_phi=3.d-5,&
+       &Pi=3.141592653589793238462643383279502884197d0,&
+       &ang_to_au=.5291d0,&
+       &epsilon_custom=1.d-5
+  real*8 :: R0=12d0,delta_theta_max=0.0825d0,delta_phi_max=0.0625d0,&
+       &delta_r_max=0.125d0,delta_external_radius=.5d0
+  logical :: stat,rotation=.TRUE.
+  logical, parameter :: angstrom=.FALSE.,CentMass=.TRUE.
+
+  ! Read CM.dat information, grid data
+  open(unit=7,file='CM.dat')
+  read(7,*)R0
+  read(7,*)delta_theta_max
+  read(7,*)delta_phi_max
+  read(7,*)delta_r_max
+  read(7,*)delta_external_radius
+  close(7)
+  ! Read input_control.dat, input information
+  open(unit=7,file='input_control.dat')
+  do i=1,6
+     read(7,*)
+  end do
+  read(7,*)R_cutoff
+  read(7,*)
+  read(7,*)shiftz
+  do i=1,3
+     read(7,*)
+  end do
+  read(7,*)shifty
+  read(7,*)rotation
+  read(7,*)
+  read(7,*)shiftx
+  close(7)
+  write(6,*)'input data',R_cutoff,shiftz,shiftx,shifty
+
+  ! Read molecular data from pot.dat
+  open(unit=8,file='pot.dat')
+  do i=1,2
+     read(8,*)
+  end do
+  read(8,*)natom
+  write(6,*)natom
+  do i=1,3
+     read(8,*)
+  end do
+  allocate(x(natom),y(natom),z(natom),charge(natom))
+  allocate(r(0:natom+15),theta(0:natom+15),phi(0:natom+15))
+  allocate(r_a(0:natom+15),theta_a(0:natom+15),phi_a(0:natom+15))
+  allocate(delta(3))
+
+  do i=1,natom
+     read(8,*)temp1,charge(i),x(i),y(i),z(i)
+  end do
+  close(8)
+  M_tot=0.d0
+  XCM=0.d0;YCM=0.d0;ZCM=0.d0
+  do i=1,natom
+     M_tot=M_tot+charge(i)
+     XCM=XCM+x(i)*charge(i)
+     YCM=YCM+y(i)*charge(i)
+     ZCM=ZCM+z(i)*charge(i)
+  end do
+
+  XCM=XCM/M_tot
+  YCM=YCM/M_tot
+  ZCM=ZCM/M_tot
+
+  write(6,*)XCM,YCM,ZCM
+  !--------------------
+  ! Shift according to input_control.dat
+  XCM=shiftx
+  YCM=shifty
+  ZCM=shiftz
+  !--------------------
+  ! Center of mass translation
+
+  do i=1,natom
+     if (angstrom.and.CentMass) then
+        x(i)=(x(i)-XCM)/ang_to_au
+        y(i)=(y(i)-YCM)/ang_to_au
+        z(i)=(z(i)-ZCM)/ang_to_au
+     else if (CentMass) then
+        x(i)=(x(i)-XCM)
+        y(i)=(y(i)-YCM)
+        z(i)=(z(i)-ZCM)
+     else
+        x(i)=(x(i)-XCM)
+        y(i)=(y(i)-YCM)
+        z(i)=(z(i)-ZCM)
+        write(6,*)angstrom,CentMass
+     end if
+     !write(9,*)x(i),y(i),z(i)
+  end do
+  do i=1,natom
+     !---------------------
+     ! Pseudo rotation of the axes
+     if (rotation) then
+        temp2=y(i)
+        y(i)=z(i)
+        z(i)=temp2
+     end if
+     !----------------------
+  end do
+  ! Polar coordinates transformation
+  do i=1,natom
+
+     r(i)=sqrt(x(i)**2+y(i)**2+z(i)**2)
+     if (r(i).gt. 0.0d0+epsilon_custom) then
+        theta(i)=acos(z(i)/r(i))
+!        if ((abs(x(i)).gt.1.d-12)) then
+if ((theta(i).ge.epsilon_custom).and.(theta(i).le.Pi-epsilon_custom)) then
+           if (abs (x(i)/(r(i)*sin(theta(i)))).le.1.d0) then
+              phi(i)=acos(x(i)/(r(i)*sin(theta(i))))
+           else if ( (x(i)/(r(i)*sin(theta(i)))).lt.-1.d0) then
+              phi(i)=Pi
+           else if ( (x(i)/(r(i)*sin(theta(i)))).gt.1.d0) then
+              phi(i)=0.d0
+
+           end if
+           !     if (abs(x(i)).gt.1.d-12) then
+           !     phi(i)=atan(y(i)/x(i))
+           if (y(i).lt.0.d0) phi(i)=2.d0*Pi-phi(i)
+        else
+           if (y(i).gt.0.d0) then
+              phi(i)=Pi/2.d0
+           else if (y(i).lt.0.d0) then
+              phi(i)=3*Pi/2.d0 
+           else if (y(i).eq.0.d0) then
+              phi(i)=0.d0
+           end if
+        end if
+     else
+        theta(i)=0.d0
+        phi(i)=0.d0
+     end if
+     write(10,*)r(i),theta(i),phi(i)
+  end do
+
+  ! Choose points
+  r_a(0)=0.d0
+  theta_a(0)=0.d0
+  phi_a(0)=0.d0
+  r_a(1)=R_cutoff+0.5d0
+  r_a(2)=R0
+  stat=.TRUE.
+  f=1
+  do i=1,natom
+     if (stat) f=f+1
+     stat=.FALSE.
+     do j=0,f
+        stat=.FALSE.
+        if (abs((r(i)-r_a(j))).gt.thresh_r) then
+           stat=.TRUE.
+        else
+           stat=.FALSE.
+           exit
+        end if
+        if (j==f.and.STAT) then
+           r_a(f+1)=r(i)
+        end if
+     end do
+  end do
+  do i=1,f
+     write(11,*)r_a(i)
+  end do
+  f_store(1)=f+1
+  theta_a(1)=Pi
+  stat=.TRUE.
+  f=0
+  do i=1,natom
+     if (stat) f=f+1
+     stat=.FALSE.
+     do j=0,f
+        stat=.FALSE.
+        if (abs(theta(i)-theta_a(j)).gt.thresh_theta) then
+           stat=.TRUE.
+        else
+           stat=.FALSE.
+           exit
+        end if
+        if (j==f.and.STAT) then
+           theta_a(f+1)=theta(i)
+        end if
+     end do
+  end do
+  do i=0,f+1
+     write(12,*)theta_a(i)
+  end do
+  f_store(2)=f+1
+
+  phi_a(1)=2.d0*Pi
+  stat=.TRUE.
+  !  f=0
+  f=0
+  do i=1,natom
+     if (stat) f=f+1
+     stat=.FALSE.
+     do j=0,f
+        stat=.FALSE.
+        if ((abs((phi(i)-phi_a(j))).gt.thresh_phi)) then
+           stat=.TRUE.
+        else
+           stat=.FALSE.
+           exit
+        end if
+        if (j==f.and.STAT) then
+           phi_a(f+1)=phi(i)
+        end if
+     end do
+  end do
+  do i=1,f
+     write(13,*)'phi_a',phi_a(i)
+  end do
+  f_store(3)=f+1
+
+
+  !-------------------------------------------------
+  ! K-shell radius
+  allocate(phi_c(0:2*natom+f_store(2)))
+  allocate(phi_b(0:2*natom+f_store(2)))
+  do kk=1,3
+     if (kk.eq.1) then
+        f=f_store(2)-1
+        phi_b(0:f_store(2))=theta_a(0:f_store(2))
+        theta(:)=theta_a(:)
+     else if (kk.eq.2) then
+        f=f_store(3)-1
+        phi_b(0:f_store(3))=phi_a(0:f_store(3))
+        theta(:)=phi_a(:)
+     else if (kk.eq.3) then
+        f=f_store(1)-1
+        phi_b(0:f_store(1))=r_a(0:f_store(1))
+        theta(:)=r_a(:)
+        r(:)=1.d0
+     end if
+     do i=1,natom
+        if ((charge(i).gt.1).and.(r(i).gt.0.d0)) then  ! TEST
+           !plus
+           do k=1,2
+              if (k.eq.1) signo=1
+              if (k.eq.2) signo=-1
+              do j=0,f
+                 if ((kk.eq.3).and.(theta(i).gt.R_cutoff)) cycle
+                 if ((signo*r(i)*(theta(i)-phi_b(j)).lt.0.5d0)&
+                      &.and.(signo*r(i)*(theta(i)-phi_b(j)).gt.0.2d0) ) then
+                    exit
+                 else if ((j==f).and.(theta(i)-signo*0.2d0/r(i).lt.Pi*kk)) then
+                    phi_b(f+1)=theta(i)-signo*0.2d0/r(i)
+                    if (phi_b(f+1).le.0.d0) then
+                       phi_b(f+1)=0.d0
+                       stat=.FALSE.
+                       exit
+                    else
+                       stat=.TRUE.
+                    end if
+                 else
+                 end if
+              end do
+              if (stat) then
+                 f=f+1
+                 stat=.FALSE.
+              end if
+           end do
+        end if
+     end do
+     if (kk.lt.3) then
+     write(13,*)'phi_b',kk,phi_b(:)/Pi
+     else
+     write(13,*)'phi_b',kk,phi_b(:)
+     end if
+     if (kk.eq.1) then
+        f_store(2)=f+1
+        phi_c(:)=phi_b(:)
+     else if (kk.eq.2) then
+        f_store(3)=f+1
+        phi_a(:)=phi_b(:)
+     else if (kk.eq.3) then
+        f_store(1)=f+1
+        r_a(:)=phi_b(:)
+     end if
+     !-------------------------------------------------
+  end do
+  phi_b(:)=phi_c(:)
+
+
+
+
+  ! Ordering of coordinate vectors
+  call sort_shell(r_a,dummy,f_store(1))
+  call sort_shell(phi_b,dummy,f_store(2))
+  call sort_shell(phi_a,dummy,f_store(3))
+  f_store(1)=f_store(1)-1
+  f_store(2)=f_store(2)-1
+  f_store(3)=f_store(3)-1
+  write(13,*)'r_a',r_a(:)
+  write(13,*)'phi_a',phi_a(:)
+  write(13,*)'theta_a',phi_b(:)
+
+  ! Construct cross-product basis
+  f=f_store(1)*f_store(2)*f_store(3)
+  write(6,*)(f_store(i),i=1,3)
+  allocate(cross_product(f,6))
+  write(16,*)r_a(f_store(1))
+  write(16,*)f
+  do i=1,f_store(1)
+     do k=1,f_store(3)
+        do j=1,f_store(2)
+           f=(i-1)*f_store(2)*f_store(3)+(k-1)*f_store(2)+j
+           cross_product(f,1)=r_a(i-1)
+           cross_product(f,2)=r_a(i)
+           cross_product(f,3)=phi_a(k-1)/Pi
+           cross_product(f,4)=phi_a(k)/Pi
+           cross_product(f,5)=phi_b(j-1)/Pi
+           cross_product(f,6)=phi_b(j)/Pi
+           delta(1)=(cross_product(f,2)-cross_product(f,1))
+           delta(2)=(cross_product(f,4)-cross_product(f,3))
+           delta(3)=(cross_product(f,6)-cross_product(f,5))
+           if (delta(2).gt.delta_phi_max) delta(2)=delta_phi_max
+           if (delta(3).gt.delta_theta_max) delta(3)=delta_theta_max
+           if (delta(1).gt.delta_r_max) delta(1)=delta_r_max
+           ! External region:
+           if (cross_product(f,2).gt.(R0-epsilon_custom)) delta(1)=delta_external_radius
+           write(16,900)(cross_product(f,n),n=1,6),delta(1),delta(2),delta(3)
+        end do
+     end do
+  end do
+  write(6,*)f
+  deallocate(x,y,z,charge,r,theta,phi,phi_b,phi_c)
+  deallocate(cross_product,delta)
+900 format(9f13.8)
+end program CM
+
+
+subroutine sort_shell(eigen_vect,open_vect,n)
+  implicit none
+  integer n
+  real*8,dimension(n),INTENT(INOUT) :: eigen_vect
+  real*8,dimension(:),INTENT(INOUT) :: open_vect
+  integer :: i,j,inc,l,max
+  real*8 :: V
+  !n=size(eigen_vect)
+  inc=1
+  max=n
+  do
+     inc=3*inc+1
+     if (inc > n) exit
+  end do
+  do
+     inc=inc/3
+     do i=inc+1,n
+        v=eigen_vect(i)
+        j=i
+        do
+           if (eigen_vect(j-inc) <= v) exit
+           eigen_vect(j)=eigen_vect(j-inc)
+           j=j-inc
+           if(j <= inc) exit
+        end do
+        eigen_vect(j)=v
+     end do
+     if (inc <= 1) exit
+  end do
+  do j=1, max
+  end do
+end subroutine sort_shell
+

@@ -1,0 +1,28 @@
+C
+C***********************************************************************
+C  DATTIM
+C***********************************************************************
+C
+      SUBROUTINE DATTIM (CDATE)
+C
+C     Version for SGI
+C
+C     Determine the date and time and pass that information to the calling 
+C     program
+C
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+
+      CHARACTER*1  CDATE(80)
+      CHARACTER*24 MYDATE
+
+      DO 10 I = 1, 80
+   10   CDATE(I) = ' '
+
+      CALL FDATE(MYDATE)
+
+      DO 20 I=1,24
+   20   CDATE(I)=MYDATE(I:I)
+
+      RETURN
+
+      END

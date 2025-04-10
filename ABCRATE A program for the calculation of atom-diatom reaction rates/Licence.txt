@@ -1,0 +1,31 @@
+ABCRATE version 10.0 license 
+USER AGREEMENT
+ABCRATE is a licensed program and use of this program implies acceptance of the terms of the following license: 
+A license does not entitle the licensee to redistribute or relicense the source code or executable code, in original or modified form, to a party not covered by this license.  An individual user license covers the work of a single user and a group leader license covers the work of a single research group; in the latter case the code may be shared and disseminated within a group without requiring permission.  This is not a site license; site-license inquiries should be directed to the principal investigator (D.G.T.).  Exceptions to the license require written permission of the principal investigator. 
+The licensee has no ownership rights in the ABCRATE software or in any copyrights for the ABCRATE software or documentation through this license. 
+
+Publications resulting from using this package will cite the corresponding program. The recommended references are given in the documentation. 
+
+No guarantee is made that this program is bug-free or suitable for specific applications, and no liability is accepted for any limitations in the mathematical methods and algorithms used within the program. 
+
+No consulting or maintenance services are guaranteed or implied.
+
+  Type of user:  ___ individual user   ___ group leader
+  Name of user or group leader: _________________________________________ 
+
+  Affiliation: ________________________________________________________
+  Type of organization:  ___ academic   ___ government   ___ industrial or commercial
+                         ___ other; please explain:
+  Address:
+    Phone: 
+    Fax: 
+
+    E-mail address (please print clearly or type): 
+
+  I agree to the conditions in this license. 
+
+       Signature of user or group leader: ____________________________________________ 
+
+                                                    Date: ____________________________________________ 
+
+End of license.

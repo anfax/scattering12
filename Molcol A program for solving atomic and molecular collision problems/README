@@ -1,0 +1,14 @@
+The programs molcol.f and cpot.f (which is "included") are compiled and linked
+with the Lapack and Blas libraries, whose matrix multiplication and inversion
+routines are used, by means of
+
+f77 -O -o molcol.ex molcol.f -L/usr/local/lib -llapack -lblas
+
+on an IBM RS6000 processor; the equivalent library or libraries must be used on
+different computer architectures.
+
+The input files molcol.dat1 and molcol.dat2 must be provided. Output is to
+molcol.out.
+Sample input files and cpot routines are supplied for the O - H2 and He -
+H2 systems
+(see the Long Writeup).

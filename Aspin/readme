@@ -1,0 +1,58 @@
+ASPIN readme file.
+
+Main and makefile:
+main.cpp.f90          Main program.
+Makefile              Makefile.
+
+Subroutines:
+close_coupling.f90    It manages the two kind of propagation
+                      schemes: pure LogD/combined LogD-VP.
+logd.f90              Pure LogD propagation.
+logdvp.f90            Combined LogD-VP propagation. 
+var_ph.f90            VP propagator.
+daprop_lr.f90         Propagator used in some special cases of var_ph.f90. 
+derivs.f90            Right-hand side of the VP equation.
+derivs1.f90           Right-hand side of the VP equation.
+lib.f                 Set of subroutines.
+vfitt.f90             Potential subroutine. 
+vpot.f90              It calculates the potential at each point.
+common_blocks.f90     Constants and shared memory blocks.
+
+Output codes:
+serial.f90            Serial main code from main.cpp.f90. 
+parallel.f90          Parallel main code from main.cpp.f90. 
+
+File needed if parallelized:
+mpif.h              Header for the MPI formulation.
+
+This code works under f90 in serial or parallel mode.
+You have to write the right compiler in the Makefile
+taking account that in your machine.
+For using the code:
+
+A) Serial:
+
+First, delete some files that can cause problems: 
+>make clean
+
+Second, compile the code:
+>make serial
+
+The output of this order is "cc.exe". Once you have
+cc.exe launch it in the next way:
+>./cc.exe < input > out&
+
+B) Parallel:
+
+First, delete some files that can cause problems:
+>make clean
+
+Second, compile de code:
+>make parallel
+
+The output of this order is "cc_mpi.exe". Once you have
+cc_mpi.exe launch it in the right way. For instance,
+in an AMD OPTERON COMPUTING SYSTEMS with SuSE LINUX 
+PROFESSIONAL 9 computer it would be:
+>mpirun cc_mpi.exe < input > out&
+

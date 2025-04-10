@@ -1,0 +1,14 @@
+      SUBROUTINE PORCPU (T1)
+
+      IMPLICIT DOUBLE PRECISION (A-H, O-Z)
+
+C  This is a subroutine for SGI platforms which gets the CPU time
+
+        NTIME = MCLOCK()
+
+C  Convert to a double precision number and adjust to seconds
+
+        T1 = DBLE(NTIME)*1.D-2
+
+      RETURN
+      END

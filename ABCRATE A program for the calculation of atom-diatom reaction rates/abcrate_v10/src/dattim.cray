@@ -1,0 +1,26 @@
+C
+C***********************************************************************
+C  DATTIM
+C***********************************************************************
+C
+      SUBROUTINE DATTIM (CDTOUT)
+C
+C     VERSION FOR CRAY COMPUTERS
+C
+      IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+      CHARACTER*1  CDTOUT(80)
+      CHARACTER*10 CDATE,CTIME
+
+      DO 10 I=1,80
+   10   CDTOUT(I)=' '
+
+      CALL DATE(CDATE)
+      CALL CLOCK(CTIME)
+
+      DO 20 I=1,10
+        CDTOUT(I)=CDATE(I:I)
+   20   CDTOUT(I+12)=CTIME(I:I)
+
+      RETURN
+
+      END

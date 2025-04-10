@@ -1,0 +1,334 @@
+  +-----------------------------------------------+ 
+  |                                               | 
+  |                    ASPIN                      | 
+  |                                               | 
+  | D. Lopez-Duran, E. Bodo, and F. A. Gianturco. | 
+  |                                               | 
+  +-----------------------------------------------+ 
+  
+ Main program started for vibrating diatom-atom scattering process.
+ Vibrating diatom in singlet, doublet or triplet state of spin.
+ Atom in 1S state. Full close coupling calculations.
+  
+  +-----------------------------------+
+  |   namelist: molecular_general     |
+  +-----------------------------------+
+  
+ Vib. levels  1    Max j value= 6.5    Initial vib. state= 0
+  
+ Initial j state= 0.5     Initial N state=  0
+ 
+ Reduced mass of the system (amu) =3.10681
+ 
+Spin state of the molecule = doublet
+ 
+ (relaxed=  T )
+ 
+  +-----------------------------------+
+  |        namelist: energy           |
+  +-----------------------------------+
+ 
+ First energy (cm-1) = 1.0000E-06
+ 
+ Delta_energy (cm-1) = 1.0000E-07
+ 
+ Number of energies=     1
+ 
+ (logarithmic_e=  F )
+ 
+  +-----------------------------------+
+  |   namelist: potential_general     |
+  +-----------------------------------+
+ 
+ Number of lambda terms =    10
+ 
+ num_pot_points=   360
+ 
+ Points to discard=     0
+ 
+ lambda_to_zero=     2
+ 
+  +-----------------------------------+
+  |   namelist: molecular_params      |
+  +-----------------------------------+
+ 
+ Vibrational energies:
+                         v   e(v)/cm-1
+                         0        0.00
+ 
+ Rotational constants:
+                         v   b(v)/cm-1
+                         0      0.4971
+ 
+ Spin-spin interaction:      Lambda/cm-1  
+                              0.0000E+00
+  
+ Spin-rotation interaction:   Gamma/cm-1  
+                              4.3000E-05
+ 
+ (centrifugal distortion is neglected)
+ 
+ For level:              v    max j value is
+                         0         6.5
+ 
+ (homonuclear=  T )
+ 
+ (rot_state_symm= 0)
+ 
+  +-----------------------------------+
+  |   namelist: program_behaviour     |
+  +-----------------------------------+
+ 
+ Level of debugging=     0
+ 
+ Unit for the potential=    11
+ 
+  +-----------------------------------+
+  |       namelist: propagator        |
+  +-----------------------------------+
+ 
+ rbegin (angstrom) =     2.00000
+ 
+ rswitch (angstrom) =    15.00000
+ 
+ rend (angstrom) =    50.00000
+ 
+ Number of steps =    100
+ 
+ irxset parameter =     2.00000
+ 
+ epsilon parameter =    0.01000
+ 
+ sigma parameter =    0.00100
+ 
+ (use_variable_phase =  T )
+ 
+ (onlymod =  T )
+ 
+ (care =  T )
+ 
+  +-----------------------------------+
+  |     namelist: partial_waves       |
+  +-----------------------------------+
+ 
+ Minimum total J = 0.5
+ 
+ Maximum total J = 2.5
+ 
+ Step in J = 1.0
+ 
+  +-----------------------------------+
+  |       namelist: exponents         |
+  +-----------------------------------+
+ 
+ Exponents:
+                    i    nlr(i)  mlr(i)
+                    1      6       8
+                    2      6       8
+                    3      0       0
+                    4      0       0
+                    5      0       0
+                    6      0       0
+                    7      0       0
+                    8      0       0
+                    9      0       0
+                   10      0       0
+  
+  
+  +-----------------------------------------------+
+  |propagator and potential parameter(in angtroms)|
+  +-----------------------------------------------+
+  
+number of vibrational couplings           =      1
+number of points                          =    360
+number of terms in the lambda expansion   =     10
+  
+initial point for integration             =          2.0000
+matching point requested                  =         50.0000
+
+         Hibrid Manolopulos Var-phase propagator has been chosen
+
+switching point between PM and MA         =         15.0000
+step parameter for log-der propagator     =    100
+  
+  +------------------------------+
+  | main:  **ordering channels** |
+  +------------------------------+
+  
+main: flag relaxed=.true.
+main: warning using the ro-vibrational spectrum as it is
+      nearly degenerate channels could be troublesome
+  
+vib level no  |  min_j  |  max_j  |  j_step
+ +------------------------------------------+
+   0          |   0     |   5.5   |   1
+ +------------------------------------------+
+index         |   v     |   j     |   N     | energy/cm-1
+   1          |   0     |   0.5   |   0     |    0.00
+   2          |   0     |   1.5   |   2     |    2.98
+   3          |   0     |   2.5   |   2     |    2.98
+   4          |   0     |   3.5   |   4     |    9.94
+   5          |   0     |   4.5   |   4     |    9.94
+   6          |   0     |   5.5   |   6     |   20.88
+   7          |   0     |   6.5   |   6     |   20.88
+  
+main: total number of asymptotic channels:     7
+relaxed=.true.
+sorting the energy spectrum
+  
+ +------------------------------------------+
+index         |   v     |   j     |   N     | energy/cm-1
+   1          |   0     |   0.5   |   0     |    0.00
+   2          |   0     |   1.5   |   2     |    2.98
+   3          |   0     |   2.5   |   2     |    2.98
+   4          |   0     |   3.5   |   4     |    9.94
+   5          |   0     |   4.5   |   4     |    9.94
+   6          |   0     |   5.5   |   6     |   20.88
+   7          |   0     |   6.5   |   6     |   20.88
+  
+main:  ordering channels finished
+       note: * labelled channels will not be used
+       their energy is higher than vibr_energy(n+1)
+  
+  +------------------------------+
+  |     potential processing     |
+  +------------------------------+
+  
+Starting point requested         2.0000     match        50.0000
+first potential r value=         2.0500     last         20.0000
+  
+main: rbegin < r(1) and rend > r(num_pot_points)
+Potential will be evaluate
+with Laurent extrapolation for r <  2.05
+an with inverse power fitting for r > 20.00
+   
+  +-----------------------------+
+  | vlambda coefficients stored |
+  +-----------------------------+
+  
+  +---------------------------+
+  | main: loop over energies: |
+  +---------------------------+
+  
+            INTERNAL ENERGY (cm-1): 0.00E+00
+NO:   1     COLLISION ENERGY (cm-1): 1.00E-06
+NO:   1     TOTAL ENERGY (cm-1): 1.00E-06
+  
+  +---------------------------+
+  |  loop over partial waves  |
+  +---------------------------+
+ 
+RK-  0 JTOT=    0.5     Symmetry=    1     propagating solution
+RK-  0 Number of channels for symmetry     1     is    10
+                   Close_coupling: warning!
+                    channel:             1            0            1 
+            1            0
+                       channel energy(cm-1) :        0.00000000
+                       etot-ch_energy(cm-1) :        0.00000100
+                       cent. potential(cm-1):        0.00434082
+                   some of the open channels are below the centrifugal barrier
+                   at rend, REND INCREASED TO:      6588.48731300
+RK-  0   -> Log-Derivative propagation: from      2.000  to     15.000 in     100 steps
+RK-  0   -> Called modified variable phase propagator at r=    15.000
+RK-  0      Modified Var-phase propagation finished at r=   6588.926
+RK-  0      Number of steps performed:   6227
+ 
+RK-  0 JTOT=    0.5     Symmetry=    2     propagating solution
+RK-  0 Number of channels for symmetry     2     is    11
+RK-  0   -> Log-Derivative propagation: from      2.000  to     15.000 in     100 steps
+RK-  0   -> Called modified variable phase propagator at r=    15.000
+RK-  0      Modified Var-phase propagation finished at r=   6589.106
+RK-  0      Number of steps performed:   6224
+ 
+Partial cross section for jtot:   0.5
+ 
+  J    v1  *->  v2       N1   j1  *->  N2   j2              sigma_J
+ 0.5    0  *->   0        0   0.5 *->   0   0.5           5.6766E+03
+ 
+RK-  0 JTOT=    1.5     Symmetry=    1     propagating solution
+RK-  0 Number of channels for symmetry     1     is    17
+                   Close_coupling: warning!
+                    channel:             2            0            1 
+            3            0
+                       channel energy(cm-1) :        0.00000000
+                       etot-ch_energy(cm-1) :        0.00000100
+                       cent. potential(cm-1):        0.00000150
+                   some of the open channels are below the centrifugal barrier
+                   at rend, REND INCREASED TO:     16138.43209365
+RK-  0   -> Log-Derivative propagation: from      2.000  to     15.000 in     100 steps
+RK-  0   -> Called modified variable phase propagator at r=    15.000
+RK-  0      Modified Var-phase propagation finished at r=  16139.223
+RK-  0      Number of steps performed:  15262
+ 
+RK-  0 JTOT=    1.5     Symmetry=    2     propagating solution
+RK-  0 Number of channels for symmetry     2     is    16
+RK-  0   -> Log-Derivative propagation: from      2.000  to     15.000 in     100 steps
+RK-  0   -> Called modified variable phase propagator at r=    15.000
+RK-  0      Modified Var-phase propagation finished at r=  16138.638
+RK-  0      Number of steps performed:  15251
+ 
+Partial cross section for jtot:   1.5
+ 
+  J    v1  *->  v2       N1   j1  *->  N2   j2              sigma_J
+ 1.5    0  *->   0        0   0.5 *->   0   0.5           7.0308E-04
+ 
+RK-  0 JTOT=    2.5     Symmetry=    1     propagating solution
+RK-  0 Number of channels for symmetry     1     is    21
+RK-  0   -> Log-Derivative propagation: from      2.000  to     15.000 in     100 steps
+RK-  0   -> Called modified variable phase propagator at r=    15.000
+RK-  0      Modified Var-phase propagation finished at r=  16139.223
+RK-  0      Number of steps performed:  15254
+ 
+RK-  0 JTOT=    2.5     Symmetry=    2     propagating solution
+RK-  0 Number of channels for symmetry     2     is    22
+RK-  0   -> Log-Derivative propagation: from      2.000  to     15.000 in     100 steps
+RK-  0   -> Called modified variable phase propagator at r=    15.000
+RK-  0      Modified Var-phase propagation finished at r=  16138.988
+RK-  0      Number of steps performed:  15263
+ 
+Partial cross section for jtot:   2.5
+ 
+  J    v1  *->  v2       N1   j1  *->  N2   j2              sigma_J
+ 2.5    0  *->   0        0   0.5 *->   0   0.5           4.2833E-04
+ 
+(Process  0 of  1 finished pw_loop)
+  
+  +-----------------------------+
+  |  main:  jtot loop finished  |
+  +-----------------------------+
+ 
+ +-----------------------------------------------------+
+ +-----------------------------------------------------+
+ 
+Integral cross section:
+ 
+E_coll(cm-1)       v1   *->   v2   N1   j1  *->   N2   j2       sigma
+   1.00E-06          0  *->    0    0   0.5 *->    0   0.5    5.6766E+03
+ 
+ +-----------------------------------------------------+
+ +-----------------------------------------------------+
+ 
+Rotationally summed xs from j=  0.5
+ 
+E_coll(cm-1)       v1   *->   v2    sigma_rot
+   1.00E-06          0  *->    0   5.6766E+03
+ 
+ +-----------------------------------------------------+
+ +-----------------------------------------------------+
+ 
+ Elastic and inelastic total cross sections:
+         v       sigma_el        sigma_in 
+         0      5.6766E+03      0.0000E+00
+ 
+ +-----------------------------------------------------+
+ +-----------------------------------------------------+
+ 
+ Study for the sigma serie:
+           J                             sigma_J
+          0.5                          5.6766E+03
+          1.5                          7.0308E-04
+          2.5                          4.2833E-04
+ 
+ +-----------------------------------------------------+
+ +-----------------------------------------------------+
+ 

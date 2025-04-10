@@ -1,0 +1,21 @@
+In order to run the examples is needed to run CM.x for each of them and to get
+potentials from gaussian
+
+INPUT
+co2.plus.MO.inp  : Gaussian98 script to get Molecular orbitals for
+photoionization
+co2.plus.potential.inp : Gaussian98 script to obtain density, gradient,
+laplacian and electrostatic potential
+input_grid.dat: grid used to generate output (slightly corrected around the
+nuclei from CM.x output)
+
+PC-Gamess input: potentials.inp.6-31gS.gamess for density and potential	
+		orbitals.inp.6-31g.??.gamess for the various initial orbitals 
+IMPORTANT: The results in the paper have been obtained with potentials from
+Gaussian98, if using PC-Gamess they will differ slightly.
+
+OUTPUT:
+fort.951: photoionization cross section from last pi_u orbital
+fort.952: photoionization cross section from last sigma_g orbital
+fort.953: photoionization cross section from last pi_g orbital
+output.txt: complete output of the code

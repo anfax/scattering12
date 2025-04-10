@@ -1,0 +1,71 @@
+# This is a makefile created to compile the abcrate source code.
+# This makefile will not work unless the environment variables CF and MACH
+# have been set.  This makefile should be invoked by the script abc.c found
+# in the script directory.
+#
+SRCS=   adiab.f    aitken.f   aitkf2.f   aitkn2.f   aitknf.f   alfct.f  \
+        bend.f     benmin.f   benpot.f   boltz.f    brnuli.f   chkrst.f \
+        class.f    cobend.f   cobint.f   cobprt.f   cobtp.f    cobvex.f \
+        cubic.f    curve.f    curvex.f   d2dx2.f    d2vdu2.f   datain.f \
+        dattim.f   dbwl.f     dbwlrt.f   deriv.f    ders.f     dgama.f  \
+        eact.f     ebend.f    ellip.f    elpart.f   estr.f     extras.f \
+        extrem.f   frmt1.f    frmt2.f    fumcp.f    gaussq.f   gbslve.f \
+        gbtql2.f   geom.f     grad.f     gtst.f     headr.f    hqsc.f   \
+        init.f     interp.f   kaptyp.f   kapva.f    kg1.f      lag.f    \
+        lagth.f    lalfmn.f   lalfor.f   lalfst.f   lbetas.f   lbuang.f \
+        lcsa.f     lcsa2.f    lcsa3.f    liadib.f   lin2.f     locs.f   \
+        lpvag.f    param.f    pfcn.f     pfcnb.f    pfcnr.f    pfcnst.f \
+        phid.f     phsint.f   plag.f     pmuomt.f   pnorm.f    porcpu.f \
+        pread.f    prtqrt.f   psag.f     pwrite.f   qmpart.f   quadft.f \
+        reflec.f   root2d.f   rpath.f    rphsum.f   rpr2.f     rpread.f \
+        rpseg.f    rpseg2.f   rpstor.f   rpupdt.f   rpw2.f     rpwell.f \
+        rpwrit.f   rsp2.f     saddle.f   sagarg.f   sagcmp.f   shift.f  \
+        spl1b1.f   spl1b2.f   spl1d1.f   st2drv.f   step1.f    step2.f  \
+        store.f    summry.f   surfit.f   tabl20.f   tabl21.f   tabl22.f \
+        theta2.f   theta3.f   thrcor.f   timing.f   titles.f   tout.f   \
+        tp.f       tp2.f      tpsrch.f   trans.f    utp.f      vbend.f  \
+        vextr.f    vibtap.f   vibtau.f   vmin.f     vphi.f     vsplin.f \
+        vspln2.f   vtstm.f    well.f     wkb.f      wkbpot.f   wkbset.f \
+        wkbtp.f    wkbtp2.f   writef.f   writeg.f
+
+OBJS=   adiab.o    aitken.o   aitkf2.o   aitkn2.o   aitknf.o   alfct.o  \
+        bend.o     benmin.o   benpot.o   boltz.o    brnuli.o   chkrst.o \
+        class.o    cobend.o   cobint.o   cobprt.o   cobtp.o    cobvex.o \
+        cubic.o    curve.o    curvex.o   d2dx2.o    d2vdu2.o   datain.o \
+        dattim.o   dbwl.o     dbwlrt.o   deriv.o    ders.o     dgama.o  \
+        eact.o     ebend.o    ellip.o    elpart.o   estr.o     extras.o \
+        extrem.o   frmt1.o    frmt2.o    fumcp.o    gaussq.o   gbslve.o \
+        gbtql2.o   geom.o     grad.o     gtst.o     headr.o    hqsc.o   \
+        init.o     interp.o   kaptyp.o   kapva.o    kg1.o      lag.o    \
+        lagth.o    lalfmn.o   lalfor.o   lalfst.o   lbetas.o   lbuang.o \
+        lcsa.o     lcsa2.o    lcsa3.o    liadib.o   lin2.o     locs.o   \
+        lpvag.o    param.o    pfcn.o     pfcnb.o    pfcnr.o    pfcnst.o \
+        phid.o     phsint.o   plag.o     pmuomt.o   pnorm.o    porcpu.o \
+        pread.o    prtqrt.o   psag.o     pwrite.o   qmpart.o   quadft.o \
+        reflec.o   root2d.o   rpath.o    rphsum.o   rpr2.o     rpread.o \
+        rpseg.o    rpseg2.o   rpstor.o   rpupdt.o   rpw2.o     rpwell.o \
+        rpwrit.o   rsp2.o     saddle.o   sagarg.o   sagcmp.o   shift.o  \
+        spl1b1.o   spl1b2.o   spl1d1.o   st2drv.o   step1.o    step2.o  \
+        store.o    summry.o   surfit.o   tabl20.o   tabl21.o   tabl22.o \
+        theta2.o   theta3.o   thrcor.o   timing.o   titles.o   tout.o   \
+        tp.o       tp2.o      tpsrch.o   trans.o    utp.o      vbend.o  \
+        vextr.o    vibtap.o   vibtau.o   vmin.o     vphi.o     vsplin.o \
+        vspln2.o   vtstm.o    well.o     wkb.o      wkbpot.o   wkbset.o \
+        wkbtp.o    wkbtp2.o   writef.o   writeg.o
+#
+#  The definitions of CF and MACH will come from the shell abc.c
+#
+abcrate.o:	$(OBJS)
+
+dattim.f:	dattim.$(MACH)
+	ln -f dattim.$(MACH) dattim.f
+
+porcpu.f:	porcpu.$(MACH)
+	ln -f porcpu.$(MACH) porcpu.f
+
+.f.o:
+	$(CF) $<
+
+clean:
+	-rm -f $(OBJS) dattim.f porcpu.f
+#

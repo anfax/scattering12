@@ -1,0 +1,13 @@
+FC = ifort 
+#CMPLFLGS = -check all -g -O0 -C
+CMPLFLGS = -O3
+
+
+LAPACK = -L/central/intel/mkl/lib/em64t -L/usr/lib64 -lguide -lmkl_solver -lmkl_lapack -lmkl_em64t -lpthread -Vaxlib
+ROOT_DIR=/fourbody1/greene/tonzani/fea_CPC/src
+#ARPACK=/home/greene/tonzani/libarpack.a
+SUPERLU_LIB = /home/greene/tonzani/fea/SuperLUCustom/superlu_alpha.a
+thr=1
+
+.SUFFIXES:
+.SUFFIXES: .f .f90 .o

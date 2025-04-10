@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# script for intel fortran compiler
+#
+# examples of use:
+#
+#    ifcompiler file.f
+#        "      file.ok.f
+#
+#       this will generate file.x, file.ok.x
+#
+#================================================
+
+input=$1
+output=`echo $1 | sed 's/\.f/\.x/g'`
+
+if [ $output != $input ]; then
+
+gfortran -O2 modules/constants.f90 -g subroutines/bkmp2.f subroutines/bcpsi.f90 subroutines/angle.f90 $input -o $output -L/opt/acml5.1.0/gfortran64/lib -lacml 
+
+else
+
+echo "input ($input) is equal to output ($output)"
+
+fi
+

@@ -1,0 +1,19 @@
+800                  ! File number for cross section output
+scatter             nowf
+slater            10
+neutral                1.0
+35.64d0             ! polar
+17.0d0             ! polar2
+6.5d0                ! r_cutoff
+0.33063d0                ! last bound state energy
+0.d0          ! z coordinate shift
+.75                ! Energy max
+.0d0                 ! Energy min
+30                ! Energy mesh
+.0d0
+.TRUE.
+.TRUE.
+0.d0            
+no              
+no
+

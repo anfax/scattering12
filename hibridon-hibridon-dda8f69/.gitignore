@@ -1,0 +1,7 @@
+*.mod
+._*
+_*
+.DS*
+hibridon.code-workspace
+.vscode
+

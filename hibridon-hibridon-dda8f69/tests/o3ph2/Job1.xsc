@@ -1,0 +1,49 @@
+
+ --------------------------------------------------------------------------
+           HIBRIDON SCATTERING CODE V 5.00
+
+      AUTHORS: M. ALEXANDER, D. MANOLOPOULOS, H.-J. WERNER, B. FOLLMEG,
+               P. DAGDIGIAN
+ CONTRIBUTORS: D. LEMOINE, P. VOHRALIK, G. COREY, R. JOHNSON, T. ORLIKOWSKI,
+          A. BERNING, A. DEGLI-ESPOSTI, C. RIST, B. POUILLY, J. KLOS, Q. MA,
+          G. VAN DER SANDEN, M. YANG, F. DE WEERD, S. GREGURICK, F. LIQUE
+ --------------------------------------------------------------------------
+           BUILD CONFIGURATION:
+CMAKE BUILD DATE: 2022-06-09 at 04:09
+CMAKE BUILD TYPE: Release
+CODE GIT REVISION: 
+SYS: Darwin 21.5.0 x86_64
+COMPILER: /usr/local/bin/gfortran
+COMPILE OPTIONS: 
+ --------------------------------------------------------------------------
+            CURRENT HARDWARE CONFIGURATION:
+
+      Model Name: MacBook Pro
+      Model Identifier: MacBookPro14,3
+      Processor Name: Quad-Core Intel Core i7
+      Processor Speed: 2.9 GHz
+      Number of Processors: 1
+      Total Number of Cores: 4
+      L2 Cache (per Core): 256 KB
+      L3 Cache: 8 MB
+      Hyper-Threading Technology: Enabled
+      Memory: 16 GB
+ --------------------------------------------------------------------------
+
+ INTEGRAL CROSS SECTIONS READ FROM FILE Job1.ics                                
+ WRITTEN:   Jun  9 04:30:45 2022
+ LABEL:     O(3P)-H2 scattering on Alexander PESs           
+ POT NAME:  ALEXANDER SCALED (s=1.21) O(3P)H2 DUBERNET-HUTSO
+
+ ** INTEGRAL CROSS SECTIONS; IEN= 1 **
+    RMU=   1.7901  E=   250.00  JLPAR=-1  JTOT-1=  0  JTOT-2=  50  JTOT-D=  1
+ ** CC CALCULATION, JLPAR=-1 **
+
+ ** COLUMN HEADINGS ARE INITIAL STATES, ROW HEADINGS ARE FINAL STATES **
+
+            J=    0         0         0
+   J    I | I=    0         1         2
+ 
+    0    0   9.943E+03  1.922E-03  3.094E-01
+    0    1   2.298E-02  1.443E+02  2.950E+00
+    0    2   1.680E+01  1.340E+01  1.997E+02

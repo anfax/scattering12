@@ -1,0 +1,30 @@
+950              ! File number for cross section output
+scatter        nowf
+slater         6
+ion              1.0
+8.95d0             ! polar
+4.595d0             ! polar2
+3.7d0                ! r_cutoff
+0.90d0                ! last bound state energy
+0.d0          ! z coordinate shift
+1.2                ! Energy max
+0.0                 ! Energy min
+15                ! Energy mesh
+.0d0
+.FALSE.          ! Rotation
+.TRUE.           ! DFT correlation
+0.d0            
+no              
+no
+
+!!!! PHOTOIONIZATION INPUT !!!!!!!!!!
+4      length
+pi_u_1.dat        ! Initial orbital file for photoionization
+0.71            ! Ionization potential for the initial state
+sigma_g_4.dat
+0.71
+homo.dat
+0.54
+pi_g_2.dat
+0.54
+

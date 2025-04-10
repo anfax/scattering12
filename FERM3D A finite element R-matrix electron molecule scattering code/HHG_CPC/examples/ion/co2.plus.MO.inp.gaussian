@@ -1,0 +1,95 @@
+#P TEST RHF/6-31G** scf=conventional  opt=tight freq GFINPUT IOP(6/7=3)
+ 
+title
+
+0,1
+C
+O,1,R2
+O,1,R2,2,180.
+ 
+R2=1.16
+
+--Link1--
+#p rhf/6-31g** 5d test scf=tight cube=(cards,orbitals) density=current
+
+Gaussian Test Job 257:
+Density cube
+
+0,1
+C
+O,1,R2
+O,1,R2,2,180.
+
+R2=1.16
+
+pi_u_1.dat
+  -51       -6.01       -6.01       -6.01
+  120          .1         0.0         0.0
+  120         0.0          .1         0.0
+  120         0.0         0.0          .1
+8
+
+
+--LinK1--
+#P RHf/6-31g** 5d test scf=tight cube=(cards,orbitals) density=current
+
+Gaussian Test Job 257:
+Density cube
+
+0,1
+C
+O,1,R2
+O,1,R2,2,180.
+
+R2=1.16
+
+sigma_g_4.dat
+  -51       -6.01       -6.01       -6.01
+  120          .1         0.0         0.0
+  120         0.0          .1         0.0
+  120         0.0         0.0          .1
+6
+
+
+--Link1--
+#p rhf/6-31g** 5d test scf=tight cube=(cards,orbitals) density=current
+
+Gaussian Test Job 257:
+Density cube
+
+0,1
+C
+O,1,R2
+O,1,R2,2,180.
+
+R2=1.16
+
+homo.dat
+  -51       -6.01       -6.01       -6.01
+  120          .1         0.0         0.0
+  120         0.0          .1         0.0
+  120         0.0         0.0          .1
+11
+
+
+--Link1--
+#p rhf/6-31g** 5d test scf=tight cube=(cards,orbitals) density=current
+
+Gaussian Test Job 257:
+Density cube
+
+0,1
+C
+O,1,R2
+O,1,R2,2,180.
+
+R2=1.16
+
+pi_g_2.dat
+  -51       -6.01       -6.01       -6.01
+  120          .1         0.0         0.0
+  120         0.0          .1         0.0
+  120         0.0         0.0          .1
+10
+
+

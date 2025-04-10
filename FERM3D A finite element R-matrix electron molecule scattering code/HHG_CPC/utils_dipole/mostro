@@ -1,0 +1,244 @@
+subroutine continuum(Z,R0,H,dime,eigen,KCC,ene)
+  use nrtype, only : dbl,i4b,nep_e,Pi,dpc
+  use Open_information,only : kappa,E,max_open,lmax
+  use control , only : cont,molecule
+  implicit none
+  integer(kind=i4b) :: m,p,k,ll,multiplicity,princ_quant_num,channel,xnu,i,dime,kfn&
+       & ,mode,ifail,ipr,jj
+  complex(kind=dpc) :: x,rj,ry,rjp,ryp,maxo,Bi,Aa,E_ryd,W,beta,sig
+  complex(kind=dpc),dimension(:),allocatable :: J,Jp,N,Np,pre_J,pre_Jp,pre_N,pre_Np
+  real(kind=dbl),intent(inout) :: H(dime,dime),eigen(dime),R0,Z,KCC(max_open,max_open+1)
+  real(kind=dbl),parameter :: ac=1.0d-14
+  real(kind=dbl) :: alpha,ak,bk,ck,dk,mu,const1,ene,dummy
+  complex(kind=dpc) :: lambda,W_dec,cgamma,eta
+  complex(kind=dpc),parameter :: zI=(0.d0,1.d0)
+  logical :: tests=.FALSE.
+  external cgamma
+  !--------------------------------
+  ! Subroutine that calls the ones that calculate the coulomb anr bessel
+  ! functions for the matching at the sphere's boundary  
+  !--------------------------------
+  write(6,*)'enter continuum'
+  allocate(J(max_open))
+  allocate(Jp(max_open))
+  allocate(N(max_open))
+  allocate(Np(max_open))
+  allocate(pre_J(max_open))
+  allocate(pre_Jp(max_open))
+  allocate(pre_N(max_open))
+  allocate(pre_Np(max_open))
+  E=ene
+  !write(6,*)'molecule=',molecule,R0,E,Z
+  !-------------
+  ! Tests
+  !dummy=R0
+  !do jj=1,20
+  !R0=1.d0+(jj-1)*1.d0
+  !------------------
+  do m=1,max_open
+     xnu = m-1
+     if (molecule.eq.'neutral') then
+        !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        ! NEUTRAL PART
+        !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        if (E.lt.0.d0) then
+           kappa=cmplx(0.d0,sqrt(-2.0d0*E))
+        else 
+           kappa =cmplx(sqrt(2.d0*E),0.d0)
+        end if
+!write(6,*)'kappa=',kappa,E
+!stop
+        x=R0*kappa
+        rj=0.d0;ry=0.d0;rjp=0.d0;ryp=0.d0
+        lambda=(-1.d0+sqrt(1.d0+4.d0*cmplx(eigen((m)),0.d0)))/2.d0
+        ! Test
+        !Lambda=-.5d0+zI*1.025d0
+        !             
+        ! test bessel functions
+        !call sphbes(xnu, dble(x),ak,bk,ck,dk)
+        !rj=ak; ry=bk; rjp=ck; ryp=dk
+        !write(32,*)xnu, dble(x),dble(rj),dble(ry),dble(rjp),dble(ryp)
+        !lambda=cmplx(xnu,0.d0)
+        !-----------------------------------
+        ! set parameters for wclbes
+        eta=(0.d0,0.d0)
+        mode=1
+        ! Get bessel functions
+
+        if (real(lambda*(lambda+1)).gt.-.25d0) then
+           kfn=1
+           call call_bessel_complex(x,lambda,Z,R0,rj,ry,rjp,ryp,kfn)
+        else
+           mu = aimag (lambda)
+           kfn=2
+           call call_bessel_complex(x,lambda+.5d0,Z,R0,rj,ry,rjp,ryp,kfn)
+
+!           const1=sqrt(.5d0*Pi*R0) ! If need r*j
+
+!           ak=const1/ sinh(.5d0*Pi*mu)*aimag(rj)
+!           bk=-const1/ cosh(.5d0*Pi*mu)*dble(rj)
+!           ck=ak/(2.d0*R0) + const1/ sinh(.5d0*Pi*mu)*aimag(rjp*kappa)
+!           dk=(bk/(2.d0*R0) - const1/ cosh(.5d0*Pi*mu)*dble(rjp*kappa))
+const1=sqrt(.5d0*Pi/R0)      ! if need j
+           ak=const1/ sinh(.5d0*Pi*mu)*aimag(rj)
+           bk=-const1/ cosh(.5d0*Pi*mu)*dble(rj)
+           ck=sqrt(Pi/2.d0)/sinh(Pi*mu/2.d0)* (-.5d0/R0**3/2*aimag(rj) + sqrt(1.d0/R0)*aimag(rjp*kappa))
+           dk=-sqrt(Pi/2.d0)/cosh(Pi*mu/2.d0)* (-.5d0/R0**3/2*dble(rj) + sqrt(1.d0/R0)*dble(rjp*kappa))
+
+        end if
+        !write(33,*)lambda, (x),(rj),(ry),(rjp),(ryp),ifail
+        !----------------------------------
+        if (real(lambda*(lambda+1)).gt.-.25d0) then
+           pre_J(m)=(rj)*sqrt(kappa)           ! If need j
+           pre_Jp(m)=(kappa*rjp)*sqrt(kappa)
+           pre_N(m)=(ry)*sqrt(kappa)
+           pre_Np(m)=(kappa*ryp)*sqrt(kappa)
+
+!           pre_J(m)=(rj*R0)*sqrt(kappa)           ! If need r*j
+!           pre_Jp(m)=(kappa*rjp*R0+rj)*sqrt(kappa)
+!           pre_N(m)=(ry*R0)*sqrt(kappa)
+!           pre_Np(m)=(kappa*ryp*R0+ry)*sqrt(kappa)
+!           W=pre_J(m)*pre_Np(m)-pre_N(m)*pre_Jp(m)
+           !write(29,*)W,m,pre_J(m),pre_Jp(m),pre_N(m),pre_Np(m)
+
+           ! Transform to Hankel function of the first kind (exponentially decaying)
+           ! and take absolute value so functions are real
+           !===================================================================
+           ! As a quick fix take the real part of them, it is exponentially
+           ! decaying for the cases looked at, lambda=.77, 4.05, might need a
+           ! closer look at some point 
+           !ak=dble(pre_J(m)+zI*pre_N(m))
+           !bk=dble(pre_Jp(m)+zI*pre_Np(m))
+           !====================================================================
+!abs(dble(pre_Jp(m)+zI*pre_Np(m)))+abs(aimag(pre_Jp(m)+zI*pre_Np(m)))
+           !ck=abs(pre_J(m)-zI*pre_N(m))
+           !dk=abs(pre_Jp(m)-zI*pre_Np(m))
+           !pre_J(m)=ak
+           !pre_Jp(m)=bk
+           !pre_N(m)=ck
+           !pre_Np(m)=dk
+           W=pre_J(m)*pre_Np(m)-pre_N(m)*pre_Jp(m)
+           write(28,*)W,m
+
+           !-------------------------------------------------------------------------
+        else
+           ! Positive energy solutions are identical to CWClark 1979 PRA
+           ! Negative energy need to be renormalized (there is a factor of
+           ! 3.99*10^-2)
+           ! Get normalization factor from Wronskian for the attractive dipole
+           ! channel, then normalize the matching functions 
+
+           W=(ak*dk-ck*bk)
+
+           pre_J(m)=ak
+!/sqrt(W)       ! If have r*j
+           pre_Jp(m)=ck
+!/sqrt(W)
+           pre_N(m)=bk
+!/sqrt(W)
+           pre_Np(m)=dk
+!/sqrt(W)
+           W=pre_J(m)*pre_Np(m)-pre_N(m)*pre_Jp(m)
+           write(29,*)W,m,pre_J(m),pre_Np(m),pre_N(m),pre_Jp(m),lambda,m,E
+
+        end if
+
+        !---------------------------------------------------------------------
+        ! Tests
+        if (tests) then
+           ! Wronskian
+           !W=rj*ryp-ry*rjp
+           W=pre_J(m)*pre_Np(m)-pre_N(m)*pre_Jp(m)
+           write(27,*)(ak*dk-ck*bk)
+           write(30,*)W,m
+           ! exponential decay
+           W=R0
+           do i=1,20
+              !              R0=.1d0+.2d0*i
+              R0=1.d0+(i-1)*1.d0
+
+              x=R0*kappa
+              !write(32,*)x,R0,kappa,lambda
+              if (real(lambda*(lambda+1)).gt.-.25d0) then
+                 kfn=1
+                 call call_bessel_complex(x,lambda,Z,R0,rj,ry,rjp,ryp,kfn)
+                 Aa=(rj*R0)*sqrt(kappa)           ! If need r*j
+                 Bi=(ry*R0)*sqrt(kappa)
+                 maxo=abs(Aa+zI*Bi)
+                 !write(40+m,*)R0,dble(maxo)
+              else
+                 kfn=2
+                 call call_bessel_complex(x,lambda+.5d0,Z,R0,rj,ry,rjp,ryp,kfn)
+                 !write(31,*)R0,dble(rj),aimag(rj)
+              end if
+           end do
+           R0=W
+        end if ! End tests
+        !--------------------------------------------------------------------------------------------
+        !--------------------------------------------------------------------------------------------
+        !--------------------------------------------------------------------------------------------
+
+     else
+        !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        ! IONIC PART (Does not work)
+        !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+     endif
+  end do
+
+  channel=0
+  do ll=1,max_open
+     !   multiplicity=2*ll+1
+     !   do m=1,multiplicity
+     channel=ll
+     J(channel)=pre_J(ll)
+     Jp(channel)=pre_Jp(ll)
+     N(channel)=pre_N(ll)
+     Np(channel)=pre_Np(ll)
+     !write(40,*)R0,dble(J(channel)),dble(Jp(channel))
+
+     !   end do
+  end do
+  ! Stick everything in KCC
+  KCC(:,1)=dble(J(:))
+  KCC(:,2)=dble(Jp(:))
+  KCC(:,3)=dble(N(:))
+  KCC(:,4)=dble(Np(:))
+  write(37,*)KCC(:,1),KCC(:,2),KCC(:,3),KCC(:,4)
+  !-------------------------------------------
+  ! Check the exponentially decaying functions
+  !do ll=0,lmax-1
+  !   lambda=(-1.d0+sqrt(1.d0+4.d0*cmplx(eigen((ll-1)**2+1),0.d0)))/2.d0
+  !   alpha=aimag(lambda)
+  !   beta=Pi/2+atan(tanh(Pi*alpha)*tan(alpha*log(2/sqrt(2.d0*E))-atan(aimag(cgamma(1-zI*alpha))/ real(cgamma(1-zI*alpha))))) 
+  !beta=alpha*log(2.d0/sqrt(2.d0*E))-atan(aimag(cgamma(1-zI*alpha))/ real(cgamma(1-zI*alpha)))
+  !     W_dec=pre_N(ll+1)*sin(Pi/sqrt(2.d0*E))+pre_J(ll+1)*cos(Pi/sqrt(2.d0*E))
+  !   W_dec=-pre_N(ll+1)*sin(beta)-pre_J(ll+1)*cos(beta)
+  !(pre_N(ll+1)+zI*pre_J(ll+1))*sqrt(2.d0)/2.d0
+  !   write(35,*)W_dec,ll
+  !   write(34,*)aimag(pre_J(ll+1))/sqrt(aimag(pre_J(ll+1))**2+aimag(pre_N(ll+1))**2),aimag(pre_J(ll+1))**2,aimag(pre_N(ll+1))**2
+  !   write(34,*)sin(Pi/sqrt(2.d0*E))
+  !end do
+  !-------------------------------------------
+  !write(6,*)'after pre_J'
+
+  !call kmatrix(J,Jp,N,Np,E,H,dime,eigen,R)
+    call kmatrix_perturbed(KCC(:,1),KCC(:,2),KCC(:,3),KCC(:,4),Z,E,H)
+
+  !------------------------------
+  ! End tests
+  !end do
+  !R0=dummy
+  !stop
+  !------------------------------
+  deallocate(pre_J)
+  deallocate(pre_Jp)
+  deallocate(pre_N)
+  deallocate(pre_Np)
+  deallocate(J)
+  deallocate(Jp)
+  deallocate(N)
+  deallocate(Np)
+
+  write(6,*)'end continuum'
+end subroutine continuum
+

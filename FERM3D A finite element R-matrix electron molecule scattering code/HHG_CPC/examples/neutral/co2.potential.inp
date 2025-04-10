@@ -1,0 +1,91 @@
+#P TEST RHF/6-31G* scf=conventional  nosymm
+ 
+title
+
+0,1
+C
+O,1,R2
+O,1,R2,2,180.
+ 
+R2=1.16
+
+--Link1--
+#p rhf/6-31g* 5d test scf=tight nosymm cube=(cards,full,laplacian) density=current
+
+Gaussian Test Job 257:
+Density cube
+
+0,1
+C
+O,1,R2
+O,1,R2,2,180.
+
+R2=1.16
+
+test257.nabla
+  -51       -6.01       -6.01       -6.01
+  120          .1         0.0         0.0
+  120         0.0          .1         0.0
+  120         0.0         0.0          .1
+
+
+--Link1--
+#p rhf/6-31g* 5d test scf=tight nosymm cube=(cards,full,density) density=current
+
+Gaussian Test Job 257:
+Density cube
+
+0,1
+C
+O,1,R2
+O,1,R2,2,180.
+
+R2=1.16
+
+test257.dens
+  -51       -6.01       -6.01       -6.01
+  120          .1         0.0         0.0
+  120         0.0          .1         0.0
+  120         0.0         0.0          .1
+
+
+--Link1--
+#p rhf/6-31g* 5d test scf=tight nosymm cube=(cards,full,norm) density=current
+
+Gaussian Test Job 257:
+Density cube
+
+0,1
+C
+O,1,R2
+O,1,R2,2,180.
+
+R2=1.16
+
+test257.grad
+  -51       -6.01       -6.01       -6.01
+  120          .1         0.0         0.0
+  120         0.0          .1         0.0
+  120         0.0         0.0          .1
+
+
+--Link1--
+#p rhf/6-31g* 5d test scf=tight nosymm cube=(cards,full,potential) density=current
+
+Gaussian Test Job 257:
+Density cube
+
+0,1
+C
+O,1,R2
+O,1,R2,2,180.
+
+R2=1.16
+
+test257.cube
+  -51       -6.01       -6.01       -6.01
+  120          .1         0.0         0.0
+  120         0.0          .1         0.0
+  120         0.0         0.0          .1
+
+

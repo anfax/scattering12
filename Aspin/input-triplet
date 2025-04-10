@@ -1,0 +1,41 @@
+&molecular_general  num_vib_levels=4, xmax_j_value=7.0, xjout=1.0, 
+                    init_vibrat_level=2, xinit_j_state=1.0, init_N_state=0, 
+                    reduced_mass=3.106813, relaxed=.true., 
+                    singlet=.false., doublet=.false., triplet=.true. /
+
+&energy             first_energy=1.0e-6, delta_e=1.0e-7,
+                    num_of_energies=1, logarithmic_e=.false. /
+
+&potential_general  num_lambda_terms=10, num_pot_points=500, 
+                    points_to_discard=0, lambda_to_zero=0  /
+
+&molecular_params   b= 0.26681,
+                       0.24795,
+                       0.22921,
+                       0.21006,
+                    xjmax= 7.0,
+                           7.0,
+                           7.0,
+                           7.0,
+	            e_vib= 32.650,
+                           92.192,
+                          144.538,
+                          190.179,
+                    homonuclear=.true., 
+                    rot_state_symm=0,
+                    spin_rot=4.8e-5,
+                    spin_spin=-0.01 /
+
+&program_behaviour  debug=0, potential_unit=12 /
+
+&propagator         rbegin=1.5, rswitch=30.0, rend=1500, steps=1000, 
+                    irxset=2.1,
+                    use_variable_phase=.true., eps=1.0e-4, sigch=1.0e-5, 
+                    onlymod=.true., care=.false. /
+
+&partial_waves      xjtotmin=1.0, xjtotmax=3.0, xjtotstep=1.0 /
+
+&exponents	    nlr=4,3,6,6,6,
+                    mlr=6,4,8,8,8 /
+
+

@@ -1,0 +1,108 @@
+20c20
+<   logical :: stat,rotation=.TRUE.
+---
+>   logical :: stat,rotation=.TRUE.,control_zero_phi=.FALSE.
+117a118,120
+>   ! There will be a sector boundary passing through each atomic nucleus; 
+>   !coord(i,1)=r coord for atom i, coord(i,2)=phi coord for atom i, coord(i,3)=theta coord for atom i
+> 
+150c153,155
+< 
+---
+>   !Now for each atom, need a zone boundary at k-shell radius for r, theta, phi: 
+>   !one at nucleus plus k-shell radius, one at nucleus minus k-shell radius.
+>   !tempa stores coords
+153c158,163
+<   do kk=1,3
+---
+>   !put coords of nuclei into grid, as well as other points which we know have 
+>   !to be in the grid: zero(for all points)
+>   !in r: 0, r_cutoff, r_0 (r_cutoff is where you switch between short-range and long-range treatment of polarization)
+>   !in theta: 0, Pi
+>   !in phi: 0, 2*Pi
+>   do kk=1,3!k ranges over dimensions
+155,157c165,167
+<      counter=2
+<      if (kk.eq.1) then
+<         coord_a(counter,1)=R_cutoff+0.5d0
+---
+>      counter=2!counter counts how many points have already been put into each dimension
+>      if (kk.eq.1) then!r dimension
+>         coord_a(counter,1)=R_cutoff+0.5d0!+1.5d0 might be a better value, because
+160c170
+<      else if (kk.eq.3) then
+---
+>      else if (kk.eq.3) then!theta dimension
+162c172
+<      else if (kk.eq.2) then
+---
+>      else if (kk.eq.2) then!phi dimension
+166a177
+>      !now put coords of nuclei into array, provided they're not already in the array via earlier process
+192c203
+< 
+---
+>   !now put points at k-shell radii of each atom in each dimension
+195c206
+<   do kk=1,3
+---
+>   do kk=1,3!kk ranges over dimensions
+202c213
+<      if (kk.eq.1) then
+---
+>      if (kk.eq.1) then!r dimension
+214,215c225,226
+<               if (k.eq.1) signo=1
+<               if (k.eq.2) signo=-1
+---
+>               if (k.eq.1) signo=1!signo=1 -> add to coord of nucleus
+>               if (k.eq.2) signo=-1!signo=-1 -> subtract from coord of nucleus
+217c228
+<                  if ((kk.eq.1).and.(tempa(i).gt.R_cutoff)) cycle
+---
+>                  if ((kk.eq.1).and.(tempa(i).gt.R_cutoff)) cycle!in r: if zone boundary bigger than r_cutoff, then it's not a nucleus, so don't need a k-shell radius
+219,223c230
+< if (kk.eq.2) then
+< write(36,*)'aa',tempa(i),tempb(j),tempa(i)-tempb(j)
+< end if
+< 
+<                  if ((signo*r(i)*(tempa(i)-tempb(j)).lt.0.5d0)&
+---
+>                  if ((signo*r(i)*(tempa(i)-tempb(j)).lt.0.2d0)&
+225,227d231
+< if (kk.eq.2) then
+< write(36,*)'bb',signo*r(i)*(tempa(i)-tempb(j)),j
+< end if
+229c233
+<                     stat=.FALSE.
+---
+>                     stat=.FALSE.!if there's already a zone boundary in the region, don't put another one there.
+231,233c235,243
+<                  else if ((j==f).and.(tempa(i)-signo*0.2d0/r(i).lt.Pi*kkk)) then
+<                     tempb(f+1)=tempa(i)-signo*0.2d0/r(i)
+< write(36,*)tempb(f+1),f+1,kk,k,j
+---
+>                  else if ((j==f).and.(tempa(i)-signo*0.2d0/r(i).lt.Pi*kkk)) then!otherwise, put a k-shell node at the requisite boundary
+>                     tempb(f+1)=tempa(i)-signo*0.5d0/r(i)
+>                     !---------------------------------------------------
+>                     if ((tempa(i).eq.0.d0).and.(kk.eq.2).and.(tempb(f+1).lt.0.d0).and.(.not.control_zero_phi)) then
+>                        !special case: if phi coord close to zero, then put k-shell boundary at 2*Pi-value instead of negative value
+>                        tempb(f+1)=2.d0*Pi-abs(tempb(f+1))
+>                        control_zero_phi=.TRUE.
+>                     end if
+>                     !---------------------------------------------------
+236c246
+<                        stat=.FALSE.
+---
+>                        stat=.FALSE.!ensure there are no negative values in the grid
+262c272
+< 
+---
+>   !after setting up zone boundaries, want to sort boundaries in each dimension so that they lie in ascending order
+285a296
+> 
+292a304,307
+>            !delta=sector spacing
+>            !in areas close to nuclei, sector spacing = zone spacing
+>            !in areas far from nuclei, zone spacing > delta_r_max, delta_theta_max, or delta_phi_max, so set sector spacing
+>            !equal to appropriate variable delta_*_max

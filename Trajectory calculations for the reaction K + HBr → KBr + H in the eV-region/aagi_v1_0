@@ -1,0 +1,473 @@
+AAGICLASSICAL TRAJECTORIES 324. TRAJECTORY CALCULATIONS FOR THE REACTIONAAGI0000
+1   K+HBR - KBR+H IN THE EV-REGION.  VAN DER MEULEN, A.                 AAGI0000
+REF. IN COMP. PHYS. COMMUN. 3 (1972) 42                                 AAGI0000
+   IN THE TRANSLATION FROM PAPER TAPE TO CARD CODE THE CHARACTERS       AAGI0001
+HAVE THE FOLLOWING MEANINGS                                             AAGI0002
+      CHARACTERS           MEANING                                      AAGI0003
+          \         UNDERLINE                                           AAGI0004
+          @         AND                                                 AAGI0005
+          #         OR                                                  AAGI0006
+          ^         NOT                                                 AAGI0007
+          ]=        NOT EQUAL                                           AAGI0008
+          \<        LESS THAN OR EQUAL                                  AAGI0009
+          \>        GREATER THAN OR EQUAL                               AAGI0010
+          \=        EQUIVALENT                                          AAGI0011
+          '         QUOTES                                              AAGI0012
+          ]<        OPEN STRING                                         AAGI0013
+          ]>        CLOSE STRING                                        AAGI0014
+                                                                        AAGI0015
+A1003U.324,A V D MEULEN,T30                                             AAGI0016
+                                                                        AAGI0017
+\B\E\G\I\N \C\O\M\M\E\N\T PROGRAMM 324,CLASSICAL TRAJECTORY CALCULATIONSAAGI0018
+;                                                                       AAGI0019
+\I\N\T\E\G\E\R BANDNO,I,N1,N2,B,AANTAL,MAX,TMAX;                        AAGI0020
+\R\E\A\L Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,J4,J5,J6,JL7,H,HMIN,HMAX,HH1,HH2AAGI0021
+,HH4,HH5,                                                               AAGI0022
+     X,X1,X2,X3,E0I,EI,EF,S1,EPS,CTH,VK,H411,H412,H413,Q21,Q22,Q23,Q31,QAAGI0023
+32,Q33,                                                                 AAGI0024
+     GEG1,GEG2,GEG3,GEG4,GEG5,GEG6,R1,R2,R3,Y1,Y2,Y3,Y4,Y5,Y6,          AAGI0025
+     Z1,Z2,Z3,Z4,Z5,Z6,YL1,YL2,YL3,YL4,YL5,YL6,ZL1,ZL2,ZL3,ZL4,ZL5,ZL6, AAGI0026
+     K01,K02,K03,K04,K05,K06,K11,K12,K13,K14,K15,K16,K21,K22,K23,K24,K25AAGI0027
+,K26;                                                                   AAGI0028
+\B\O\O\L\E\A\N ST1,ST2,ST3,ST4,ST5,ST6;                                 AAGI0029
+\A\R\R\A\Y GEG!1:9&;                                                    AAGI0030
+\C\O\M\M\E\N\T 1.THE FORGOING CONSTITUTES THE DECLARATIONS OF INTEGER,REAAGI0031
+AL,BOOLEAN AND ARRAY VARIABLES;                                         AAGI0032
+                                                                        AAGI0033
+\P\R\O\C\E\D\U\R\E P(S);\S\T\R\I\N\G S;PRINTTEXT(S);                    AAGI0034
+\C\O\M\M\E\N\T 2.P(S) PRINTS THE STRING S WITHOUT THE STRING QUOTES ]< ]AAGI0035
+> AND IS USED AS AN ABBREVATION                                         AAGI0036
+OF PRINTTEXT(S);                                                        AAGI0037
+                                                                        AAGI0038
+\P\R\O\C\E\D\U\R\E ALFANUMRK;                                           AAGI0039
+\B\E\G\I\N \I\N\T\E\G\E\R SYMB;                                         AAGI0040
+      SKIP: SYMB:=RESYM;                                                AAGI0041
+      \I\F SYMB ]= 121 \T\H\E\N \G\O\T\O SKIP \E\L\S\E                  AAGI0042
+\B\E\G\I\N NLCR;                                                        AAGI0043
+      READSYMB: SYMB:=RESYM; \I\F SYMB ]= 121 \T\H\E\N                  AAGI0044
+\B\E\G\I\N PRSYM(SYMB); \G\O\T\O READSYMB                               AAGI0045
+\E\N\D                                                                  AAGI0046
+\E\N\D                                                                  AAGI0047
+\E\N\D ALFANUMRK;                                                       AAGI0048
+\C\O\M\M\E\N\T 3.ALFANUMRK READS AND PRINTS TEXT FROM INPUTTAPE.THE TEXTAAGI0049
+ ON THE TAPE HAS TO BE                                                  AAGI0050
+OPENED AND ENDED BY THE DOUBLE STRING ';                                AAGI0051
+                                                                        AAGI0052
+\P\R\O\C\E\D\U\R\E OUTPUT;                                              AAGI0053
+\B\E\G\I\N FIXT(3,2,X);SPACE(12);                                       AAGI0054
+      FIXT(3,5,EF);SPACE(11);FIXT(3,5,EF+.5*(ZL1*ZL1+ZL2*ZL2+ZL3*ZL3+ZL4AAGI0055
+*ZL4+ZL5*ZL5+ZL6*ZL6));                                                 AAGI0056
+      SPACE(7);FIXT(2,2,R1*1.00230 09795);SPACE(5);FIXT(2,2,R2*.19476 26AAGI0057
+415);SPACE(5);                                                          AAGI0058
+     FIXT(2,2,R3*.19476 26415);SPACE(5);FIXT(4,2,TIME);NLCR             AAGI0059
+\E\N\D OUTPUT;                                                          AAGI0060
+\C\O\M\M\E\N\T 4.OUTPUT IS A PROCEDURE DESIGNED TO FOLLOW THE MOTION OF AAGI0061
+THE THREE BODY SYSTEM.                                                  AAGI0062
+THE OUTPUT QUANTITIES ARE:COLLISION TIME,POTENTIAL ENERGY,TOTAL ENERGY, AAGI0063
+THE INTERATOMIC DISTANCES AND THE CONSUMED COMPUTER TIME.               AAGI0064
+SEE ALSO COMMENTS 18 AND 25;                                            AAGI0065
+                                                                        AAGI0066
+\C\O\M\M\E\N\T RUNGE-KUTTA-ZONNEVELD-INTEGRATION-PROCEDURE;             AAGI0067
+\P\R\O\C\E\D\U\R\E RK390;                                               AAGI0068
+\B\E\G\I\N                                                              AAGI0069
+K01:=K01*H;K02:=K02*H;K03:=K03*H;K04:=K04*H;K05:=K05*H;K06:=K06*H;      AAGI0070
+Y1:=YL1+(ZL1+K01*.13819 66011 25011)*HH1;Y2:=YL2+(ZL2+K02*.13819 66011 2AAGI0071
+5011)*HH1;                                                              AAGI0072
+Y3:=YL3+(ZL3+K03*.13819 66011 25011)*HH1;Y4:=YL4+(ZL4+K04*.13819 66011 2AAGI0073
+5011)*HH1;                                                              AAGI0074
+Y5:=YL5+(ZL5+K05*.13819 66011 25011)*HH1;Y6:=YL6+(ZL6+K06*.13819 66011 2AAGI0075
+5011)*HH1;                                                              AAGI0076
+                                                                        AAGI0077
+Q21:=Y4-Y1*.06410 62677 8461;Q22:=Y5-Y2*.06410 62677 8461;Q23:=Y6-Y3*.06AAGI0078
+410 62677 8461;                                                         AAGI0079
+Q31:=Q21+Y1*5.14626 91817 51;Q32:=Q22+Y2*5.14626 91817 51;Q33:=Q23+Y3*5.AAGI0080
+14626 91817 51;                                                         AAGI0081
+R1:=SQRT(Y1*Y1+Y2*Y2+Y3*Y3);R2:=SQRT(Q21*Q21+Q22*Q22+Q23*Q23);R3:=SQRT(QAAGI0082
+31*Q31+Q32*Q32+Q33*Q33);                                                AAGI0083
+X1:=EXP(2.84574 98617 24-R1*1.87530 51327 17);X2:=EXP(2.60875 22036 65-RAAGI0084
+2*.15756 29769 468);                                                    AAGI0085
+X3:=EXP(2.03847 04696 99-R3*.18969 88127 887);                          AAGI0086
+J5:=(X2-7.55380 69872 13)*X2;J4:=(X1-7.35703 74472 40)*X1-J5;           AAGI0087
+J5:=J5-(X3-5.17880 29504 82)*X3;J6:=-J4-J5;JL7:=.23570 22603 95516/SQRT(AAGI0088
+J4*J4+J5*J5+J6*J6);                                                     AAGI0089
+J5:=(J5-J4)*JL7;J4:=(J4-J6)*JL7;                                        AAGI0090
+R1:=((X1-3.67851 87236 25)*J4-X1+.40872 43026 243)*X1*H411/R1;          AAGI0091
+R2:=((X2-3.77690 34936 06)*J5-X2+.41965 59437 337)*X2*H412/R2;          AAGI0092
+R3:=(-(X3-2.58940 14752 448)*(J4+J5)-X3+.28771 12750 275)*X3*H413/R3;   AAGI0093
+Q21:=Q21*R2;Q22:=Q22*R2;Q23:=Q23*R2;Q31:=Q31*R3;Q32:=Q32*R3;Q33:=Q33*R3;AAGI0094
+                                                                        AAGI0095
+                                                                        AAGI0096
+K11:=R1*Y1+Q21+Q31;K12:=R1*Y2+Q22+Q32;K13:=R1*Y3+Q23+Q33;K14:=-Q21*15.59AAGI0097
+909 87240 2+Q31*.19676 66162 868;                                       AAGI0098
+K15:=-Q22*15.59909 87240 2+Q32*.19676 66162 868;K16:=-Q23*15.59909 87240AAGI0099
+ 2+Q33*.19676 66162 868;                                                AAGI0100
+                                                                        AAGI0101
+Y1:=YL1+(ZL1+K11*.36180 33988 74989)*HH2;Y2:=YL2+(ZL2+K12*.36180 33988 7AAGI0102
+4989)*HH2;                                                              AAGI0103
+Y3:=YL3+(ZL3+K13*.36180 33988 74989)*HH2;Y4:=YL4+(ZL4+K14*.36180 33988 7AAGI0104
+4989)*HH2;                                                              AAGI0105
+Y5:=YL5+(ZL5+K15*.36180 33988 74989)*HH2;Y6:=YL6+(ZL6+K16*.36180 33988 7AAGI0106
+4989)*HH2;                                                              AAGI0107
+                                                                        AAGI0108
+Q21:=Y4-Y1*.06410 62677 8461;Q22:=Y5-Y2*.06410 62677 8461;Q23:=Y6-Y3*.06AAGI0109
+410 62677 8461;                                                         AAGI0110
+Q31:=Q21+Y1*5.14626 91817 51;Q32:=Q22+Y2*5.14626 91817 51;Q33:=Q23+Y3*5.AAGI0111
+14626 91817 51;                                                         AAGI0112
+R1:=SQRT(Y1*Y1+Y2*Y2+Y3*Y3);R2:=SQRT(Q21*Q21+Q22*Q22+Q23*Q23);R3:=SQRT(QAAGI0113
+31*Q31+Q32*Q32+Q33*Q33);                                                AAGI0114
+X1:=EXP(2.84574 98617 24-R1*1.87530 51327 17);X2:=EXP(2.60875 22036 65-RAAGI0115
+2*.15756 29769 468);                                                    AAGI0116
+X3:=EXP(2.03847 04696 99-R3*.18969 88127 887);                          AAGI0117
+J5:=(X2-7.55380 69872 13)*X2;J4:=(X1-7.35703 74472 40)*X1-J5;           AAGI0118
+J5:=J5-(X3-5.17880 29504 82)*X3;J6:=-J4-J5;JL7:=.23570 22603 95516/SQRT(AAGI0119
+J4*J4+J5*J5+J6*J6);                                                     AAGI0120
+J5:=(J5-J4)*JL7;J4:=(J4-J6)*JL7;                                        AAGI0121
+                                                                        AAGI0122
+R1:=((X1-3.67851 87236 25)*J4-X1+.40872 43026 243)*X1*H411/R1;          AAGI0123
+R2:=((X2-3.77690 34936 06)*J5-X2+.41965 59437 337)*X2*H412/R2;          AAGI0124
+R3:=(-(X3-2.58940 14752 448)*(J4+J5)-X3+.28771 12750 275)*X3*H413/R3;   AAGI0125
+Q21:=Q21*R2;Q22:=Q22*R2;Q23:=Q23*R2;Q31:=Q31*R3;Q32:=Q32*R3;Q33:=Q33*R3;AAGI0126
+                                                                        AAGI0127
+                                                                        AAGI0128
+K21:=R1*Y1+Q21+Q31;K22:=R1*Y2+Q22+Q32;K23:=R1*Y3+Q23+Q33;K24:=-Q21*15.59AAGI0129
+909 87240 2+Q31*.19676 66162 868;                                       AAGI0130
+K25:=-Q22*15.59909 87240 2+Q32*.19676 66162 868;K26:=-Q23*15.59909 87240AAGI0131
+ 2+Q33*.19676 66162 868;                                                AAGI0132
+                                                                        AAGI0133
+Z1:=YL1+ZL1*H;Y1:=Z1+(K01+K21*.61803 39887 49893)*HH4;Z2:=YL2+ZL2*H;Y2:=AAGI0134
+Z2+(K02+K22*.61803 39887 49893)*HH4;                                    AAGI0135
+Z3:=YL3+ZL3*H;Y3:=Z3+(K03+K23*.61803 39887 49893)*HH4;Z4:=YL4+ZL4*H;Y4:=AAGI0136
+Z4+(K04+K24*.61803 39887 49893)*HH4;                                    AAGI0137
+Z5:=YL5+ZL5*H;Y5:=Z5+(K05+K25*.61803 39887 49893)*HH4;Z6:=YL6+ZL6*H;Y6:=AAGI0138
+Z6+(K06+K26*.61803 39887 49893)*HH4;                                    AAGI0139
+                                                                        AAGI0140
+Q21:=Y4-Y1*.06410 62677 8461;Q22:=Y5-Y2*.06410 62677 8461;Q23:=Y6-Y3*.06AAGI0141
+410 62677 8461;                                                         AAGI0142
+Q31:=Q21+Y1*5.14626 91817 51;Q32:=Q22+Y2*5.14626 91817 51;Q33:=Q23+Y3*5.AAGI0143
+14626 91817 51;                                                         AAGI0144
+R1:=SQRT(Y1*Y1+Y2*Y2+Y3*Y3);R2:=SQRT(Q21*Q21+Q22*Q22+Q23*Q23);R3:=SQRT(QAAGI0145
+31*Q31+Q32*Q32+Q33*Q33);                                                AAGI0146
+X1:=EXP(2.84574 98617 24-R1*1.87530 51327 17);X2:=EXP(2.60875 22036 65-RAAGI0147
+2*.15756 29769 468);                                                    AAGI0148
+X3:=EXP(2.03847 04696 99-R3*.18969 88127 887);                          AAGI0149
+J5:=(X2-7.55380 69872 13)*X2;J4:=(X1-7.35703 74472 40)*X1-J5;           AAGI0150
+J5:=J5-(X3-5.17880 29504 82)*X3;J6:=-J4-J5;JL7:=.23570 22603 95516/SQRT(AAGI0151
+J4*J4+J5*J5+J6*J6);                                                     AAGI0152
+J5:=(J5-J4)*JL7;J4:=(J4-J6)*JL7;                                        AAGI0153
+                                                                        AAGI0154
+R1:=((X1-3.67851 87236 25)*J4-X1+.40872 43026 243)*X1*H411/R1;          AAGI0155
+R2:=((X2-3.77690 34936 06)*J5-X2+.41965 59437 337)*X2*H412/R2;          AAGI0156
+R3:=(-(X3-2.58940 14752 448)*(J4+J5)-X3+.28771 12750 275)*X3*H413/R3;   AAGI0157
+Q21:=Q21*R2;Q22:=Q22*R2;Q23:=Q23*R2;Q31:=Q31*R3;Q32:=Q32*R3;Q33:=Q33*R3;AAGI0158
+                                                                        AAGI0159
+                                                                        AAGI0160
+YL1:=Z1+(K01+K11*3.61803 39887 49893+K21*1.38196 6012 50107)*HH5;       AAGI0161
+ZL1:=ZL1+(K01+R1*Y1+Q21+Q31)*.08333 33333 33333+(K11+K21)*.41666 66666 6AAGI0162
+6667;                                                                   AAGI0163
+YL2:=Z2+(K02+K12*3.61803 39887 49893+K22*1.38196 60112 50107)*HH5;      AAGI0164
+ZL2:=ZL2+(K02+R1*Y2+Q22+Q32)*.08333 33333 33333+(K12+K22)*.41666 66666 6AAGI0165
+6667;                                                                   AAGI0166
+YL3:=Z3+(K03+K13*3.61803 39887 49893+K23*1.38196 60112 50107)*HH5;      AAGI0167
+ZL3:=ZL3+(K03+R1*Y3+Q23+Q33)*.08333 33333 33333+(K13+K23)*.41666 66666 6AAGI0168
+6667;                                                                   AAGI0169
+YL4:=Z4+(K04+K14*3.61803 39887 49893+K24*1.38196 60112 50107)*HH5;      AAGI0170
+ZL4:=ZL4+K04*.08333 33333 33333 -Q21*1.29992 48936 8+Q31*.01639 72180 23AAGI0171
+9+(K14+K24)*.41666 66666 66667;                                         AAGI0172
+YL5:=Z5+(K05+K15*3.61803 39887 49893+K25*1.38196 60112 50107)*HH5;      AAGI0173
+ZL5:=ZL5+K05*.08333 33333 33333 -Q22*1.29992 48936 8 +Q32*.01639 72180 2AAGI0174
+39+(K15+K25)*.41666 66666 66667;                                        AAGI0175
+YL6:=Z6+(K06+K16*3.61803 39887 49893+K26*1.38196 60112 50107)*HH5;      AAGI0176
+ZL6:=ZL6+K06*.08333 33333 33333 -Q23*1.29992 48936 8 +Q33*.01639 72180 2AAGI0177
+39+(K16+K26)*.41666 66666 66667;                                        AAGI0178
+                                                                        AAGI0179
+                                                                        AAGI0180
+Q21:=YL4-YL1*.06410 62677 8461;Q22:=YL5-YL2*.06410 62677 8461;Q23:=YL6-YAAGI0181
+L3*.06410 62677 8461;                                                   AAGI0182
+Q31:=Q21+YL1*5.14626 91817 51;Q32:=Q22+YL2*5.14626 91817 51;Q33:=Q23+YL3AAGI0183
+*5.14626 91817 51;                                                      AAGI0184
+R1:=SQRT(YL1*YL1+YL2*YL2+YL3*YL3);R2:=SQRT(Q21*Q21+Q22*Q22+Q23*Q23);R3:=AAGI0185
+SQRT(Q31*Q31+Q32*Q32+Q33*Q33);                                          AAGI0186
+X1:=EXP(2.84574 98617 24-R1*1.87530 51327 17);X2:=EXP(2.60875 22036 65-RAAGI0187
+2*.15756 29769 468);                                                    AAGI0188
+X3:=EXP(2.03847 04696 99-R3*.18969 88127 887);J5:=(X2-7.55380 69872 13)*AAGI0189
+X2;                                                                     AAGI0190
+J4:=(X1-7.35703 74472 40)*X1-J5;J5:=J5-(X3-5.17880 29504 82)*X3;J6:=-J4-AAGI0191
+J5;                                                                     AAGI0192
+JL7:=.23570 22603 95516/SQRT(J4*J4+J5*J5+J6*J6)                         AAGI0193
+\E\N\D RK390;                                                           AAGI0194
+\C\O\M\M\E\N\T 5.RK390 PERFORMS ONE ELEMENTARY INTEGRATIONSTEP FOR OUR SAAGI0195
+YSTEM OF 6 SECOND                                                       AAGI0196
+ORDER LINEAR COUPLED DIFFERENTIAL EQUATIONS.THE BODY OF RK390 HAS BEEN  AAGI0197
+WRITTEN OUT COMPLETELY IN REAL VARIABLES IN ORDER TO PREVENT TIME       AAGI0198
+CONSUMING FUNCTION PROCEDURE CALLS WITHIN THE BODY OF RK390,AS WELL     AAGI0199
+AS THE USE OF THE VERY TIME CONSUMING ARRAY CONCEPT;                    AAGI0200
+                                                                        AAGI0201
+BANDNO:=READ;MAX:=READ;TMAX:=READ;                                      AAGI0202
+\F\O\R I:=1 \S\T\E\P 1 \U\N\T\I\L 9 \D\O GEG!I&:=READ;                  AAGI0203
+N1:=READ;N2:=READ;HMIN:=READ;HMAX:=READ;EPS:=READ;                      AAGI0204
+\C\O\M\M\E\N\T 6.INPUT OF READ IN VARIABLES:                            AAGI0205
+BANDNO IS AN INTEGER,REPRESENTING THE NUMBER OF THE NUMBER TAPE.        AAGI0206
+MAX IS AN INTEGER,REPRESENTING THE MAXIMUM NUMBER OF TRAJECTORIES TO EVAAAGI0207
+LUATE.                                                                  AAGI0208
+TMAX IS AN INTEGER,REPRESENTING THE MAXIMUM WANTED COMPUTER TIME IN SEC.AAGI0209
+                                                                        AAGI0210
+GEG!1,2,3& REPRESENT THE STOPPING DISTANCES IN ANGSTROM,I.E. IF AT LEASTAAGI0211
+                                                                        AAGI0212
+2 OF THE 3 INTERATOMIC DISTANCES BECOME LARGER THEN THE NUMERICAL VALUE AAGI0213
+OF THE                                                                  AAGI0214
+CORRESPONDING GEG!I&,THEN THE INTEGRATION IS TERMINATED.                AAGI0215
+GEG!4,5,6& REPRESENT THE MOLECULE DISTANCES IN ANGSTROM,I.E. THE DISTANCAAGI0216
+E                                                                       AAGI0217
+WHEREBY THE ATOMIC PAIR (I,J) IS STILL RECOGNIZED AS A MOLCULE.         AAGI0218
+GEG!7& REPRESENTS THE INITIAL DISTANCE BETWEEN THE K-ATOM AND THE CENTERAAGI0219
+ OF                                                                     AAGI0220
+MASS OF THE HBR-MOLECULE IN ANGSTROM.                                   AAGI0221
+GEG!8,9& REPRESENT RESP. THE INITIAL KINETIC ENERGY OF THE K-ATOM AND THAAGI0222
+E                                                                       AAGI0223
+CENTER OF MASS OF THE HBR-MOLECULE IN EV.                               AAGI0224
+N1 AND N2 ARE INTEGERS,REPRESENTING RESP. THE TIME INTERVAL DT AND THE  AAGI0225
+MAXIMUM ALLOWED COLLISIONTIME PER TRAJECTORY.SEE ALSO COMMENT 18.       AAGI0226
+HMIN AND HMAX CONSTITUTE A LOWER RESP. UPPER BOUND FOR THE STEPSIZE H:  AAGI0227
+HMIN\<H\<HMAX.                                                          AAGI0228
+EPS IS AN ACCURACY PARAMETER,DETERMINIG THE CONSERVATION OF ENERGY;     AAGI0229
+                                                                        AAGI0230
+P(]< PROGRAMM 324,CLASSICAL TRAJECTORY CALCULATIONS,A VAN DER MEULEN]>);AAGI0231
+NLCR;                                                                   AAGI0232
+P(]<NUMBER TAPE ]>);FIXT(3,0,BANDNO);NLCR;                              AAGI0233
+P(]<MAXIMUM NUMBER OF TRAJECTORIES ]>);FIXT(4,0,MAX);NLCR;              AAGI0234
+P(]<MAXIMUM COMPUTERTIME ]>);FIXT(4,0,TMAX);NLCR;                       AAGI0235
+P(]<ACCURACY PARAMETER=    ]>);FLOT(5,2,EPS);NLCR;                      AAGI0236
+\F\O\R I:=1,2,3,4,5,6 ,7,8,9 \D\O \B\E\G\I\N ALFANUMRK;SPACE(3);FIXT(3,3AAGI0237
+,GEG!I&);NLCR \E\N\D;                                                   AAGI0238
+\C\O\M\M\E\N\T 7.OUTPUT OF ADMINISTRATIVE VARIABLES.THE PROGRAM ASKS FORAAGI0239
+ NON-NUMERICAL INPUT HERE;                                              AAGI0240
+                                                                        AAGI0241
+GEG1:=GEG!1&/1.00230 09795 39;GEG2:=GEG!2&/.19476 26414 669;GEG3:=GEG!3&AAGI0242
+/.19476 26414 669;                                                      AAGI0243
+GEG4:=GEG!4&/1.00230 09795 39;GEG5:=GEG!5&/.19476 26414 669;GEG6:=GEG!6&AAGI0244
+/.19476 26414 669;                                                      AAGI0245
+Q1:=GEG!7&*5.13445 49061 01;Q10:=-SQRT(GEG!8&*2.16027 64569 + GEG!9&*1.0AAGI0246
+4392 35430 86);                                                         AAGI0247
+\C\O\M\M\E\N\T 8.SCALING OF GEG!1,2,3,4,5,6& IN ORDER TO BE ABLE TO COMPAAGI0248
+ARE THE STOPPING AND                                                    AAGI0249
+MOLECULE DISTANCES WITH THE QUANTITIES EVALUATED BY THE PROGRAM,        AAGI0250
+REPRESENTING THE INTERATOMIC DISTANCES.                                 AAGI0251
+SCALING OF GEG!7& IN ORDER TO OBTAIN THE MAXIMUM IMPACT PARAMETER.      AAGI0252
+EVALUATION OF THE INITIAL RELATIVE KINETIC ENERGY;                      AAGI0253
+                                                                        AAGI0254
+SETRANDOM(.5);AANTAL:=1;                                                AAGI0255
+\C\O\M\M\E\N\T 9.SETTING OF THE STARTING VALUE OF THE RANDOM SEQUENCE,INAAGI0256
+ ORDER TO OBTAIN A                                                      AAGI0257
+'REPRODUCEBLE RANDOM SEQUENCE'.                                         AAGI0258
+SETTING OF THE TRAJECTORY SERIAL NUMBER COUNTER;                        AAGI0259
+                                                                        AAGI0260
+\C\O\M\M\E\N\T 10.THE COMMENTS 6,7,8,9 DESCRIBE THE BEGINRUN OF THE PROGAAGI0261
+RAM,WHICH IS                                                            AAGI0262
+EXECUTED BEFORE THE PROGRAM ENTERS THE ACTUEL TRAJECTORY CALCULATIONS;  AAGI0263
+                                                                        AAGI0264
+\C\O\M\M\E\N\T 11.THE COMMENTS 12,13,....,29 DESCRIBE THE STATEMENTS THRAAGI0265
+OUGH WHICH A COMPLETE                                                   AAGI0266
+TRAJECTORY IS EVALUATED,PRINTED OUT AND CHECKED ON ITS NATURE:REACTIVE, AAGI0267
+NON-REACTIVE OR ORBITING;                                               AAGI0268
+                                                                        AAGI0269
+OPNIEUW:                                                                AAGI0270
+                                                                        AAGI0271
+Q2:=RANDOM*3.14159 26535 89793;Q3:=RANDOM*6.28318 53071 79586;Q4:=RANDOMAAGI0272
+*6.28318 53071 79586;                                                   AAGI0273
+Q5:=Q1*SQRT(RANDOM);Q6:=RANDOM*6.28318 53071 79586;                     AAGI0274
+\C\O\M\M\E\N\T 12.GENERATION OF MONTE CARLO STARTING CONDITIONS:ORIENTATAAGI0275
+ION OF THE                                                              AAGI0276
+HBR-ROTATOR,PHASE OF THE HBR-OSCILLATOR AND IMPACT PARAMETER;           AAGI0277
+                                                                        AAGI0278
+Q7:=1.40875 84755 74+.11573 36991 26*SIN(Q6);Q8:=COS(Q6)*.74805 16704 3;AAGI0279
+Q9:=.28229 48340 8/Q7;                                                  AAGI0280
+                                                                        AAGI0281
+Q21:=SIN(Q2);Q22:=SIN(Q3);Q23:=SIN(Q4);Q31:=COS(Q2);Q32:=COS(Q3);Q33:=COAAGI0282
+S(Q4);                                                                  AAGI0283
+K01:=Q21*Q23;K03:=Q22*Q23;K04:=Q22*Q33;K05:=Q32*Q23;K06:=Q32*Q33;K11:=K0AAGI0284
+6-K03*Q31;K12:=K04+K05*Q31;                                             AAGI0285
+YL1:=-K11*Q7;YL2:=-K12*Q7;YL3:=-K01*Q7;YL4:=SQRT(Q1*Q1-Q5*Q5);YL5:=Q5;YLAAGI0286
+6:=0;                                                                   AAGI0287
+ZL1:=-K11*Q8+(K05+K04*Q31)*Q9;ZL2:=-K12*Q8+(K03-K06*Q31)*Q9;ZL3:=-K01*Q8AAGI0288
+-Q21*Q33*Q9;                                                            AAGI0289
+ZL4:=Q10;ZL5:=ZL6:=0;                                                   AAGI0290
+\C\O\M\M\E\N\T 13.EVALUATION OF THE STARTING VALUES OF THE GENERALIZED CAAGI0291
+OORDINATES                                                              AAGI0292
+AND MOMENTA:YL1,YL2,YL3,YL4,YL5,YL6,ZL1,ZL2,ZL3,ZL4,ZL5,ZL6;            AAGI0293
+                                                                        AAGI0294
+Q21:=YL4-YL1*.06410 62677 8461;Q22:=YL5-YL2*.06410 62677 8461;Q23:=-YL3*AAGI0295
+.06410 62677 8461;                                                      AAGI0296
+Q31:=Q21+YL1*5.14626 91817 51;Q32:=Q22+YL2*5.14626 91817 51;Q33:=YL3*5.0AAGI0297
+8216 29139 66;                                                          AAGI0298
+R1:=SQRT(YL1*YL1+YL2*YL2+YL3*YL3);R2:=SQRT(Q21*Q21+Q22*Q22+Q23*Q23);R3:=AAGI0299
+SQRT(Q31*Q31+Q32*Q32+Q33*Q33);                                          AAGI0300
+X1:=EXP(2.84574 98617 24-R1*1.87530 51327 17);X2:=EXP(2.60875 22036 65-RAAGI0301
+2*.15756 29769 468);                                                    AAGI0302
+X3:=EXP(2.03847 04696 99-R3*.18969 88127 887);J5:=(X2-7.55380 69872 13)*AAGI0303
+X2;                                                                     AAGI0304
+J4:=(X1-7.35703 74472 40)*X1-J5;J5:=J5-(X3-5.17880 29504 82)*X3;J6:=-J4-AAGI0305
+J5;                                                                     AAGI0306
+JL7:=.23570 22603 95516/SQRT(J4*J4+J5*J5+J6*J6);                        AAGI0307
+EI:=EF:=(-.05555 55555 556/JL7+(X1-.81744 86052 487)*X1+(X2-.83931 18874AAGI0308
+ 677)*X2+(X3-.5754225500 543)*X3)*3;                                    AAGI0309
+\C\O\M\M\E\N\T 14.EVALUATION OF THE INITIAL POTENTIAL ENERGY OF THE SYSTAAGI0310
+EM;                                                                     AAGI0311
+                                                                        AAGI0312
+X:=0;H:=HMAX;ST4:=R1>GEG1;ST5:=R2>GEG2;ST6:=R3>GEG3;ST1:=ST2:=ST3:=\F\A\AAGI0313
+L\S\E;                                                                  AAGI0314
+\C\O\M\M\E\N\T 15.SETTING OF THE COLLISION TIME=0,AND OF THE STEPSIZE=HMAAGI0315
+AX.                                                                     AAGI0316
+INITIALIZATION OF THE STOPPING MECHANISM,IN ORDER TO                    AAGI0317
+PREVENT THE POSSIBLE TERMINATION OF THE INTEGRATION                     AAGI0318
+AT THE VERY BEGINNING;                                                  AAGI0319
+                                                                        AAGI0320
+NEW PAGE;P(]<SERIAL NUMBER]>);FIXT(3,0,AANTAL);NLCR;                    AAGI0321
+P(]< COLLISION TIME     POTENTIAL ENERGY     TOTAL ENERGY         R12   AAGI0322
+      R23         R31        COMP.TIME]>);NLCR;                         AAGI0323
+\C\O\M\M\E\N\T 16.ADMINISTRATION OF THE TRAJECTORY;                     AAGI0324
+                                                                        AAGI0325
+OUTPUT;                                                                 AAGI0326
+\C\O\M\M\E\N\T 17.EVALUATION OF THE PROCEDURE OUTPUT AT COLLISION TIME=0AAGI0327
+;                                                                       AAGI0328
+                                                                        AAGI0329
+\C\O\M\M\E\N\T 18.THE FOLLOWING FOR-LOOP PERFORMS THE ACTUEL INTEGRATIONAAGI0330
+ WORK.                                                                  AAGI0331
+THE MEANING OF THE INTEGER NUMBERS N1 AND N2 HAS BEEN                   AAGI0332
+DESCRIBED IN COMMENT 6.AFTER EACH TIME INCREMENT N1 THE                 AAGI0333
+PROCEDURE OUTPUT PRINTS OUT THE STATUS OF THE SYSTEM                    AAGI0334
+AT THAT COLLISION TIME.IF THE INTEGRATION HAS NOT YET BEEN              AAGI0335
+TERMINATED BY THE SPECIAL STOPPING PROCEDURE THEN AFTER A               AAGI0336
+COLLISION TIME N2 THE PROGRAM TERMINATES THE INTEGRATION                AAGI0337
+AND ORBITING HAS OCCURRED;                                              AAGI0338
+                                                                        AAGI0339
+\F\O\R B:=N1 \S\T\E\P N1 \U\N\T\I\L N2 \D\O                             AAGI0340
+\B\E\G\I\N HERHAAL:                                                     AAGI0341
+\C\O\M\M\E\N\T 19.THE TIME INCREMENT N1 IS PERFORMED BY MEANS OF A GOTO-AAGI0342
+STATEMENT.                                                              AAGI0343
+AFTER EVERY ELEMENTARY INTEGRATION STEP,IT IS CHECKED IF THE            AAGI0344
+TIME INCREMENT N1 HAS BEEN COMPLETED:IF NOT THEN ANOTHER                AAGI0345
+ELEMENTARY STEP IS PERFORMED,ELSE THE PROCEDURE OUTPUT IS               AAGI0346
+CALLED AND IT IS CHECKED IF THE INTEGRATION IS TO BE TERMINATED;        AAGI0347
+                                                                        AAGI0348
+J5:=(J5-J4)*JL7;J4:=(J4-J6)*JL7;                                        AAGI0349
+R1:=-((X1-3.67851 87236 25)*J4-X1+.40872 43026 243)*X1*11.25183 07963 0/AAGI0350
+R1;                                                                     AAGI0351
+R2:=((X2-3.77690 34936 06)*J5-X2+.41965 59437 337)*X2*.06060 46463 5851/AAGI0352
+R2;                                                                     AAGI0353
+R3:=-(-(X3-2.58940 14752 448)*(J4+J5)-X3+.28771 12750 275)*X3*5.78448 16AAGI0354
+270 66/R3;                                                              AAGI0355
+Q21:=Q21*R2;Q22:=Q22*R2;Q23:=Q23*R2;Q31:=Q31*R3;Q32:=Q32*R3;Q33:=Q33*R3;AAGI0356
+                                                                        AAGI0357
+K01:=R1*YL1+Q21+Q31;K02:=R1*YL2+Q22+Q32;K03:=R1*YL3+Q23+Q33;            AAGI0358
+K04:=-Q21*15.59909 87240 2+Q31*.19676 66162 868;                        AAGI0359
+K05:=-Q22*15.59909 87240 2+Q32*.19676 66162 868;K06:=-Q23*15.59909 87240AAGI0360
+ 2+Q33*.19676 66162 868;                                                AAGI0361
+S1:=(-K01*ZL1-K02*ZL2-K03*ZL3-K04*ZL4-K05*ZL5-K06*ZL6)*H;               AAGI0362
+EI:=ABS(EI-EF+S1);S1:=ABS(S1*.5);                                       AAGI0363
+\I\F EI=0 \T\H\E\N \B\E\G\I\N \I\F S1=0 \T\H\E\N H:=HMAX \E\L\S\E H:=.5*AAGI0364
+EPS*ABS(EF)*H/S1 \E\N\D                                                 AAGI0365
+\E\L\S\E H:=(S1+SQRT(S1*S1+2*EPS*ABS(EF)*EI))*H/EI;                     AAGI0366
+\I\F H<HMIN \T\H\E\N H:=HMIN;\I\F H>HMAX \T\H\E\N H:=HMAX;              AAGI0367
+\C\O\M\M\E\N\T 20.SELECTION OF THE NEXT STEPSIZE H;                     AAGI0368
+                                                                        AAGI0369
+X:=X+H;HH1:=H*.27639 32022 50021;HH2:=H-HH1;HH4:=H*.30901 69943 74947;HHAAGI0370
+5:=H*.08333 33333 33333;                                                AAGI0371
+H411:=-H*11.25183 07963 0;H412:=H*.06060 46463 5851;H413:=-H*5.78448 162AAGI0372
+70 66;                                                                  AAGI0373
+\C\O\M\M\E\N\T 21.DETERMINATION OF THE ENDPOINT OF THE NEXT INTEGRATIONSAAGI0374
+TEP.                                                                    AAGI0375
+EVALUATION OF AUXILIARY CONSTANTS,DEPENDING ON H;                       AAGI0376
+                                                                        AAGI0377
+RK390;                                                                  AAGI0378
+\C\O\M\M\E\N\T 22.EVALUATION OF ONE ELEMENTARY INTEGRATION STEP BY RK390AAGI0379
+;                                                                       AAGI0380
+                                                                        AAGI0381
+EI:=EF;EF:=(-.05555 55555 556/JL7+(X1-.81744 86052 487)*X1+(X2-.83931 18AAGI0382
+874 677)*X2+(X3-.57542 25500 543)*X3)*3;                                AAGI0383
+\C\O\M\M\E\N\T 23.EVALUATION  OF THE POTENTIAL ENERGY AT THE END OF THE AAGI0384
+INTEGRATIONSTEP PERFORMED IN COMMENT 22.IT SHOULD BE NOTED              AAGI0385
+THAT THE LAST BLOCK OF STATEMENTS OF RK390 AND THIS                     AAGI0386
+STATEMENT CONSTITUTE THE NECESSARY SET OF STATEMENTS                    AAGI0387
+TO EVALUATE THE POTENTIAL ENERGY.SEE COMMENT 14;                        AAGI0388
+                                                                        AAGI0389
+\I\F X<B \T\H\E\N \G\O\T\O HERHAAL;                                     AAGI0390
+\C\O\M\M\E\N\T 24.CHECK IF THE TIME INCREMENT N1 HAS BEEN COMPLETED.IF NAAGI0391
+OT                                                                      AAGI0392
+THEN RETURN TO COMMENT 19,ELSE PROCEED TO COMMENT 25;                   AAGI0393
+                                                                        AAGI0394
+OUTPUT;                                                                 AAGI0395
+\C\O\M\M\E\N\T 25.THE STATUS  OF THE SYSTEM IS PRINTED OUT BY THE PROCEDAAGI0396
+URE OUTPUT;                                                             AAGI0397
+                                                                        AAGI0398
+ST1:=ST4\=ST1;ST2:=ST5\=ST2;ST3:=ST6\=ST3;                              AAGI0399
+ST4:=R1>GEG1;ST5:=R2>GEG2;ST6:=R3>GEG3;                                 AAGI0400
+ST1:=ST4@ST1;ST2:=ST5@ST2;ST3:=ST6@ST3;                                 AAGI0401
+\I\F (ST1#ST2)@(ST2#ST3)@(ST3#ST1) \T\H\E\N \G\O\T\O CHECK;             AAGI0402
+\C\O\M\M\E\N\T 26.CHECK IF THE INTEGRATION IS TO BE TERMINATED.IF NOT THAAGI0403
+EN THE FOLLOWING                                                        AAGI0404
+CYCLE OF THE FOR-LOOP OF COMMENT 18 IS EXECUTED,ELSE THE PROGRAM        AAGI0405
+JUMPS OUT OF THE FOR-LOOP TO COMMENT 27;                                AAGI0406
+                                                                        AAGI0407
+\E\N\D;                                                                 AAGI0408
+                                                                        AAGI0409
+CHECK:                                                                  AAGI0410
+\I\F ST2@ST3@(R1<GEG4)  \T\H\E\N                                        AAGI0411
+\B\E\G\I\N CTH:=-ZL4/SQRT(ZL4*ZL4+ZL5*ZL5+ZL6*ZL6);                     AAGI0412
+      CTH:=90-ARCTAN(CTH/SQRT(1-CTH*CTH))*57.29577 95131;               AAGI0413
+      P(]<NON-REACTIVE SCATTERING]>);NLCR;                              AAGI0414
+      P(]<SCATTERING-ANGLE]>);FIXT(3,3,CTH);                            AAGI0415
+      \G\O\T\O KLAAR                                                    AAGI0416
+\E\N\D;                                                                 AAGI0417
+\C\O\M\M\E\N\T 27.CHECK IF NON-REACTIVE SCATTERING HAS OCCURRED.PRINTED AAGI0418
+OUT ARE:                                                                AAGI0419
+THE TEXT 'NON-REACTIVE SCATTERING' AND THE SCATTERING ANGLE             AAGI0420
+IN DEGREE;                                                              AAGI0421
+                                                                        AAGI0422
+\I\F ST1@ST3@(R2<GEG5)  \T\H\E\N \B\E\G\I\N P(]<REACTIVE SCATTERING:KBR]AAGI0423
+>);\G\O\T\O KLAAR \E\N\D;                                               AAGI0424
+\C\O\M\M\E\N\T 28.CHECK IF REACTIVE SCATTERING HAS OCCURRED.PRINTED OUT AAGI0425
+IS THE                                                                  AAGI0426
+TEXT 'REACTIVE-SCATTERING KBR';                                         AAGI0427
+                                                                        AAGI0428
+\I\F (R1<GEG4)@(R2<GEG5)@(R3<GEG6) \T\H\E\N P(]<ORBITING]>);            AAGI0429
+\C\O\M\M\E\N\T 29.CHECK IF ORBITING HAS OCCURRED.PRINTED OUT IS THE TEXTAAGI0430
+ 'ORBITING';                                                            AAGI0431
+                                                                        AAGI0432
+KLAAR:                                                                  AAGI0433
+AANTAL:=AANTAL+1;                                                       AAGI0434
+\I\F (AANTAL>MAX)#(TIME>TMAX) \T\H\E\N EXIT \E\L\S\E \G\O\T\O OPNIEUW;  AAGI0435
+\C\O\M\M\E\N\T 30.THE TRAJECTORY SERIAL NUMBER IS INCREASED WITH 1.CHECKAAGI0436
+ ON THE                                                                 AAGI0437
+MAXIMUM NUMBER OF TRAJECTORIES AND ON THE MAXIMUM ALLOWED               AAGI0438
+COMPUTER TIME.IF THE PROGRAM IS ALLOWED TO PROCEED THEN IT              AAGI0439
+RETURNS TO COMMENT 11,OTHERWISE THE PROGRAM IS TERMINATED;              AAGI0440
+                                                                        AAGI0441
+\E\N\D                                                                  AAGI0442
+                                                                        AAGI0443
+                                                                        AAGI0444
+378     2     100                                                       AAGI0445
+5     8     8.5                                                         AAGI0446
+5     8     8.5                                                         AAGI0447
+8     1     .03                                                         AAGI0448
+2     50     .075     .125     .01                                      AAGI0449
+'STOPPING DISTANCE HBR'     'STOPPING DISTANCE KBR'     'STOPPING DISTANAAGI0450
+CE KH'                                                                  AAGI0451
+'MOLECULE DISTANCE HBR'     'MOLECULE DISTANCE KBR'     'MOLECULE DISTANAAGI0452
+CE KH'                                                                  AAGI0453
+'INITIAL DISTANCE K-C.M.HBR'     'INITIAL K-ENERGY IN EV'     'INITIAL CAAGI0454
+.M.HBR-ENERGY IN EV'                                                    AAGI0455
+                                                                        AAGI0456
+                                                                        AAGI0457
+379     2     100                                                       AAGI0458
+5     8     8.5                                                         AAGI0459
+5     8     8.5                                                         AAGI0460
+8     1     .03                                                         AAGI0461
+2     50     .075     .125     .0001                                    AAGI0462
+'STOPPING DISTANCE HBR'     'STOPPING DISTANCE KBR'     'STOPPING DISTANAAGI0463
+CE KH'                                                                  AAGI0464
+'MOLECULE DISTANCE HBR'     'MOLECULE DISTANCE KBR'     'MOLECULE DISTANAAGI0465
+CE KH'                                                                  AAGI0466
+'INITIAL DISTANCE K-C.M.HBR'     'INITIAL K-ENERGY IN EV'     'INITIAL CAAGI0467
+.M.HBR-ENERGY IN EV'                                                    AAGI0468
+                                                                        AAGI0469
+                                                                        AAGI****

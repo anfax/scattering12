@@ -1,0 +1,18 @@
+950
+scatter             nowf
+slater             8
+neutral               0.0
+8.95d0             ! polar
+4.595d0             ! polar2
+3.7d0                ! r_cutoff
+0.54d0                ! last bound state energy
+0.d0          ! z coordinate shift
+0.85                ! Energy max
+0.0                 ! Energy min
+60                ! Energy mesh
+.0d0
+.FALSE.
+.TRUE.
+0.d0
+no
+no             0.d0  0.d0  0.d0  0.d0
