@@ -203,5 +203,4 @@ $$\sigma_{j \rightarrow j'} = \frac{\pi}{k_j^2} \sum_l (2l+1) |T_{j'j}^l|^2$$
 
 这个仓库中的代码基于原始开发者的工作，请参考相应的原始文献了解使用条款。
 
-The code in this repository is based on the work of the original developers. Please refer to the corresponding original literature for terms of use.#   s c a t t e r i n g 1 2  
- 
+The code in this repository is based on the work of the original developers. Please refer to the corresponding original literature for terms of use.
